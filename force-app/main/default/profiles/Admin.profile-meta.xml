@@ -193,10 +193,6 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
-        <tab>Book_Rating__c</tab>
-        <visibility>DefaultOn</visibility>
-    </tabVisibilities>
-    <tabVisibilities>
         <tab>Book__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
