@@ -4,6 +4,22 @@
     <deleteConstraint>Restrict</deleteConstraint>
     <externalId>false</externalId>
     <label>User</label>
+    <lookupFilter>
+        <active>true</active>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <errorMessage>Only Reviewer or Admin can create Reviews.</errorMessage>
+        <filterItems>
+            <field>User__c.Role__c</field>
+            <operation>equals</operation>
+            <value>Reviewer</value>
+        </filterItems>
+        <filterItems>
+            <field>User__c.Role__c</field>
+            <operation>equals</operation>
+            <value>Admin</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
     <referenceTo>User__c</referenceTo>
     <relationshipLabel>Reviews</relationshipLabel>
     <relationshipName>Reviews</relationshipName>

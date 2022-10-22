@@ -4,7 +4,7 @@
     <externalId>false</externalId>
     <label>Dislikes</label>
     <summaryFilterItems>
-        <field>Review_Rating__c.Agreed__c</field>
+        <field>Review_Rating__c.Like__c</field>
         <operation>equals</operation>
         <value>False</value>
     </summaryFilterItems>

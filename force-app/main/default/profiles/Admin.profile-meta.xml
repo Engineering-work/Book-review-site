@@ -3,7 +3,37 @@
     <custom>false</custom>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Author__c.Date_Of_Death__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Author__c.Photo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Book_Rating__c.Comment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Book__c.Book_Series__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Discussion__c.Book__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Post__c.Content__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Post__c.Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -27,16 +57,28 @@
         <readable>true</readable>
     </fieldPermissions>
     <layoutAssignments>
+        <layout>Author__c-Author Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Book_List_Item__c-Book List Item Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Book_Rating__c-Book Rating Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Book_Series__c-Book Series Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Book_Suggestion__c-Book Suggestion Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Book__c-Book Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Discussion__c-Discussion Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Post__c-Post Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>Review_Rating__c-Review Rating Layout</layout>
@@ -47,6 +89,15 @@
     <layoutAssignments>
         <layout>User__c-User Layout</layout>
     </layoutAssignments>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Author__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>true</allowDelete>
@@ -71,6 +122,15 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
+        <object>Book_Series__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>Book_Suggestion__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -81,6 +141,24 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>Book__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Discussion__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Post__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -111,7 +189,7 @@
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <tabVisibilities>
-        <tab>Book_Rating__c</tab>
+        <tab>Author__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
