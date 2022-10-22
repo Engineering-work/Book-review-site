@@ -8,7 +8,7 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Review_Rating__c.Agreed__c</field>
+        <field>Review_Rating__c.Like__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -33,6 +33,9 @@
         <layout>Book_Rating__c-Book Rating Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Book_Suggestion__c-Book Suggestion Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Book__c-Book Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -40,9 +43,6 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Review__c-Review Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>User_Book_List_Item__c-User Book List Item Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>User__c-User Layout</layout>
@@ -71,6 +71,15 @@
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
+        <object>Book_Suggestion__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>Book__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -90,15 +99,6 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>Review__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>true</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>true</modifyAllRecords>
-        <object>User_Book_List_Item__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>

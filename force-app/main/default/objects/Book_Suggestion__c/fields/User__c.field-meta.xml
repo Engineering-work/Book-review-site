@@ -4,11 +4,11 @@
     <externalId>false</externalId>
     <label>User</label>
     <referenceTo>User__c</referenceTo>
-    <relationshipLabel>Book List Items</relationshipLabel>
-    <relationshipName>Book_List_Items</relationshipName>
-    <relationshipOrder>1</relationshipOrder>
+    <relationshipLabel>Book Suggestions</relationshipLabel>
+    <relationshipName>Book_Suggestions</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
     <reparentableMasterDetail>false</reparentableMasterDetail>
     <trackTrending>false</trackTrending>
     <type>MasterDetail</type>
-    <writeRequiresMasterRead>true</writeRequiresMasterRead>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
 </CustomField>

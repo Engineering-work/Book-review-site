@@ -152,14 +152,14 @@
     <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
-    <label>User Book List Item</label>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <label>Book Suggestion</label>
     <nameField>
-        <label>User Book List Item Name</label>
+        <label>Book Suggestion Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>User Book List Items</pluralLabel>
+    <pluralLabel>Book Suggestions</pluralLabel>
     <searchLayouts></searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
