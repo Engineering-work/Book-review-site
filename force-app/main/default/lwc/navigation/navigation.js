@@ -20,21 +20,4 @@ export default class Navigation extends LightningElement {
         dropdownContainer.style.display = 'none';
     }
 
-    navigateHome(){
-        this[NavigationMixin.Navigate]({
-            type: 'standard__namedPage',
-            attributes: {
-                pageName: 'Home'
-            },
-        });
-    }
-
-    navigateLogin(){
-        this[NavigationMixin.Navigate]({
-            type: 'standard__namedPage',
-            attributes: {
-                pageName: 'Login'
-            },
-        });
-    }
 }
