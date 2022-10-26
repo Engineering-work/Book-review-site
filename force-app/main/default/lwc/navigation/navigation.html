@@ -1,0 +1,31 @@
+<template>
+    <nav class='naviagtionContainer pinkColor'>
+        <section class='logoContainer'>
+            <a href='/'><img src={logoSRC} alt='goToMainSite'></a>
+        </section> 
+        <section class='LinksAndSearchContainer'>
+            <section class='linksContainer'>
+                <a class='link'>Katalog</a>
+                <a class='link'>Ranking</a>
+                <a class='link'>Dodaj książkę</a>
+                <template  if:true={loggedInUser}>
+                    <div class='positionRelative' onmouseover={handleProfileHover} onmouseleave={handleProfileUnhover}>
+                        <div class='dropdownLink'>{username}</div>
+                        <div class='dropdownContent'>
+                            <a class='link pinkColor'>Mój profil</a>
+                            <a class='link pinkColor'>Moja lista</a>
+                            <a class='link pinkColor'>Ustawienia</a>
+                            <a class='link pinkColor'>Wyloguj</a>
+                        </div>
+                    </div>
+                </template>
+                <template  if:false={loggedInUser}>
+                    <a class='link' href='/login'>Zaloguj</a>
+                </template>
+            </section>
+            <section class='searchContainer'>
+                <input type='text' placeholder='Wyszukaj...' />
+            </section>
+        </section>
+    </nav>
+</template>
