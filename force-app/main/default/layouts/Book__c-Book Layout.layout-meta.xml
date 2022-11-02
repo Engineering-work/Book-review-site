@@ -34,6 +34,10 @@
                 <behavior>Required</behavior>
                 <field>Author__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>Average_Rating__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
