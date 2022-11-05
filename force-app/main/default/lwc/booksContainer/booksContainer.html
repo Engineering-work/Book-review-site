@@ -1,0 +1,42 @@
+<template>
+    <section class='mainContainer'>
+        <section class='previous' onclick={renderPreviousBook}>
+            <img src={previous}>
+        </section>
+        <section class='booksContainer'>
+            <template if:true={bookscomponent}>
+                <section class='title'>Nowości</section>
+            </template>
+            <template if:false={bookscomponent}>
+                <section class='title'>Wybrane dla Ciebie</section>
+            </template>
+            <template if:true={bookscomponent}>
+                <section class='newBooksGenres'>
+                    <a class='link active' id='wszystkie' onclick={changeGenre}>Wszystkie</a>
+                    <a class='link' id='scienceFiction' onclick={changeGenre}>Science fiction</a>
+                    <a class='link' id='kryminal' onclick={changeGenre}>Kryminał</a>
+                    <a class='link' id='romans' onclick={changeGenre}>Romans</a>
+                    <a class='link' id='fantastyka' onclick={changeGenre}>Fantastyka</a>
+                </section>
+            </template>
+            <section class='booksList'>
+                <template for:each={books} for:item='book'>
+                    <section key={book.id} class='bookContainer'> 
+                        <section class='bookImage'>
+                            <img src={book.src}>
+                        </section>
+                        <section class='bookTitle'>
+                            {book.title}
+                        </section>
+                        <section class='bookAuthor'>
+                            {book.author}
+                        </section>
+                    </section>
+                </template>
+            </section>
+        </section>
+        <section class='next' onclick={renderNextBook}>
+            <img src={next}>
+        </section>
+    </section>
+</template>
