@@ -7,7 +7,7 @@
 }
 
 .pinkColor{
-    background-color: rgba(255, 200, 200, 0.54);
+    background-color: #FFC8C8;
 }
 
 /* Logo section */
@@ -38,13 +38,13 @@
 
 .link:active,
 .link:active:hover{
-    background-color: #ffcbcb !important;
+    background-color: #FFB2B2 !important;
     font-weight: bold;
     text-decoration: none !important;
 }
 
 .link:hover{
-    background-color: #ffcbcb6e !important;
+    background-color: #FFB2B2 !important;
     text-decoration: none !important;
 }
 
@@ -61,6 +61,7 @@
     position: absolute;
     flex-direction: column;
     top: 98%;
+    z-index: 1;
 }
 
 /* Search bar */
