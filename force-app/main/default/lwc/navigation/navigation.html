@@ -8,7 +8,7 @@
                 <a class='link'>Katalog</a>
                 <a class='link'>Ranking</a>
                 <a class='link'>Dodaj książkę</a>
-                <template  if:true={loggedInUser}>
+                <template if:true={loggedInUser}>
                     <div class='positionRelative' onmouseover={handleProfileHover} onmouseleave={handleProfileUnhover}>
                         <div class='dropdownLink'>{username}</div>
                         <div class='dropdownContent'>
