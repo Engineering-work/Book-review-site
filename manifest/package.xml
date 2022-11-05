@@ -11,10 +11,10 @@
      <types>
         <members>profileImages</members>
         <name>StaticResource</name>
-    </types>
+    </types>-->
      <types>
         <members>bookImages</members>
         <name>StaticResource</name>
-    </types>-->
+    </types>
     <version>55.0</version>
 </Package>
