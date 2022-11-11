@@ -117,15 +117,16 @@ export default class BooksListPage extends LightningElement {
     firstSlice = 0;
     lastSlice = 5;
     books = books.slice(this.firstSlice, this.lastSlice);
-    filteredBooks;
+
+    filteredBooks = [];
+    genreValue;
+    filtersOn = false;
     genres = [
         { label: 'Wybierz gatunek', value: 'None' },
         { label: 'Fantastyka', value: 'Fantastyka' },
         { label: 'Horror', value: 'Horror' },
         { label: 'Kryminał', value: 'Kryminał' },
     ];
-    genreValue;
-    filtersOn = false;
 
     changeNumberOfResults(event){
         let clickedString = event.target.id.split('-')[0];
@@ -206,6 +207,24 @@ export default class BooksListPage extends LightningElement {
                 return n.genre===this.genreValue;
             });  
             this.books = this.filteredBooks.slice(this.firstSlice, this.lastSlice);
+        }
+    }
+
+    renderedCallback(){
+        let nextButton = this.template.querySelector(`button[id^="next"]`);
+        let previousButton = this.template.querySelector(`button[id^="previous"]`);
+        if((this.filtersOn && this.lastSlice>this.filteredBooks.length) || (this.filtersOn==false && this.lastSlice>books.length)){
+            nextButton.disabled = true;
+        }
+        else{
+            nextButton.disabled = false;
+        }
+
+        if(this.firstSlice<4){
+            previousButton.disabled = true;
+        }
+        else{
+            previousButton.disabled = false;
         }
     }
 }
