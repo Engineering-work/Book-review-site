@@ -1,0 +1,30 @@
+<template>
+    <section class='pageContainer'>
+        <section class='filters'>
+            <span class='biggestFont marginBottom'>Filtry</span>
+            <span class='bigFont'>Gatunek</span>
+            <lightning-combobox 
+                name="Genre"
+                value={value}
+                placeholder="Wybierz gatunek"
+                options={genres}
+                onchange={filterGenre}>
+                </lightning-combobox>
+        </section>
+        <section class='booksList'>
+            <section class='numberOfShownBooksContainer'>
+                <span class='numberOfShownBooks active' onclick={changeNumberOfResults} id='five'>5</span>
+                <span class='numberOfShownBooks' onclick={changeNumberOfResults} id='ten'>10</span>
+                <span class='numberOfShownBooks' onclick={changeNumberOfResults} id='fifteen'>15</span>
+            </section>
+            <template for:each={books} for:item='book'>
+                <c-book-detailed-container key={book.id} book={book}>
+                </c-book-detailed-container>
+            </template>
+            <section class='navigation'>
+                <span class='navigationButton' id='previous' onclick={changeResults}>Poprzednia strona</span>
+                <span class='navigationButton' id='next' onclick={changeResults}>Następna strona</span>
+            </section>
+        </section>
+    </section>
+</template>
