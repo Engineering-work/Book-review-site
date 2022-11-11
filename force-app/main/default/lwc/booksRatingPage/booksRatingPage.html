@@ -1,0 +1,13 @@
+<template>
+    <section class='pageContainer'>
+        <span class='title'>Top 20 najlepszych książek</span>
+        <template for:each={books} for:item='book'>
+            <c-book-detailed-container key={book.id} book={book}>
+            </c-book-detailed-container>
+        </template>
+        <section class='navigation'>
+            <button class='navigationButton' id='previous' onclick={changeResults}>Poprzednia strona</button>
+            <button class='navigationButton' id='next' onclick={changeResults}>Następna strona</button>
+        </section>
+    </section>
+</template>
