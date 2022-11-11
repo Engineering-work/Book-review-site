@@ -1,0 +1,21 @@
+<template>
+    <section class='bookContainer'>
+        <section class='mainDetailsContainer'>
+            <section class='imageContainer'>
+                <img src={book.src}>
+            </section>
+            <section class='detailsContainer'>
+                <span class='bookDetail biggestFont'>{book.title}</span>
+                <span class='bookDetail bigFont'>{book.author}</span>
+                <template if:true={series}>
+                    <span class='bookDetail'>Seria: {book.series}</span>
+                </template>                
+                <span class='bookDetail'>Gatunek: {book.genre}</span>
+            </section>
+        </section>
+        <section class='gradeContainer'>
+            <span class='bigFont'>Średnia ocena</span>
+            <span class='bigFont'>{book.average}</span>
+        </section>
+    </section>
+</template>
