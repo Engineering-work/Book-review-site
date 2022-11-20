@@ -1,0 +1,124 @@
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    margin: 5rem 7rem;
+}
+
+.bookDetailsContainer{
+    background-color: #FFB2B2;
+    border-radius: 12px;
+    font-family: sans-serif;
+    display: flex;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+.bookDetails{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+.allDetails{
+    display: flex; 
+    margin-bottom: 2rem;
+}
+.bookImage{
+    margin-top: 0.4rem;
+}
+.textDetails{
+    display: flex;
+    flex-direction: column;
+    margin-left: 3rem;
+    justify-content: space-between;
+}
+.title, .ratingNumber{
+    font-weight: 400;
+    font-size: 20px;    
+}
+.ratingNumber{
+    margin-right: 0.75rem;;
+}
+.colorBlue{
+    color: #0797FF;
+    cursor: pointer;
+}
+.author, .pagesNumber, .releaseDate, .series, .genre, .description, .addRating, .ratingDescription{
+    font-weight: 400;
+    font-size: 12px;
+}
+.averageRatingContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+}
+.averageRating{
+    display: flex;
+    flex-direction: column;
+    background-color: #FFD8C8;
+    border-radius: 8px;
+    align-items: center;
+    padding: 1.5rem;
+    height: 50%;
+    width: 100%;
+    justify-content: space-between;
+}
+.averageRatingText, .profileName{
+    font-weight: 400;
+    font-size: 16px;
+}
+.profileImage{
+    width: 15%;
+}
+.averageRatingValue{
+    font-weight: 400;
+    font-size: 20px;
+}
+.ratingButton{
+    font-weight: 400;
+    font-size: 14px;
+}
+.addRating{
+    margin-top: 1rem;
+    background-color: #FFD8C8;
+    border-radius: 8px;
+    width: 60%;
+    padding: 0.3rem;
+    display: flex;
+    cursor: pointer;
+    justify-content: center;
+}
+.ratingContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    align-items: center;
+    margin: 0.9rem 0;
+}
+.ratingDetails{
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+}
+.rating{
+    background-color: #FFB2B2;
+    border-radius: 0px 11px 11px 11px;
+    padding: 1rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.allRatingTitle{
+    margin-bottom: 2rem;
+    display: block;
+}
+.ratingButtonsContainer{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+.numberAndStarImage{
+    display: flex;
+    align-items: center;
+}

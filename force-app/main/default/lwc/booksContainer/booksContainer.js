@@ -76,7 +76,6 @@ export default class BooksContainer extends LightningElement {
         else{
             this.bookscomponent = true;
         }
-        console.log(this.bookscomponent);
     }
 
     changeGenre(event){

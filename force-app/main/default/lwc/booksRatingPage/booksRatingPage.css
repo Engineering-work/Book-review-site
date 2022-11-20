@@ -1,0 +1,30 @@
+.pageContainer{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+
+.title{
+    font-size: 1.4rem;
+    margin-left: 2rem;
+    margin-top: 2rem;
+}
+
+.navigation{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 2rem;
+}
+
+.navigationButton{
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+.navigationButton:hover{
+    color:#f78282;
+}
+.navigationButton:disabled{
+    color: gray;
+    cursor: auto;
+}

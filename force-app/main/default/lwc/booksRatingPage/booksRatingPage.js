@@ -112,47 +112,12 @@ const books = [
     },
 ]
 
-
-export default class BooksListPage extends LightningElement {
+export default class BooksRatingPage extends LightningElement {
     firstSlice = 0;
     lastSlice = 5;
-    books = books.slice(this.firstSlice, this.lastSlice);
 
-    filteredBooks = [];
-    genreValue;
-    filtersOn = false;
-    genres = [
-        { label: 'Wybierz gatunek', value: 'None' },
-        { label: 'Fantastyka', value: 'Fantastyka' },
-        { label: 'Horror', value: 'Horror' },
-        { label: 'Kryminał', value: 'Kryminał' },
-    ];
-
-    changeNumberOfResults(event){
-        let clickedString = event.target.id.split('-')[0];
-        let clicked = this.template.querySelector(`span[id^="${clickedString}"]`);
-        let previousActive = this.template.querySelector(`span[class*="active"]`);
-
-        previousActive.classList.remove('active');
-        clicked.classList.add('active');
-
-        /*switch(clickedString){
-            case 'five':
-                this.firstSlice = 0;
-                this.lastSlice = 5;
-                break;
-            case 'ten':
-                this.firstSlice = 0;
-                this.lastSlice = 10;
-                break;
-            case 'fifteen':
-                this.firstSlice = 0;
-                this.lastSlice = 15;
-                break;
-        }*/
-
-        //this.books = books.slice(this.firstSlice, this.lastSlice);
-    }
+    booksSorted = books.sort((a, b) => b.average - a.average).slice(0, 20);
+    books = this.booksSorted.slice(this.firstSlice,this.lastSlice);
 
     changeResults(event){
         let clickedString = event.target.id.split('-')[0];
@@ -162,52 +127,20 @@ export default class BooksListPage extends LightningElement {
                 if(this.firstSlice>4){
                     this.firstSlice -= 5;
                     this.lastSlice -= 5;
-                    if(this.filtersOn){
-                        this.books = this.filteredBooks.slice(this.firstSlice, this.lastSlice);
-                    }
-                    else{
-                        this.books = books.slice(this.firstSlice, this.lastSlice); 
-                    }
+                    this.books = this.booksSorted.slice(this.firstSlice,this.lastSlice);
                     window.scrollTo({top: 0});
                 }
                 break;
             case 'next':
-                if(this.filtersOn){
-                    if(this.lastSlice<this.filteredBooks.length){
-                        this.firstSlice += 5;
-                        this.lastSlice += 5;
-                        this.books = this.filteredBooks.slice(this.firstSlice, this.lastSlice);
-                        window.scrollTo({top: 0});
-                    }
-                }
-                else{
-                    if(this.lastSlice<books.length){
-                        this.firstSlice += 5;
-                        this.lastSlice += 5;
-                        this.books = books.slice(this.firstSlice, this.lastSlice); 
-                        window.scrollTo({top: 0});
-                    }
+                if(this.lastSlice<this.booksSorted.length){
+                    this.firstSlice += 5;
+                    this.lastSlice += 5;
+                    this.books = this.booksSorted.slice(this.firstSlice,this.lastSlice);
+                    window.scrollTo({top: 0});
                 }
                 break;
         }
 
-    }
-
-    filterGenre(event){
-        this.genreValue = event.target.value;
-        this.firstSlice = 0;
-        this.lastSlice = 5;
-        if(this.genreValue==='None'){
-            this.filtersOn = false;
-            this.books = books.slice(this.firstSlice, this.lastSlice);
-        }
-        else{
-            this.filtersOn = true;
-            this.filteredBooks = books.filter(n => {
-                return n.genre===this.genreValue;
-            });  
-            this.books = this.filteredBooks.slice(this.firstSlice, this.lastSlice);
-        }
     }
 
     renderedCallback(){
