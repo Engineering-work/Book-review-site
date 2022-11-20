@@ -1,0 +1,79 @@
+<template>
+    <section class='mainContainer'>
+        <section class='bookDetailsContainer'>
+            <section class='bookDetails'>
+                <section class='allDetails'>
+                    <section class='bookImage'>
+                        <img src={book.src} />
+                    </section>
+                    <section class='textDetails'>
+                        <span class='title'>
+                            {book.title}
+                        </span>
+                        <span class='author'>
+                            Autor: <span class='colorBlue'>{book.author}</span>
+                        </span>
+                        <span class='pagesNumber'>
+                            Liczba stron: {book.pages}
+                        </span>
+                        <span class='releaseDate'>
+                            Data wydania: {book.releaseDate}
+                        </span>
+                        <span class='series'>
+                            Cykl:
+                            <span class='colorBlue'>
+                            {book.series}</span>
+                        </span>
+                        <span class='genre'>
+                            Gatunek:
+                            <span class='colorBlue'>
+                            {book.genre}</span>
+                        </span>
+                    </section>
+                </section>   
+                <section class='description'>
+                    {book.description}
+                </section>
+            </section>
+            <section class='averageRatingContainer'>
+                <section class='averageRating'>
+                    <span class='averageRatingText'>Średnia ocena</span>
+                    <span class='averageRatingValue'>{book.average}</span>
+                    <section class='ratingButtonsContainer'>
+                        <span class='ratingButton' onclick={goToDiscussions}>Dyskusje</span>
+                        <span class='ratingButton' onclick={goToReviews}>Recenzje</span>
+                    </section>
+                </section>
+                <section class='addRating' onclick={handleAddRating}>
+                    <span>Dodaj ocenę</span>
+                </section>
+            </section>
+        </section>
+        <template if:true={ispopupactive}>
+            <c-add-rating-pop-up popuptype='addRating' ispopupactive={ispopupactive} onispopupactivechange={handleispopupactiveChange}>
+            </c-add-rating-pop-up>
+        </template>
+        <section class='allRatings'>
+            <span class='title allRatingTitle'>Oceny</span>
+            <template for:each={ratings} for:item='rating'>
+                <section class='ratingContainer' key={rating.id}>
+                    <section class='profileImage'>
+                        <img src={rating.src} />
+                    </section>
+                    <section class='ratingDetails'>
+                        <span class='profileName'>{rating.name}</span>
+                        <section class='rating'>
+                            <div class='ratingDescription'>{rating.description}</div>
+                            <section class='numberAndStarImage'>
+                                <span class='ratingNumber'>{rating.number}</span>
+                                <span class='starImage'>
+                                    <img src={star} alt='star'/>
+                                </span>
+                            </section>
+                        </section>
+                    </section>
+                </section>
+            </template>
+        </section>
+    </section>
+</template>

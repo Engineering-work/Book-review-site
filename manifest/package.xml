@@ -7,13 +7,13 @@
     <!--<types>
         <members>authorImages</members>
         <name>StaticResource</name>
-    </types>
-     <types>
-        <members>profileImages</members>
-        <name>StaticResource</name>
     </types>-->
      <types>
         <members>bookImages</members>
+        <name>StaticResource</name>
+    </types>
+    <types>
+        <members>profileImages</members>
         <name>StaticResource</name>
     </types>
     <version>55.0</version>
