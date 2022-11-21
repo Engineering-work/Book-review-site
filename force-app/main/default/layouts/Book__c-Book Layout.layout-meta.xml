@@ -37,6 +37,8 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Photo__c</field>
+               <behavior>Required</behavior>
+                <field>Average_Rating__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

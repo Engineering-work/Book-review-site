@@ -203,14 +203,18 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+
         <tab>Book_List_Item__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+
+
         <tab>Book_Rating__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+
         <tab>Book_Series__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
@@ -219,6 +223,7 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+
         <tab>Book__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
