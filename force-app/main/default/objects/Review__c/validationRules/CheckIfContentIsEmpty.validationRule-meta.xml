@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CheckIfContentIsEmpty</fullName>
+    <active>true</active>
+    <errorConditionFormula>if(!ISBLANK(Content__c ) &amp;&amp; !ISNULL(Content__c ),false,true)</errorConditionFormula>
+    <errorDisplayField>Content__c</errorDisplayField>
+    <errorMessage>Nie możesz dodać pustej recenzji</errorMessage>
+</ValidationRule>

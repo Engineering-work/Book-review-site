@@ -35,7 +35,9 @@
                 <field>Author__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
+                <behavior>Edit</behavior>
+                <field>Photo__c</field>
+               <behavior>Required</behavior>
                 <field>Average_Rating__c</field>
             </layoutItems>
         </layoutColumns>
