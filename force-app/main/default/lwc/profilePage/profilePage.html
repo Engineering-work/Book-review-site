@@ -1,0 +1,23 @@
+<template>
+    <section class='mainContainer'>
+        <section class='profileDetailsContainer'>
+            <section>
+                <img src={profile.src}>
+            </section>
+            <section class='profileDetails'>
+                <section class='login'>
+                    {profile.login}
+                </section>
+                <section class='otherDetails'>
+                    {profile.name}
+                </section>
+                <section class='otherDetails'>
+                    {profile.email}
+                </section>
+            </section>
+        </section>
+        <section class='settingsLink'>
+            <a href='ustawienia'>Zmień dane</a>
+        </section>
+    </section>
+</template>
