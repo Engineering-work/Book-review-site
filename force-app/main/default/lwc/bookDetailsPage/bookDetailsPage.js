@@ -1,4 +1,4 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track, api } from 'lwc';
 import bookImages from '@salesforce/resourceUrl/bookImages';
 import icons from '@salesforce/resourceUrl/otherImages';
 import profileImages from '@salesforce/resourceUrl/profileImages';
@@ -36,6 +36,8 @@ const ratings = [
 
 export default class BookDetailsPage extends LightningElement {
 
+@api id;
+
 book = book;
 ratings = ratings;
 star = icons + '/otherImages/star.png';
@@ -55,5 +57,8 @@ star = icons + '/otherImages/star.png';
 
     handleispopupactiveChange(event){
         this.ispopupactive = event.detail;
+    }
+    connecedCallback(){
+        console.log('id '+this.id);
     }
 }

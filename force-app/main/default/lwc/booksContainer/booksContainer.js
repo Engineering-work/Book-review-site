@@ -52,6 +52,10 @@ export default class BooksContainer extends LightningElement {
     firstSlice = 0;
     lastSlice = 5;
 
+    recommendedBooks = false;
+    newBooks = false;
+    authorBooks = false;
+
     books = books.slice(this.firstSlice, this.lastSlice);
 
     renderPreviousBook(){
@@ -71,10 +75,13 @@ export default class BooksContainer extends LightningElement {
 
     connectedCallback(){
         if(this.bookscomponent === 'recommended'){
-            this.bookscomponent = false;
+            this.recommendedBooks = true;
+        }
+        else if(this.bookscomponent === 'new'){
+            this.newBooks = true;
         }
         else{
-            this.bookscomponent = true;
+            this.authorBooks = true;
         }
     }
 
