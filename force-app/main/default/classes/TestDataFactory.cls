@@ -1,16 +1,12 @@
 @isTest
 public class TestDataFactory {
-    public static List<User__c> createReaderUsers(Boolean doInsert, Integer count, String nickname, String email) {
-        List<User__c> users = new List<User__c>();
-        for (Integer i = 0; i < count; i++) {
-            users.add(new User__c(Nickname__c = nickname, Email__c = email, Password__c = 'password', Role__c = 'Reader'));
-        }
-
+    public static User__c createReaderUser(Boolean doInsert, String nickname, String email, Id SFUserId) {
+        User__c user = new User__c(Nickname__c = nickname, Email__c = email, Role__c = 'Reader', User__c = SFUserId);
         if (doInsert) {
-            insert users;
+            insert user;
         }
 
-        return users;
+        return user;
     }
 
     public static List<Author__c> createAuthors(Boolean doInsert, Integer count, String name, String surname) {

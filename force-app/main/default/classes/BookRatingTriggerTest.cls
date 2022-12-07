@@ -2,7 +2,7 @@
 private class BookRatingTriggerTest {
     @TestSetup
     static void makeData() {
-        User__c user = TestDataFactory.createReaderUsers(true, 1, 'Test', 'reader@test.com').get(0);
+        User__c user = TestDataFactory.createReaderUser(true, 'Test', 'reader@test.com', null);
         Author__c author = TestDataFactory.createAuthors(true, 1, 'Autor', 'Autorski').get(0);
         Book__c book = TestDataFactory.createBooks(true, 1, 'Wiedźmin', author.Id).get(0);
     }
