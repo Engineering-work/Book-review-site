@@ -1,6 +1,6 @@
-Email,Nickname,Password,Photo,Role,User Name
-"piotrekp@gmail.com","PiotrekP","haslo4","/bookworm/s/webruntime/org-asset/340fe1beb5/resource/0817S000000To6K/profileImage/profileImage4.jpg","Reviewer","Piotrek"
-"dawidm@gmail.com","DawidM","haslo1","/bookworm/s/webruntime/org-asset/340fe1beb5/resource/0817S000000To6K/profileImages/profileImage1.jpg","Reader","Dawid"
-"marcinm@gmail.com","MarcinM","haslo3","/bookworm/s/webruntime/org-asset/340fe1beb5/resource/0817S000000To6K/profileImages/profileImage3.jpg","Reader","Marcin"
-"kasiak@gmail.con","KasiaK","haslo2","/bookworm/s/webruntime/org-asset/340fe1beb5/resource/0817S000000To6K/profileImages/profileImage2.jpg","Reader","Kasia"
-"agataa@gmail.com","AgataA","haslo5","/bookworm/s/webruntime/org-asset/340fe1beb5/resource/0817S000000To6K/profileImages/profileImage5.jpg","Reviewer","Agata"
+Email,Nickname,Photo,Role,User Name
+"piotrekp@gmail.com","PiotrekP","/bookworm/s/webruntime/org-asset/340fe1beb5/resource/0817S000000To6K/profileImage/profileImage4.jpg","Recenzent","Piotrek"
+"dawidm@gmail.com","DawidM","/bookworm/s/webruntime/org-asset/340fe1beb5/resource/0817S000000To6K/profileImages/profileImage1.jpg","Czytelnik","Dawid"
+"marcinm@gmail.com","MarcinM","/bookworm/s/webruntime/org-asset/340fe1beb5/resource/0817S000000To6K/profileImages/profileImage3.jpg","Czytelnik","Marcin"
+"kasiak@gmail.con","KasiaK","/bookworm/s/webruntime/org-asset/340fe1beb5/resource/0817S000000To6K/profileImages/profileImage2.jpg","Czytelnik","Kasia"
+"agataa@gmail.com","AgataA","/bookworm/s/webruntime/org-asset/340fe1beb5/resource/0817S000000To6K/profileImages/profileImage5.jpg","Recenzent","Agata"
