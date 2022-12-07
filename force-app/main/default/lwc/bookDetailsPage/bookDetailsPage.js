@@ -1,21 +1,9 @@
-import { LightningElement, track, api } from 'lwc';
+import { LightningElement, wire, track } from 'lwc';
+
+import getBook from '@salesforce/apex/BookController.getBook';
 import bookImages from '@salesforce/resourceUrl/bookImages';
 import icons from '@salesforce/resourceUrl/otherImages';
 import profileImages from '@salesforce/resourceUrl/profileImages';
-
-const book = 
-    {   
-        id: 0,
-        title: 'Ostatnie życzenie',
-        author: 'Andrzej Sapkowski',
-        pages: 330,
-        releaseDate: '24-05-1993',
-        series: 'Wiedzmin',
-        genre: 'Fantastyka',
-        description: "Później mówiono, że człowiek ów nadszedł od północy, od Bramy Powroźniczej. Nie był stary, ale włosy miał zupełnie białe. Kiedy ściągnął płaszcz, okazało się, że na pasie za plecami ma miecz.",
-        average: 9.00,
-        src: bookImages + '/bookImages/wiedzminOstatnieZyczenie.jpg'
-    }
 
 const ratings = [
     {   
@@ -35,10 +23,8 @@ const ratings = [
 ]
 
 export default class BookDetailsPage extends LightningElement {
-
-@api id;
-
-book = book;
+//id;
+book;
 ratings = ratings;
 star = icons + '/otherImages/star.png';
 @track ispopupactive = false;
@@ -58,7 +44,12 @@ star = icons + '/otherImages/star.png';
     handleispopupactiveChange(event){
         this.ispopupactive = event.detail;
     }
-    connecedCallback(){
-        console.log('id '+this.id);
+    connectedCallback(){
+        let bookid = localStorage.getItem('id');
+        getBook({
+            bookId: bookid
+        }).then(book => {
+            this.book = book;
+        })
     }
 }
