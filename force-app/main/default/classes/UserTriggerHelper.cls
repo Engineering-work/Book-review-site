@@ -4,7 +4,7 @@ public class UserTriggerHelper {
         Profile profile = [SELECT Id FROM Profile WHERE Name = 'Bookworm Customers' LIMIT 1];
         for (User user : newUsers) {
             if (user.ProfileId == profile.Id) {
-                bookwormUsers.add(new User__c(Nickname__c = user.Username, Email__c = user.Email, Role__c = 'Reader', User__c = user.Id));
+                bookwormUsers.add(new User__c(Nickname__c = user.Username, Email__c = user.Email, Role__c = 'Reader', SFUser__c = user.Id));
             }
         }
 

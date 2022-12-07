@@ -1,7 +1,7 @@
 @isTest
 public class TestDataFactory {
     public static User__c createReaderUser(Boolean doInsert, String nickname, String email, Id SFUserId) {
-        User__c user = new User__c(Nickname__c = nickname, Email__c = email, Role__c = 'Reader', User__c = SFUserId);
+        User__c user = new User__c(Nickname__c = nickname, Email__c = email, Role__c = 'Reader', SFUser__c = SFUserId);
         if (doInsert) {
             insert user;
         }
