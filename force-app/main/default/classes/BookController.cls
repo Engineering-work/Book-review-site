@@ -11,7 +11,7 @@ public with sharing class BookController {
             throw new AuraHandledException(e.getMessage());
         }
     }
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List<Book__c> getAllBooks(){
         try {
             List<Book__c> books = [SELECT Genre__c, Title__c, Pages__c, Release_Date__c, 

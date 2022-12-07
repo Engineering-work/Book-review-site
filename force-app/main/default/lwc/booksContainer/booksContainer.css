@@ -1,11 +1,10 @@
 .mainContainer{
-    width: 85%;
-    margin: 2rem auto;
     background-color: #FFB2B2;
     border-radius: 12px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 3rem 0;
 }
 
 .previous, .next{

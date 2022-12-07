@@ -4,13 +4,16 @@
             <img src={previous}>
         </section>
         <section class='booksContainer'>
-            <template if:true={bookscomponent}>
+            <template if:true={newBooks}>
                 <section class='title'>Nowości</section>
             </template>
-            <template if:false={bookscomponent}>
+            <template if:true={recommendedBooks}>
                 <section class='title'>Wybrane dla Ciebie</section>
             </template>
-            <template if:true={bookscomponent}>
+            <template if:true={authorBooks}>
+                <section class='title'>Książki tego autora</section>
+            </template>
+            <template if:true={newBooks}>
                 <section class='newBooksGenres'>
                     <a class='link active' id='wszystkie' onclick={changeGenre}>Wszystkie</a>
                     <a class='link' id='scienceFiction' onclick={changeGenre}>Science fiction</a>
@@ -28,9 +31,11 @@
                         <section class='bookTitle'>
                             {book.title}
                         </section>
-                        <section class='bookAuthor'>
-                            {book.author}
-                        </section>
+                        <template if:false={authorBooks}>
+                            <section class='bookAuthor'>
+                                {book.author}
+                            </section>
+                        </template>
                     </section>
                 </template>
             </section>
