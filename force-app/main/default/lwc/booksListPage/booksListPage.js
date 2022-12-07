@@ -29,11 +29,11 @@ export default class BooksListPage extends LightningElement {
     wiredBooks({ error, data }) {
         if (data) {
             this.allBooks = data;
+            console.log(this.allBooks);
             this.books = this.allBooks.slice(this.firstSlice, this.lastSlice);
             this.error = undefined;
         } else if (error) {
             this.error = error;
-            this.contacts = undefined;
         }
     }
 

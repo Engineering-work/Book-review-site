@@ -1,5 +1,6 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 import bookImages from '@salesforce/resourceUrl/bookImages';
+import getAllBooksToRanking from '@salesforce/apex/BookController.getAllBooksToRanking';
 
 const books = [
     {   
@@ -115,9 +116,19 @@ const books = [
 export default class BooksRatingPage extends LightningElement {
     firstSlice = 0;
     lastSlice = 5;
+    allBooks;
+    books;
 
-    booksSorted = books.sort((a, b) => b.average - a.average).slice(0, 20);
-    books = this.booksSorted.slice(this.firstSlice,this.lastSlice);
+    @wire(getAllBooksToRanking)
+    wiredBooks({ error, data }) {
+        if (data) {
+            this.allBooks = data;
+            this.books = this.allBooks.slice(this.firstSlice, this.lastSlice);
+            this.error = undefined;
+        } else if (error) {
+            this.error = error;
+        }
+    }
 
     changeResults(event){
         let clickedString = event.target.id.split('-')[0];
@@ -127,15 +138,15 @@ export default class BooksRatingPage extends LightningElement {
                 if(this.firstSlice>4){
                     this.firstSlice -= 5;
                     this.lastSlice -= 5;
-                    this.books = this.booksSorted.slice(this.firstSlice,this.lastSlice);
+                    this.books = this.allBooks.slice(this.firstSlice,this.lastSlice);
                     window.scrollTo({top: 0});
                 }
                 break;
             case 'next':
-                if(this.lastSlice<this.booksSorted.length){
+                if(this.lastSlice<this.allBooks.length){
                     this.firstSlice += 5;
                     this.lastSlice += 5;
-                    this.books = this.booksSorted.slice(this.firstSlice,this.lastSlice);
+                    this.books = this.allBooks.slice(this.firstSlice,this.lastSlice);
                     window.scrollTo({top: 0});
                 }
                 break;
@@ -146,13 +157,14 @@ export default class BooksRatingPage extends LightningElement {
     renderedCallback(){
         let nextButton = this.template.querySelector(`button[id^="next"]`);
         let previousButton = this.template.querySelector(`button[id^="previous"]`);
-        if((this.filtersOn && this.lastSlice>this.filteredBooks.length) || (this.filtersOn==false && this.lastSlice>books.length)){
-            nextButton.disabled = true;
+        if(this.allBooks!=undefined){
+            if(this.lastSlice>=this.allBooks.length){
+                nextButton.disabled = true;
+            }
+            else{
+                nextButton.disabled = false;
+            }
         }
-        else{
-            nextButton.disabled = false;
-        }
-
         if(this.firstSlice<4){
             previousButton.disabled = true;
         }

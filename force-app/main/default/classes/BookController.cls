@@ -1,9 +1,9 @@
 public with sharing class BookController {
-    @AuraEnabled
-    public static Book__c getBook(id bookId){
+    @AuraEnabled(cacheable=true)
+    public static Book__c getBook(String bookId){
         try {
             Book__c book = [SELECT Genre__c, Title__c, Pages__c, Release_Date__c, 
-            Book_Series__r.Id, Book_Series__r.Name, Author__r.Id, Author__r.Name, Photo__c, Average_Rating__c FROM Book__c WHERE Id =: bookId];
+            Book_Series__r.Id, Book_Series__r.Name, Author__r.Id, Author__r.Name, Photo__c, Average_Rating__c, Alt__c, Publishing_House__c FROM Book__c WHERE Id =: bookId];
           
             return book;
             
@@ -37,7 +37,7 @@ public with sharing class BookController {
             throw new AuraHandledException(e.getMessage());
         }
     }
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List<Book__c> getAllBooksToRanking(){
         try {
             List<Book__c> books = [SELECT Genre__c, Title__c, Pages__c, Release_Date__c, 
