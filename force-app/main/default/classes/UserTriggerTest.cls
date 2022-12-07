@@ -49,10 +49,10 @@ private class UserTriggerTest {
             insert user;
             Test.stopTest();
 
-            User__c bookwormUser = [SELECT Id, Nickname__c, Email__c, User__c FROM User__c WHERE User__c = :user.Id].get(0);
+            User__c bookwormUser = [SELECT Id, Nickname__c, Email__c, SFUser__c FROM User__c WHERE SFUser__c = :user.Id].get(0);
             System.assertEquals(user.Email, bookwormUser.Email__c);
             System.assertEquals(user.Username, bookwormUser.Nickname__c);
-            System.assertEquals(user.Id, bookwormUser.User__c);
+            System.assertEquals(user.Id, bookwormUser.SFUser__c);
         }
 
     }
