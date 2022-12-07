@@ -11,29 +11,29 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Adventure</fullName>
-                <default>false</default>
-                <label>Adventure</label>
+                <fullName>Przygoda</fullName>
+                <default>true</default>
+                <label>Przygoda</label>
             </value>
             <value>
-                <fullName>Comedy</fullName>
+                <fullName>Komedia</fullName>
                 <default>false</default>
-                <label>Comedy</label>
+                <label>Komedia</label>
             </value>
             <value>
-                <fullName>Dystopian</fullName>
+                <fullName>Dystopia</fullName>
                 <default>false</default>
-                <label>Dystopian</label>
+                <label>Dystopia</label>
             </value>
             <value>
-                <fullName>Fantasy</fullName>
+                <fullName>Fantastyka</fullName>
                 <default>false</default>
-                <label>Fantasy</label>
+                <label>Fantastyka</label>
             </value>
             <value>
-                <fullName>Historical fiction</fullName>
+                <fullName>Powieść historyczna</fullName>
                 <default>false</default>
-                <label>Historical fiction</label>
+                <label>Powieść historyczna</label>
             </value>
             <value>
                 <fullName>Horror</fullName>
@@ -41,14 +41,9 @@
                 <label>Horror</label>
             </value>
             <value>
-                <fullName>Mystery</fullName>
+                <fullName>Romans</fullName>
                 <default>false</default>
-                <label>Mystery</label>
-            </value>
-            <value>
-                <fullName>Romance</fullName>
-                <default>false</default>
-                <label>Romance</label>
+                <label>Romans</label>
             </value>
             <value>
                 <fullName>Science Fiction</fullName>
@@ -59,6 +54,16 @@
                 <fullName>Thriller</fullName>
                 <default>false</default>
                 <label>Thriller</label>
+            </value>
+            <value>
+                <fullName>Powieść młodzieżowa</fullName>
+                <default>false</default>
+                <label>Powieść młodzieżowa</label>
+            </value>
+            <value>
+                <fullName>Kryminał</fullName>
+                <default>false</default>
+                <label>Kryminał</label>
             </value>
         </valueSetDefinition>
     </valueSet>
