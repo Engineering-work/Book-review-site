@@ -1,0 +1,27 @@
+<template>
+    <section class='mainContainer'>
+        <section class='authorDetailsContainer'>
+            <section class='authorImage'>
+                <img src={author.src} />
+            </section>
+            <section class='textDetails'>
+                <span class='name marginBottom'>
+                    {author.name}
+                </span>
+                <span class='birthDate marginBottom'>
+                    Ur. {author.birthDate}
+                </span>
+                <span class='deathDate marginBottom'>
+                    Zm. {author.deathDate}
+                </span>
+                <span class='description'>
+                    {author.description}
+                </span>
+            </section>
+        </section>
+        <section>
+            <c-books-Container bookscomponent="author">
+            </c-books-Container>
+        </section>
+    </section>
+</template>

@@ -1,0 +1,32 @@
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    margin: 5rem 7rem;
+}
+.authorDetailsContainer{
+    background-color: #FFB2B2;
+    border-radius: 12px;
+    font-family: sans-serif;
+    display: flex;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+.authorImage{
+    margin-top: 0.4rem;
+}
+.textDetails{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5rem;
+}
+.marginBottom{
+    margin-bottom: 1.2rem;
+}
+.name{
+    font-weight: 400;
+    font-size: 26px;  
+}
+.birthDate, .deathDate, .description{
+    font-weight: 400;
+    font-size: 16px;
+}
