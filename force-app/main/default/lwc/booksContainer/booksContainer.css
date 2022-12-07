@@ -1,0 +1,65 @@
+.mainContainer{
+    width: 85%;
+    margin: 2rem auto;
+    background-color: #FFB2B2;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.previous, .next{
+    width: 6%;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.booksContainer{
+    width: 88%;
+    margin-bottom: 2rem;
+}
+
+.title{
+    font-weight: 400;
+    font-size: 18px;
+    font-family: 'Salesforce Sans', sans-serif;
+    margin: 2rem 0;
+}
+
+.newBooksGenres{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom : 2rem;
+}
+
+.link{
+    color: black;
+}
+
+.active{
+    color: red;
+}
+
+.booksList{
+    display: flex;
+    justify-content: space-between;
+}
+
+.bookContainer{
+    width: 15%;
+    display: flex; 
+    align-items: center; 
+    flex-direction: column;
+}
+
+.bookTitle, .bookAuthor{
+    text-align: center;
+    font-size: 12px;
+    font-family: 'Salesforce Sans', sans-serif;
+    font-weight: 400;
+}
+
+.bookImage{
+    margin-bottom: 1rem;
+}

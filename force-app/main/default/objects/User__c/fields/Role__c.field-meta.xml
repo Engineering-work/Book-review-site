@@ -23,6 +23,7 @@
             <value>
                 <fullName>Admin</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>Admin</label>
             </value>
         </valueSetDefinition>
