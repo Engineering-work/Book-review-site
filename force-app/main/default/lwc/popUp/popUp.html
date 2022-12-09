@@ -12,11 +12,24 @@
                     <template if:true={addRating}>
                         <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate headerStyling">Dodaj ocenę</h2>
                     </template>
+                    <template if:true={editUserData}>
+                        <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate headerStyling">Edytuj dane</h2>
+                    </template>
                 </header>
                 <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                     <template if:true={addRating}>
                         <lightning-slider label="Ocena" max=10 min=1 step="0.5" class='slider'></lightning-slider>
                         <lightning-textarea name="ratingDescription" label="Komentarz (opcjonalne)" placeholder="Napisz tutaj..."></lightning-textarea>
+                    </template>
+                    <template if:true={editUserData}>
+                        <section class='dataContainer'>
+                            <lightning-input value={username} label="Nazwa użytkownika" id='username' style='width: 50%;' max-length="25" min-length="1"></lightning-input>
+                            <button class="slds-button slds-button_brand" style='height: 2rem;' onclick={changeDataHandler}>Zmień</button>
+                        </section>
+                        <section class='dataContainer'>
+                            <lightning-input value={name} label="Imię" id='name' style='width: 50%;' min-length="1"></lightning-input>
+                            <button class="slds-button slds-button_brand" style='height: 2rem;'>Zmień</button>
+                        </section>
                     </template>
                 </div>
                 <footer class="slds-modal__footer">

@@ -1,4 +1,5 @@
-import { LightningElement, wire, track } from 'lwc';
+import { LightningElement, track } from 'lwc';
+import { NavigationMixin } from 'lightning/navigation';
 
 import getBook from '@salesforce/apex/BookController.getBook';
 import bookImages from '@salesforce/resourceUrl/bookImages';
@@ -22,8 +23,7 @@ const ratings = [
     }
 ]
 
-export default class BookDetailsPage extends LightningElement {
-//id;
+export default class BookDetailsPage extends NavigationMixin(LightningElement) {
 book;
 ratings = ratings;
 star = icons + '/otherImages/star.png';
@@ -35,12 +35,22 @@ star = icons + '/otherImages/star.png';
     goToReviews(){
 
     }
+
+    goToAuthorAction(){
+        localStorage.setItem('id', this.book.Author__c);
+
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'Autor__c'
+            }
+        });
+    }
     handleAddRating(){
         if(this.ispopupactive === false){
             this.ispopupactive = true;
         }
     }
-
     handleispopupactiveChange(event){
         this.ispopupactive = event.detail;
     }

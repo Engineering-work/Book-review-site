@@ -1,4 +1,8 @@
 <template>
+    <template if:true={changeUserDataPopup}>
+        <c-pop-up popuptype='editUserData' ispopupactive={changeUserDataPopup} onispopupactivechange={handleispopupactiveChange}>
+        </c-pop-up>
+    </template>
     <section class='mainContainer'>
         <section class='profileDetailsContainer'>
             <section>
@@ -17,7 +21,7 @@
             </section>
         </section>
         <section class='settingsLink'>
-            <a href='ustawienia'>Zmień dane</a>
+            <span onclick={changeUserDataPopuphandle} style='cursor: pointer;'>Zmień dane</span>
         </section>
     </section>
 </template>

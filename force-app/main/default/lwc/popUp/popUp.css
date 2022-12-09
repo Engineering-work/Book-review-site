@@ -15,3 +15,12 @@
     background-color: #FFC8C8;
     border: none;
 }
+
+.dataContainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.width{
+    width: 60%;
+}

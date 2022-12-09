@@ -11,7 +11,7 @@
                             <span class='title'>
                                 {book.Title__c}
                             </span>
-                            <span class='author'>
+                            <span class='author' onclick={goToAuthorAction} style='cursor: pointer;'>
                                 Autor: <span class='colorBlue'>{book.Author__r.Name}</span>
                             </span>
                             <span class='pagesNumber'>
@@ -20,10 +20,8 @@
                             <span class='releaseDate'>
                                 Data wydania: {book.Release_Date__c}
                             </span>
-                            <span class='series'>
-                                Cykl:
-                                <span class='colorBlue'>
-                                {book.Book_Series__r.Name}</span>
+                            <span class='series' style='cursor: pointer;'>
+                                Cykl: <span class='colorBlue'>{book.Book_Series__r.Name}</span>
                             </span>
                             <span class='genre'>
                                 Gatunek: {book.Genre__c}
