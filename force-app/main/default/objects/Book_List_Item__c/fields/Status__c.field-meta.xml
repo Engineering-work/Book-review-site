@@ -16,9 +16,9 @@
                 <label>Chcę przeczytać</label>
             </value>
             <value>
-                <fullName>W trakcie czytania</fullName>
+                <fullName>Czytam</fullName>
                 <default>false</default>
-                <label>W trakcie czytania</label>
+                <label>Czytam</label>
             </value>
             <value>
                 <fullName>Przeczytane</fullName>

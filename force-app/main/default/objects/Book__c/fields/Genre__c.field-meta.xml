@@ -14,6 +14,9 @@
                 <fullName>Przygodowe</fullName>
                 <default>false</default>
                 <label>Przygodowe</label>
+                <fullName>Przygoda</fullName>
+                <default>true</default>
+                <label>Przygoda</label>
             </value>
             <value>
                 <fullName>Komedia</fullName>
@@ -41,11 +44,14 @@
                 <label>Horror</label>
             </value>
             <value>
+
                 <fullName>Tajemnica</fullName>
                 <default>false</default>
                 <label>Tajemnica</label>
             </value>
             <value>
+                <fullName>Romans</fullName>
+                <default>false</default>
                 <fullName>Romans</fullName>
                 <default>false</default>
                 <label>Romans</label>
@@ -59,6 +65,16 @@
                 <fullName>Thriller</fullName>
                 <default>false</default>
                 <label>Thriller</label>
+            </value>
+            <value>
+                <fullName>Powieść młodzieżowa</fullName>
+                <default>false</default>
+                <label>Powieść młodzieżowa</label>
+            </value>
+            <value>
+                <fullName>Kryminał</fullName>
+                <default>false</default>
+                <label>Kryminał</label>
             </value>
         </valueSetDefinition>
     </valueSet>

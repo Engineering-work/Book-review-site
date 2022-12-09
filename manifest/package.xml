@@ -4,10 +4,10 @@
         <members>otherImages</members>
         <name>StaticResource</name>
     </types>
-    <!--<types>
+    <types>
         <members>authorImages</members>
         <name>StaticResource</name>
-    </types>-->
+    </types>
      <types>
         <members>bookImages</members>
         <name>StaticResource</name>
