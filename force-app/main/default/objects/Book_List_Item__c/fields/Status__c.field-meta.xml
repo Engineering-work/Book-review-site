@@ -11,24 +11,29 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Want To Read</fullName>
+                <fullName>Chcę przeczytać</fullName>
                 <default>true</default>
-                <label>Want To Read</label>
+                <label>Chcę przeczytać</label>
             </value>
             <value>
-                <fullName>In Progress</fullName>
+                <fullName>W trakcie czytania</fullName>
                 <default>false</default>
-                <label>In Progress</label>
+                <label>W trakcie czytania</label>
             </value>
             <value>
-                <fullName>Finished</fullName>
+                <fullName>Przeczytane</fullName>
                 <default>false</default>
-                <label>Finished</label>
+                <label>Przeczytane</label>
             </value>
             <value>
-                <fullName>Abandoned</fullName>
+                <fullName>Porzucone</fullName>
                 <default>false</default>
-                <label>Abandoned</label>
+                <label>Porzucone</label>
+            </value>
+            <value>
+                <fullName>Na półce</fullName>
+                <default>false</default>
+                <label>Na półce</label>
             </value>
         </valueSetDefinition>
     </valueSet>

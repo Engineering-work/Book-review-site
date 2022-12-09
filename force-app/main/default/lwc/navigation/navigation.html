@@ -7,15 +7,14 @@
             <section class='linksContainer'>
                 <a href='katalog' id='Katalog' class='link'>Katalog</a>
                 <a href='rankingi' id='Rankingi' class='link'>Ranking</a>
-                <a class='link'>Dodaj książkę</a>
+                <!--<a class='link'>Dodaj książkę</a>-->
                 <template if:true={loggedInUser}>
-                    <div class='positionRelative' onmouseover={handleProfileHover} onmouseleave={handleProfileUnhover}>
+                    <div class='positionRelative' style='padding-left: 1.5rem;' onmouseover={handleProfileHover} onmouseleave={handleProfileUnhover}>
                         <div class='dropdownLink'>{username}</div>
                         <div class='dropdownContent'>
-                            <a class='link pinkColor'>Mój profil</a>
-                            <a class='link pinkColor'>Moja lista</a>
-                            <a class='link pinkColor'>Ustawienia</a>
-                            <a class='link pinkColor'>Wyloguj</a>
+                            <a href='profil' id='Profil' class='dropdownLinks pinkColor'>Mój profil</a>
+                            <a href='mojalista' id='MojaLista' class='dropdownLinks pinkColor'>Moja lista</a>
+                            <a class='dropdownLinks pinkColor'>Wyloguj</a>
                         </div>
                     </div>
                 </template>

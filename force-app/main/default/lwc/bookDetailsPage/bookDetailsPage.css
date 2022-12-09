@@ -33,18 +33,20 @@
 }
 .title, .ratingNumber{
     font-weight: 400;
-    font-size: 20px;    
+    font-size: 1.2rem;    
 }
 .ratingNumber{
     margin-right: 0.75rem;;
 }
 .colorBlue{
     color: #0797FF;
-    cursor: pointer;
 }
 .author, .pagesNumber, .releaseDate, .series, .genre, .description, .addRating, .ratingDescription{
     font-weight: 400;
-    font-size: 12px;
+    font-size: 1rem;
+}
+.author:hover, .series:hover{
+    font-size: 1.1rem;
 }
 .averageRatingContainer{
     display: flex;

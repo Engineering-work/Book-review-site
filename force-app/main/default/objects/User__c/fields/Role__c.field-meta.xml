@@ -11,19 +11,32 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Reader</fullName>
+                <fullName>Czytelnik</fullName>
                 <default>true</default>
+                <label>Czytelnik</label>
+            </value>
+            <value>
+                <fullName>Recenzent</fullName>
+                <default>false</default>
+                <label>Recenzent</label>
+            </value>
+            <value>
+                <fullName>Admin</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Admin</label>
+            </value>
+            <value>
+                <fullName>Reader</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
                 <label>Reader</label>
             </value>
             <value>
                 <fullName>Reviewer</fullName>
                 <default>false</default>
+                <isActive>false</isActive>
                 <label>Reviewer</label>
-            </value>
-            <value>
-                <fullName>Admin</fullName>
-                <default>false</default>
-                <label>Admin</label>
             </value>
         </valueSetDefinition>
     </valueSet>

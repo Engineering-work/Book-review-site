@@ -11,10 +11,25 @@
     display: flex;
 }
 
+.cursorPoiner{
+    cursor: pointer;
+}
+
+.detailsContainer .biggestFont:hover{
+    font-size: 1.5rem;
+}
+
+.detailsContainer .bigFont:hover{
+    font-size: 1.3rem;
+}
+
+.detailsContainer .normalFont:hover{
+    font-size: 1.1rem;
+}
+
 .imageContainer{
     display: flex;
     justify-content: center;
-    width: 30%;
     align-items: center;
 }
 
@@ -35,6 +50,10 @@
 
 .bigFont{
     font-size: 1.2rem;
+}
+
+.normalFont{
+    font-size: 1rem;
 }
 
 .gradeContainer{

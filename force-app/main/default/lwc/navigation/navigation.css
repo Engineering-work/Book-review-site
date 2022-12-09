@@ -7,7 +7,7 @@
 }
 
 .pinkColor{
-    background-color: #FFC8C8;
+    background-color: #FFC8C8 !important;
 }
 
 /* Logo section */
@@ -29,23 +29,30 @@
 
 .linksContainer{
     display: flex;
-    width: 36rem;
+    width: 27rem;
 }
 
 .link, .dropdownLink{
     padding: 19px 1.9rem;
 }
+.dropdownLinks{
+    padding: 1.5rem 1.4rem;
+}
 
 .link:active,
-.link:active:hover{
+.link:active:hover,
+.dropdownLinks:active:hover,
+.dropdownLinks:active{
     background-color: #FFB2B2 !important;
     font-weight: bold;
     text-decoration: none !important;
 }
 
-.link:hover{
+.link:hover,
+.dropdownLinks:hover{
     background-color: #FFB2B2 !important;
     text-decoration: none !important;
+    border: 1px solid black;
 }
 
 .positionRelative{
@@ -94,7 +101,3 @@ input:focus{
 ::-ms-input-placeholder { /* Microsoft Edge */
     color: #999999;
 }
-
-
-
-

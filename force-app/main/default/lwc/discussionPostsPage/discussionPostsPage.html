@@ -1,0 +1,81 @@
+<template>
+        
+        
+         <template if:true={discussion.data}> 
+           
+                    <template for:each={discussion.data} for:item='discussion'>
+                        
+                        <section key={discussion.id}>   
+                            <section class='mainContainer'>  
+                            <section class='firstLine'>
+                                <div class="heading">
+                                    <div class="discussion title">{discussion.Title__c}</div>
+                                    <div class="description">dodano o <lightning-formatted-date-time value={discussion.CreatedDate}  hour="2-digit" minute="2-digit"  hour12={ampm}></lightning-formatted-date-time> przez  {discussion.User__r.Nickname__c} </div>
+                                </div>
+                               
+                                <div><img src={discussion.User__r.Photo__c} class ='profileImg'></div> 
+                            </section> 
+                            <section class="discussion">
+                              
+                                <div>{discussion.First_Post__c}</div>
+                                <div class="firstPost">{discussion.Post_Number__c} posty</div>                          
+                            </section>  
+                        </section>
+                    </section>
+                    </template>    
+                </template>   
+
+                <p class="postTitle">Posty</p>
+               
+                    <section class='yourPostContainer'>
+                        <div><textarea class="postInput" maxlength="500" placeholder="Twoja odpowiedź..." value={msg}>
+                                
+                            </textarea>
+                        </div>
+                        <div class="buttonContainer"><button class=" buttonStyle" onclick={handleSubmit}>Dodaj</button></div>
+                    </section>
+              
+              
+                <template if:true={posts.data}>
+                    <template for:each={posts.data} for:item='post'>
+                        <section class='postContainer' key={post.id}>
+                            <section>
+                                <img src={post.User__r.Photo__c} class ='profileImg' />
+                            </section>
+                            <section class='postDetails'>
+                                <span class='profileName'>{post.User__r.Nickname__c}  dodano <lightning-formatted-date-time value={discussion.CreatedDate}  year="numeric" month="numeric" day="numeric"></lightning-formatted-date-time></span>
+                                <section class='post'>
+                                    <div>{post.Content__c}</div>
+                                </section>
+                            </section>
+                        </section>
+
+                    </template>
+                
+                </template>
+
+                <!-- <section class='allRatings'>
+                    <span class='title allRatingTitle'>Oceny</span>
+                    <template for:each={ratings} for:item='rating'>
+                        <section class='ratingContainer' key={rating.id}>
+                            <section class='profileImage'>
+                                <img src={rating.src} />
+                            </section>
+                            <section class='ratingDetails'>
+                                <span class='profileName'>{rating.name}</span>
+                                <section class='rating'>
+                                    <div class='ratingDescription'>{rating.description}</div>
+                                    <section class='numberAndStarImage'>
+                                        <span class='ratingNumber'>{rating.number}</span>
+                                        <span class='starImage'>
+                                            <img src={star} alt='star'/>
+                                        </span>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </template>
+                </section>
+            </section> -->
+               
+    </template>

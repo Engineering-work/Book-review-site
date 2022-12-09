@@ -37,7 +37,9 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Photo__c</field>
-               <behavior>Required</behavior>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
                 <field>Average_Rating__c</field>
             </layoutItems>
         </layoutColumns>
@@ -72,9 +74,9 @@
         <customLabel>false</customLabel>
         <detailHeading>false</detailHeading>
         <editHeading>true</editHeading>
-        <layoutColumns/>
-        <layoutColumns/>
-        <layoutColumns/>
+        <layoutColumns />
+        <layoutColumns />
+        <layoutColumns />
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>

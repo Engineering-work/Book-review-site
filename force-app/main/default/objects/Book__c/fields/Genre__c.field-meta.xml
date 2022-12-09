@@ -11,29 +11,29 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Adventure</fullName>
+                <fullName>Przygodowe</fullName>
                 <default>false</default>
-                <label>Adventure</label>
+                <label>Przygodowe</label>
             </value>
             <value>
-                <fullName>Comedy</fullName>
+                <fullName>Komedia</fullName>
                 <default>false</default>
-                <label>Comedy</label>
+                <label>Komedia</label>
             </value>
             <value>
-                <fullName>Dystopian</fullName>
+                <fullName>Dystopia</fullName>
                 <default>false</default>
-                <label>Dystopian</label>
+                <label>Dystopia</label>
             </value>
             <value>
-                <fullName>Fantasy</fullName>
+                <fullName>Fantastyka</fullName>
                 <default>false</default>
-                <label>Fantasy</label>
+                <label>Fantastyka</label>
             </value>
             <value>
-                <fullName>Historical fiction</fullName>
+                <fullName>Fikcja historyczna</fullName>
                 <default>false</default>
-                <label>Historical fiction</label>
+                <label>Fikcja historyczna</label>
             </value>
             <value>
                 <fullName>Horror</fullName>
@@ -41,19 +41,19 @@
                 <label>Horror</label>
             </value>
             <value>
-                <fullName>Mystery</fullName>
+                <fullName>Tajemnica</fullName>
                 <default>false</default>
-                <label>Mystery</label>
+                <label>Tajemnica</label>
             </value>
             <value>
-                <fullName>Romance</fullName>
+                <fullName>Romans</fullName>
                 <default>false</default>
-                <label>Romance</label>
+                <label>Romans</label>
             </value>
             <value>
-                <fullName>Science Fiction</fullName>
+                <fullName>Fantastyka naukowa</fullName>
                 <default>false</default>
-                <label>Science Fiction</label>
+                <label>Fantastyka naukowa</label>
             </value>
             <value>
                 <fullName>Thriller</fullName>

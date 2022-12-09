@@ -1,0 +1,13 @@
+<template>
+    
+                        <section class='mainContainer'>  
+                        <section class='firstLine'>
+                            <div class="discussion title cursorPointer" onclick={goToPostsAction} >{discussion.Title__c}</div>
+                            <div class="ImgPosition"><img src={discussion.User__r.Photo__c} class ='profileImg'></div> 
+                        </section> 
+                        <section class="discussion">
+                            <div>dodano <lightning-formatted-date-time value={discussion.CreatedDate}  year="numeric" month="numeric" day="numeric"></lightning-formatted-date-time> przez  {discussion.User__r.Nickname__c} </div>
+                            <div>{discussion.Post_Number__c} posty</div>                          
+                        </section>               
+                    </section>        
+</template>

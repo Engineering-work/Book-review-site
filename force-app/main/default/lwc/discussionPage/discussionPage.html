@@ -1,0 +1,16 @@
+
+    <template>
+        
+        <template if:true={discussions.data}> 
+            <p>{discussions.data.Book_c.Title__c}>>dyskusje</p>
+                <template for:each={discussions.data} for:item='discussion'> 
+                    <c-discussion-container key={discussion.id} discussion={discussion}> </c-discussion-container> 
+                </template>
+                </template>  
+                <template if:true={discussions.error}>
+                    {discussions.error}
+                </template>
+    </template>
+    
+
+    

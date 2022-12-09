@@ -1,0 +1,51 @@
+.profileImg{
+    width:75px;
+    height: 75px;
+    border-radius: 50%;
+    margin-left:5px;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.reviewContainer{
+    display: flex;
+    width: 85%;
+    align-items: start;
+    margin: 2rem auto;
+}
+
+.ratingContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    align-items: center;
+    margin: 2rem auto;
+}
+.ratingButton{
+    border:none;
+    transition: 1s;
+}
+.rating{
+    width: 12px;
+    height: 12px;
+    
+}
+
+.ratingButton:hover{
+    background-color: red;
+}
+
+.reviewDetails{
+    display: flex;
+    flex-direction: column;
+    margin-left:4px;
+    width: 90%;
+}
+.review{
+    background-color: #FFC8C8;
+    border-radius: 0px 11px 11px 11px;
+    padding: 1rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

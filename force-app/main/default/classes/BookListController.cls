@@ -3,7 +3,7 @@ public with sharing class BookListController {
     public static  List <Book_List_Item__c> getUserBooks(Id userId){
         try {
             List <Book_List_Item__c> bookList = [SELECT Book__r.Name, Status__c FROM Book_List_Item__c WHERE User__r.Id =: userId];
-            System.debug(bookList);
+            
             return bookList;
             
         } catch (Exception e) {

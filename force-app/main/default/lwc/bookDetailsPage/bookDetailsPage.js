@@ -1,21 +1,10 @@
 import { LightningElement, track } from 'lwc';
+import { NavigationMixin } from 'lightning/navigation';
+
+import getBook from '@salesforce/apex/BookController.getBook';
 import bookImages from '@salesforce/resourceUrl/bookImages';
 import icons from '@salesforce/resourceUrl/otherImages';
 import profileImages from '@salesforce/resourceUrl/profileImages';
-
-const book = 
-    {   
-        id: 0,
-        title: 'Ostatnie życzenie',
-        author: 'Andrzej Sapkowski',
-        pages: 330,
-        releaseDate: '24-05-1993',
-        series: 'Wiedzmin',
-        genre: 'Fantastyka',
-        description: "Później mówiono, że człowiek ów nadszedł od północy, od Bramy Powroźniczej. Nie był stary, ale włosy miał zupełnie białe. Kiedy ściągnął płaszcz, okazało się, że na pasie za plecami ma miecz.",
-        average: 9.00,
-        src: bookImages + '/bookImages/wiedzminOstatnieZyczenie.jpg'
-    }
 
 const ratings = [
     {   
@@ -34,26 +23,51 @@ const ratings = [
     }
 ]
 
-export default class BookDetailsPage extends LightningElement {
-
-book = book;
+export default class BookDetailsPage extends NavigationMixin(LightningElement) {
+book;
 ratings = ratings;
 star = icons + '/otherImages/star.png';
 @track ispopupactive = false;
 
     goToDiscussions(){
+        localStorage.setItem('bookId', this.book.Id);
+
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'Dyskusje__c'
+            }
+        });
         
     }
     goToReviews(){
 
+    }
+
+    goToAuthorAction(){
+        localStorage.setItem('id', this.book.Author__c);
+
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'Autor__c'
+            }
+        });
     }
     handleAddRating(){
         if(this.ispopupactive === false){
             this.ispopupactive = true;
         }
     }
-
     handleispopupactiveChange(event){
         this.ispopupactive = event.detail;
+    }
+    connectedCallback(){
+        let bookid = localStorage.getItem('id');
+        getBook({
+            bookId: bookid
+        }).then(book => {
+            this.book = book;
+        })
     }
 }

@@ -1,0 +1,24 @@
+<template>
+        <template if:true={reviews.data}>
+            <template for:each={reviews.data} for:item='review'>
+                <section class='reviewContainer' key={review.id}>
+                    <section>
+                        <img src={author.user_icon} class ='profileImg' />
+                        <section class="gradesContainer">
+                            <button class="ratingButton" onclick={increseLike}><img class="rating" src={plus.user_icon}/> {review.Likes__c}</button>
+                            <button class="ratingButton" onclick={increseDislike}><img class="rating" src={minus.user_icon}/> {review.Dislikes__c}</button>
+                        </section>
+                    </section>
+                    <section class='reviewDetails'>
+                        <span class='profileName'>{review.User__r.Nickname__c}  dodano o <lightning-formatted-date-time value={review.CreatedDate}  hour="2-digit" minute="2-digit"  hour12={ampm}></lightning-formatted-date-time></span>
+                        <section class='review'>
+                            <div class='reviewDescription'>{review.Content__c}</div>
+                        </section>
+                    </section>
+                </section>
+
+            </template>
+        
+        </template>
+                
+    </template>
