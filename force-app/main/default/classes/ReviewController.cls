@@ -9,7 +9,7 @@ public class ReviewController {
     }
 
     @AuraEnabled(cacheable=true)
-    public static boolean isUserReviewer(User__c bookwormUser) {
+    public static Boolean isUserReviewer(User__c bookwormUser) {
         if (bookwormUser.Role__c == 'Recenzent') {
             return true;
         } else {
