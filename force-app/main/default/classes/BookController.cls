@@ -1,5 +1,5 @@
-public with sharing class BookController {
-    @AuraEnabled
+public class BookController {
+    @AuraEnabled(cacheable=true)
     public static Book__c getBook(Id bookId) {
         try {
             Book__c book = [
@@ -27,7 +27,7 @@ public with sharing class BookController {
         }
     }
 
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
     public static List<Book__c> getAllBooksByGenre(String genre) {
         try {
             List<Book__c> books = [
@@ -41,7 +41,8 @@ public with sharing class BookController {
             throw new AuraHandledException(e.getMessage());
         }
     }
-    @AuraEnabled
+
+    @AuraEnabled(cacheable=true)
     public static List<Book__c> getAllBooksToRanking() {
         try {
             List<Book__c> books = [
