@@ -5,13 +5,27 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
     @api book;
     series = false;
 
-    navigateAction(){
+    goToDetailsAction(){
+        localStorage.setItem('id', this.book.Id);
+
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
-                name: 'Szczegoly__c',
-                id: this.book.id
+                name: 'Szczegoly__c'
             }
         });
     }
+
+    goToAuthorAction(){
+        localStorage.setItem('id', this.book.Author__c);
+
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'Autor__c'
+            }
+        });
+    }
+
+
 }

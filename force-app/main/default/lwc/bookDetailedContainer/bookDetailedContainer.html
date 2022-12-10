@@ -2,11 +2,11 @@
     <section class='bookContainer'>
         <section class='mainDetailsContainer'>
             <section class='imageContainer'>
-                <img src={book.Photo__c} class="cursorPoiner" onclick={navigateAction}>
+                <img src={book.Photo__c} class="cursorPoiner" style='max-height: 225px;' onclick={goToDetailsAction}>
             </section>
             <section class='detailsContainer'>
-                <span class='bookDetail biggestFont cursorPoiner' onclick={navigateAction}>{book.Title__c}</span>
-                <span class='bookDetail bigFont cursorPoiner'>{book.Author__r.Name}</span>
+                <span class='bookDetail biggestFont cursorPoiner' onclick={goToDetailsAction}>{book.Title__c}</span>
+                <span class='bookDetail bigFont cursorPoiner' onclick={goToAuthorAction}>{book.Author__r.Name}</span>
                 <span class='bookDetail normalFont cursorPoiner'>Seria: {book.Book_Series__r.Name}</span>               
                 <span class='bookDetail'>Gatunek: {book.Genre__c}</span>
             </section>

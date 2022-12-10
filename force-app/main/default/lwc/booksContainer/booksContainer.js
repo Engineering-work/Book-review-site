@@ -80,7 +80,7 @@ export default class BooksContainer extends LightningElement {
         else if(this.bookscomponent === 'new'){
             this.newBooks = true;
         }
-        else{
+        else if(this.bookscomponent === 'author'){
             this.authorBooks = true;
         }
     }

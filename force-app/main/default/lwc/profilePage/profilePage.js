@@ -1,4 +1,4 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, track } from 'lwc';
 import profileImages from '@salesforce/resourceUrl/profileImages';
 
 const profile = 
@@ -12,4 +12,18 @@ const profile =
 
 export default class ProfilePage extends LightningElement {
     profile = profile;
+    @track changeUserDataPopup = false;
+    
+
+    changeUserDataPopuphandle(){
+        if(this.changeUserDataPopup === false){
+            this.changeUserDataPopup = true;
+        }
+    }
+    handleispopupactiveChange(event){
+        this.changeUserDataPopup = event.detail;
+    }
+    closeModal(){
+        this.changeUserDataPopup = false;
+    }
 }

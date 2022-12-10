@@ -1,54 +1,52 @@
 <template>
     <section class='mainContainer'>
-        <section class='bookDetailsContainer'>
-            <section class='bookDetails'>
-                <section class='allDetails'>
-                    <section class='bookImage'>
-                        <img src={book.src} />
+        <template if:true={book}>
+            <section class='bookDetailsContainer'>
+                <section class='bookDetails'>
+                    <section class='allDetails'>
+                        <section class='bookImage'>
+                            <img src={book.Photo__c} style='max-height: 225px;'/>
+                        </section>
+                        <section class='textDetails'>
+                            <span class='title'>
+                                {book.Title__c}
+                            </span>
+                            <span class='author' onclick={goToAuthorAction} style='cursor: pointer;'>
+                                Autor: <span class='colorBlue'>{book.Author__r.Name}</span>
+                            </span>
+                            <span class='pagesNumber'>
+                                Liczba stron: {book.Pages__c}
+                            </span>
+                            <span class='releaseDate'>
+                                Data wydania: {book.Release_Date__c}
+                            </span>
+                            <span class='series' style='cursor: pointer;'>
+                                Cykl: <span class='colorBlue'>{book.Book_Series__r.Name}</span>
+                            </span>
+                            <span class='genre'>
+                                Gatunek: {book.Genre__c}
+                            </span>
+                        </section>
+                    </section>   
+                    <section class='description'>
+                        <!--{book.description}-->
                     </section>
-                    <section class='textDetails'>
-                        <span class='title'>
-                            {book.title}
-                        </span>
-                        <span class='author'>
-                            Autor: <span class='colorBlue'>{book.author}</span>
-                        </span>
-                        <span class='pagesNumber'>
-                            Liczba stron: {book.pages}
-                        </span>
-                        <span class='releaseDate'>
-                            Data wydania: {book.releaseDate}
-                        </span>
-                        <span class='series'>
-                            Cykl:
-                            <span class='colorBlue'>
-                            {book.series}</span>
-                        </span>
-                        <span class='genre'>
-                            Gatunek:
-                            <span class='colorBlue'>
-                            {book.genre}</span>
-                        </span>
+                </section>
+                <section class='averageRatingContainer'>
+                    <section class='averageRating'>
+                        <span class='averageRatingText'>Średnia ocena</span>
+                        <span class='averageRatingValue'>{book.Average_Rating__c}</span>
+                        <section class='ratingButtonsContainer'>
+                            <span class='ratingButton' onclick={goToDiscussions}>Dyskusje</span>
+                            <span class='ratingButton' onclick={goToReviews}>Recenzje</span>
+                        </section>
                     </section>
-                </section>   
-                <section class='description'>
-                    {book.description}
+                    <section class='addRating' onclick={handleAddRating}>
+                        <span>Dodaj ocenę</span>
+                    </section>
                 </section>
             </section>
-            <section class='averageRatingContainer'>
-                <section class='averageRating'>
-                    <span class='averageRatingText'>Średnia ocena</span>
-                    <span class='averageRatingValue'>{book.average}</span>
-                    <section class='ratingButtonsContainer'>
-                        <span class='ratingButton' onclick={goToDiscussions}>Dyskusje</span>
-                        <span class='ratingButton' onclick={goToReviews}>Recenzje</span>
-                    </section>
-                </section>
-                <section class='addRating' onclick={handleAddRating}>
-                    <span>Dodaj ocenę</span>
-                </section>
-            </section>
-        </section>
+        </template>
         <template if:true={ispopupactive}>
             <c-pop-up popuptype='addRating' ispopupactive={ispopupactive} onispopupactivechange={handleispopupactiveChange}>
             </c-pop-up>
