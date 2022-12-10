@@ -46,15 +46,10 @@ public class BookRatingController {
     }
 
     @AuraEnabled(cacheable=true)
-    public static Book_Rating__c deleteBookRating(Id SFuserId) {
-        Book_Rating__c deletedBookRating = [
-            SELECT Id, Book__c, Comment__c, Rating__c, CreatedDate, User__c, User__r.SFUser__c, User__r.Photo__c, User__r.Alt__c, User__r.Nickname__c
-            FROM Book_Rating__c
-            WHERE User__r.SFUser__c = :SFuserId
-        ];
+    public static Book_Rating__c deleteBookRating(Book_Rating__c bookRating) {
         try {
-            delete deletedBookRating;
-            return deletedBookRating;
+            delete bookRating;
+            return bookRating;
         } catch (DmlException e) {
             System.debug(e.getMessage());
         }
