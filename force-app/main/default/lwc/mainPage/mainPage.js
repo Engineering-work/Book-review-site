@@ -1,6 +1,7 @@
 import { LightningElement } from 'lwc';
 import Id from '@salesforce/user/Id';
 
+import getNewestBooks from '@salesforce/apex/HomePageController.getNewestBooks';
 import icons from '@salesforce/resourceUrl/otherImages';
 
 export default class MainPage extends LightningElement {
@@ -13,7 +14,14 @@ export default class MainPage extends LightningElement {
     loggedInUser = true;
     username = 'user13';
 
+    suggestedBooks;
+    newBooks;
+
     connectedCallback(){
         console.log(this.Id);
+
+        getNewestBooks({}).then(books => {
+            this.newBooks = books;
+        })
     }
 }
