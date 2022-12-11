@@ -21,6 +21,10 @@
     justify-content: space-around;
     align-items: center;
 }
+.formContainer{
+    display: flex;
+    flex-direction: column;
+}
 .width{
     width: 60%;
 }
