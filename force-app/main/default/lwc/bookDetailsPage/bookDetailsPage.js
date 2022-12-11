@@ -2,7 +2,6 @@ import { LightningElement, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
 import getBook from '@salesforce/apex/BookController.getBook';
-import bookImages from '@salesforce/resourceUrl/bookImages';
 import icons from '@salesforce/resourceUrl/otherImages';
 import profileImages from '@salesforce/resourceUrl/profileImages';
 
@@ -37,7 +36,7 @@ star = icons + '/otherImages/star.png';
     }
 
     goToAuthorAction(){
-        localStorage.setItem('id', this.book.Author__c);
+        localStorage.setItem('authorid', this.book.Author__c);
 
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
@@ -55,7 +54,7 @@ star = icons + '/otherImages/star.png';
         this.ispopupactive = event.detail;
     }
     connectedCallback(){
-        let bookid = localStorage.getItem('id');
+        let bookid = localStorage.getItem('bookid');
         getBook({
             bookId: bookid
         }).then(book => {
