@@ -1,22 +1,21 @@
-public class BookListController {
+public with sharing class BookListController {
     @AuraEnabled(cacheable=true)
     public static List<Book_List_Item__c> getUserBooks(Id bookwormUserId) {
         try {
             List<Book_List_Item__c> bookList = [
-                SELECT Id, Book__c, Book__r.Title__c, Book__r.Author__c, Book__r.Author__r.Name__c, Book__r.Author__r.Surname__c, Status__c
+                SELECT Id, User__c,Book__c, Book__r.Title__c, Book__r.Author__c, Book__r.Author__r.Name__c, Book__r.Author__r.Surname__c, Status__c
                 FROM Book_List_Item__c
-                WHERE User__r.Id = :bookwormUserId
+                WHERE User__c =:bookwormUserId
             ];
             return bookList;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
     }
-
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static Book_List_Item__c addBookListItem(Id bookId, Id bookwormUserId, String status) {
         Book_List_Item__c bookListItem;
-        if (status == null || status == '') {
+        if (status === null || status === '') {
             bookListItem = new Book_List_Item__c(Book__c = bookId, User__c = bookwormUserId);
         } else {
             bookListItem = new Book_List_Item__c(Book__c = bookId, User__c = bookwormUserId, Status__c = status);
@@ -32,7 +31,9 @@ public class BookListController {
     }
 
     @AuraEnabled(cacheable=true)
-    public static Book_List_Item__c changeBookListItemStatus(Book_List_Item__c bookListItem, String newStatus) {
+    public static Book_List_Item__c changeBookListItemStatus(Id bookListItemId, String newStatus) {
+        Book_List_Item__c bookListItem = [SELECT Id, Status__c FROM Book_List_Item__c WHERE Id =:bookListItemId];
+
         bookListItem.Status__c = newStatus;
 
         try {
@@ -45,7 +46,9 @@ public class BookListController {
     }
 
     @AuraEnabled(cacheable=true)
-    public static Book_List_Item__c deleteBookListItem(Book_List_Item__c bookListItem) {
+    public static Book_List_Item__c deleteBookListItem(Id bookListItemId) {
+        Book_List_Item__c bookListItem = [SELECT Id, Status__c FROM Book_List_Item__c WHERE Id =:bookListItemId];
+
         try {
             delete bookListItem;
             return bookListItem;
