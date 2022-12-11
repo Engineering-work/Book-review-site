@@ -29,21 +29,28 @@
 
 .linksContainer{
     display: flex;
-    width: 24rem;
+    width: 27rem;
 }
 
 .link, .dropdownLink{
     padding: 19px 1.9rem;
 }
+.dropdownLinks{
+    padding: 19px 1.1rem;
+    width: 8rem;
+}
 
 .link:active,
-.link:active:hover{
+.link:active:hover,
+.dropdownLinks:active:hover,
+.dropdownLinks:active{
     background-color: #FFB2B2 !important;
     font-weight: bold;
     text-decoration: none !important;
 }
 
-.link:hover{
+.link:hover,
+.dropdownLinks:hover{
     background-color: #FFB2B2 !important;
     text-decoration: none !important;
     border: 1px solid black;

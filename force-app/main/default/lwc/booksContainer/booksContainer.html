@@ -16,27 +16,18 @@
             <template if:true={newBooks}>
                 <section class='newBooksGenres'>
                     <a class='link active' id='wszystkie' onclick={changeGenre}>Wszystkie</a>
-                    <a class='link' id='scienceFiction' onclick={changeGenre}>Science fiction</a>
-                    <a class='link' id='kryminal' onclick={changeGenre}>Kryminał</a>
-                    <a class='link' id='romans' onclick={changeGenre}>Romans</a>
-                    <a class='link' id='fantastyka' onclick={changeGenre}>Fantastyka</a>
+                    <a class='link' id='Horror' onclick={changeGenre}>Horror</a>
+                    <a class='link' id='Tajemnica' onclick={changeGenre}>Tajemnica</a>
+                    <a class='link' id='Romans' onclick={changeGenre}>Romans</a>
+                    <a class='link' id='Fantastyka' onclick={changeGenre}>Fantastyka</a>
                 </section>
             </template>
             <section class='booksList'>
-                <template for:each={books} for:item='book'>
-                    <section key={book.id} class='bookContainer'> 
-                        <section class='bookImage'>
-                            <img src={book.src}>
-                        </section>
-                        <section class='bookTitle'>
-                            {book.title}
-                        </section>
-                        <template if:false={authorBooks}>
-                            <section class='bookAuthor'>
-                                {book.author}
-                            </section>
-                        </template>
-                    </section>
+                <template if:true={books}>
+                    <template for:each={books} for:item='book'>
+                        <c-book-detailed-container key={book.id} book={book} authorbooks={authorBooks} bookcontainertype={bookcontainertype} style="margin: 1rem">
+                        </c-book-detailed-container>
+                    </template>
                 </template>
             </section>
         </section>

@@ -1,0 +1,29 @@
+<template>
+    <template if:true={isAddBookPopupactive}>
+            <c-pop-up popuptype='addBookToMyList' ispopupactive={isAddBookPopupactive} onispopupactivechange={handleispopupactiveChange}>
+            </c-pop-up>
+        </template>
+    <section class='mainContainer'>
+        <section class='myListContainer'>
+            <section class='titleContainer'>
+                <span class='title'>Moja lista</span>
+                <span class='addBook' onclick={handleAddBook}>Dodaj książkę</span>
+            </section>
+            <section class='myList'>
+                <template for:each={books} for:item='book'>
+                    <section class='bookContainer' key={book.id}>
+                        <span>{book.title}, {book.author}</span>
+                        <template if:true={status.data}>
+                            <lightning-combobox 
+                                name="Status"
+                                value={value}
+                                class="combobox"
+                                options={status.data.values}>
+                            </lightning-combobox>
+                        </template>
+                    </section>
+                </template>
+            </section>
+        </section>
+    </section>
+</template>

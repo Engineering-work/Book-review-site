@@ -28,9 +28,9 @@ export default class Navigation extends NavigationMixin(LightningElement) {
 
     renderedCallback(){
         let activeNavItemName = this._CurrentPageReference.attributes.name.split('_')[0];
-        if(activeNavItemName==='Katalog' || activeNavItemName==='Rankingi'){
+        if(activeNavItemName==='Katalog' || activeNavItemName==='Rankingi' || activeNavItemName==='MojaLista' || activeNavItemName==='Profil'){
             let navItemInHTML = this.template.querySelector(`a[id^="${activeNavItemName}"]`);
-            navItemInHTML.style.backgroundColor = '#FFB2B2';
+            navItemInHTML.style.backgroundColor = '#FFB2B2 !important';
             navItemInHTML.style.fontWeight = 'bold';
         }
     }

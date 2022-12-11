@@ -1,19 +1,36 @@
 <template>
-    <section class='bookContainer'>
-        <section class='mainDetailsContainer'>
-            <section class='imageContainer'>
-                <img src={book.Photo__c} class="cursorPoiner" style='max-height: 225px;' onclick={goToDetailsAction}>
+    <template if:true={bookListPage}>
+        <section class='bookContainer'>
+            <section class='mainDetailsContainer'>
+                <section class='imageContainer'>
+                    <img src={book.Photo__c} class="cursorPoiner" style='max-height: 225px;' onclick={goToDetailsAction}>
+                </section>
+                <section class='detailsContainer'>
+                    <span class='bookDetail biggestFont cursorPoiner' onclick={goToDetailsAction}>{book.Title__c}</span>
+                    <span class='bookDetail bigFont cursorPoiner' onclick={goToAuthorAction}>{book.Author__r.Name}</span>
+                    <span class='bookDetail normalFont cursorPoiner'>Seria: {book.Book_Series__r.Name}</span>               
+                    <span class='bookDetail'>Gatunek: {book.Genre__c}</span>
+                </section>
             </section>
-            <section class='detailsContainer'>
-                <span class='bookDetail biggestFont cursorPoiner' onclick={goToDetailsAction}>{book.Title__c}</span>
-                <span class='bookDetail bigFont cursorPoiner' onclick={goToAuthorAction}>{book.Author__r.Name}</span>
-                <span class='bookDetail normalFont cursorPoiner'>Seria: {book.Book_Series__r.Name}</span>               
-                <span class='bookDetail'>Gatunek: {book.Genre__c}</span>
+            <section class='gradeContainer'>
+                <span class='bigFont'>Średnia ocena</span>
+                <span class='bigFont'>{book.Average_Rating__c}</span>
             </section>
         </section>
-        <section class='gradeContainer'>
-            <span class='bigFont'>Średnia ocena</span>
-            <span class='bigFont'>{book.Average_Rating__c}</span>
+    </template>
+    <template if:true={booksContainer}>
+        <section class='booksContainer'> 
+            <section class='bookImage'>
+                <img src={book.Photo__c} onclick={goToDetailsAction} style="max-height: 225px; cursor: pointer;">
+            </section>
+            <section class='bookTitle'>
+                {book.Title__c}
+            </section>
+            <template if:false={authorbooks}>
+                <section class='bookAuthor'>
+                    {book.Author__r.Name__c}
+                </section>
+            </template>
         </section>
-    </section>
+    </template>
 </template>

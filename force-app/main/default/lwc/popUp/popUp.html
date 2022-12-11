@@ -15,8 +15,11 @@
                     <template if:true={editUserData}>
                         <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate headerStyling">Edytuj dane</h2>
                     </template>
+                    <template if:true={addBookToMyList}>
+                        <h2 id="modal-heading-03" class="slds-text-heading_medium slds-hyphenate headerStyling">Dodaj książkę do mojej listy</h2>
+                    </template>
                 </header>
-                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <div class="slds-modal__content slds-p-around_medium" style='overflow: visible;' id="modal-content-id-1">
                     <template if:true={addRating}>
                         <lightning-slider label="Ocena" max=10 min=1 step="0.5" class='slider'></lightning-slider>
                         <lightning-textarea name="ratingDescription" label="Komentarz (opcjonalne)" placeholder="Napisz tutaj..."></lightning-textarea>
@@ -28,7 +31,26 @@
                         </section>
                         <section class='dataContainer'>
                             <lightning-input value={name} label="Imię" id='name' style='width: 50%;' min-length="1"></lightning-input>
-                            <button class="slds-button slds-button_brand" style='height: 2rem;'>Zmień</button>
+                            <button class="slds-button slds-button_brand" style='height: 2rem;' onclick={changeDataHandler}>Zmień</button>
+                        </section>
+                    </template>
+                    <template if:true={addBookToMyList}>
+                        <section class='formContainer'>
+                            <form action="#">
+                                <c-title-search-lwc onrecordselection={onTitleSelection} aria-required="true"></c-title-search-lwc>
+                                <section class='dataContainer'>
+                                <span>Status</span>
+                                    <template if:true={status.data}>
+                                        <lightning-combobox 
+                                            name="Status"
+                                            value={value}
+                                            class="combobox"
+                                            style='min-width: 14.7rem;'
+                                            options={status.data.values}>
+                                        </lightning-combobox>
+                                    </template>
+                                </section>
+                            </form>
                         </section>
                     </template>
                 </div>

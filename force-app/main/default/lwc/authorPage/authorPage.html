@@ -1,27 +1,31 @@
 <template>
     <section class='mainContainer'>
         <section class='authorDetailsContainer'>
-            <section class='authorImage'>
-                <img src={author.src} />
-            </section>
-            <section class='textDetails'>
-                <span class='name marginBottom'>
-                    {author.name}
-                </span>
-                <span class='birthDate marginBottom'>
-                    Ur. {author.birthDate}
-                </span>
-                <span class='deathDate marginBottom'>
-                    Zm. {author.deathDate}
-                </span>
-                <span class='description'>
-                    {author.description}
-                </span>
-            </section>
+            <template if:true={author}>
+                <section class='authorImage'>
+                    <img src={author.Photo__c} />
+                </section>
+                <section class='textDetails'>
+                    <span class='name marginBottom'>
+                        {author.Name__c} {author.Surname__c} 
+                    </span>
+                    <span class='birthDate marginBottom'>
+                        Ur. {author.Date_Of_Birth__c}
+                    </span>
+                    <span class='deathDate marginBottom'>
+                        Zm. <!--{author.Date_Of_Death__c}-->
+                    </span>
+                    <span class='description'>
+                        {author.Description__c}
+                    </span>
+                </section>
+            </template>
         </section>
         <section>
-            <c-books-Container bookscomponent="author">
-            </c-books-Container>
+            <template if:true={booksByAuthor}>
+                <c-books-Container bookscomponent="author" bookslist={booksByAuthor} bookcontainertype="booksContainer">
+                </c-books-Container>
+            </template>
         </section>
     </section>
 </template>
