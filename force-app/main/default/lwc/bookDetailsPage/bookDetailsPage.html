@@ -20,7 +20,7 @@
                             <span class='releaseDate'>
                                 Data wydania: {book.Release_Date__c}
                             </span>
-                            <span class='series' style='cursor: pointer;'>
+                            <span class='series' style='cursor: pointer;' onclick={goToSeriesAction}>
                                 Cykl: <span class='colorBlue'>{book.Book_Series__r.Name}</span>
                             </span>
                             <span class='genre'>
@@ -53,24 +53,29 @@
         </template>
         <section class='allRatings'>
             <span class='title allRatingTitle'>Oceny</span>
-            <template for:each={ratings} for:item='rating'>
-                <section class='ratingContainer' key={rating.id}>
-                    <section class='profileImage'>
-                        <img src={rating.src} />
-                    </section>
-                    <section class='ratingDetails'>
-                        <span class='profileName'>{rating.name}</span>
-                        <section class='rating'>
-                            <div class='ratingDescription'>{rating.description}</div>
-                            <section class='numberAndStarImage'>
-                                <span class='ratingNumber'>{rating.number}</span>
-                                <span class='starImage'>
-                                    <img src={star} alt='star'/>
-                                </span>
+            <template if:true={ratings}>
+                <template for:each={ratings} for:item='rating'>
+                    <section class='ratingContainer' key={rating.id}>
+                        <section class='profileImage'>
+                            <img src={rating.User__r.Photo__c} />
+                        </section>
+                        <section class='ratingDetails'>
+                            <span class='profileName'>{rating.User__r.Nickname__c}</span>
+                            <section class='rating'>
+                                <div class='ratingDescription'>{rating.Comment__c}</div>
+                                <section class='numberAndStarImage'>
+                                    <span class='ratingNumber'>{rating.Rating__c}</span>
+                                    <span class='starImage'>
+                                        <img src={star} alt='star'/>
+                                    </span>
+                                </section>
                             </section>
                         </section>
                     </section>
-                </section>
+                </template>
+            </template>
+            <template if:true={ratingsEmpty}>
+                <span class='noRatingsFindText'>Nie ma jeszcze ocen</span>
             </template>
         </section>
     </section>

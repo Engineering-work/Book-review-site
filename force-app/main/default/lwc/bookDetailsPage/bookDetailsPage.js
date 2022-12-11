@@ -5,6 +5,8 @@ import getBook from '@salesforce/apex/BookController.getBook';
 import icons from '@salesforce/resourceUrl/otherImages';
 import profileImages from '@salesforce/resourceUrl/profileImages';
 
+import getBookRatings from '@salesforce/apex/BookRatingController.getBookRatings';
+
 const ratings = [
     {   
         id: 0,
@@ -24,9 +26,10 @@ const ratings = [
 
 export default class BookDetailsPage extends NavigationMixin(LightningElement) {
 book;
-ratings = ratings;
+ratings;
 star = icons + '/otherImages/star.png';
 @track ispopupactive = false;
+ratingsEmpty;
 
     goToDiscussions(){
         
@@ -45,6 +48,16 @@ star = icons + '/otherImages/star.png';
             }
         });
     }
+    goToSeriesAction(){
+        localStorage.setItem('seriesid', this.book.Book_Series__r.Id);
+
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'Seria__c'
+            }
+        });
+    }
     handleAddRating(){
         if(this.ispopupactive === false){
             this.ispopupactive = true;
@@ -60,5 +73,15 @@ star = icons + '/otherImages/star.png';
         }).then(book => {
             this.book = book;
         })
+
+        getBookRatings({
+            bookId: bookid
+        }).then(ratings=> {
+            this.ratings = ratings;
+            if(ratings.length===0){
+                this.ratingsEmpty = true;
+            }
+        })
+
     }
 }

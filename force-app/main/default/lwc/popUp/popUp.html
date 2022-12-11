@@ -26,36 +26,35 @@
                     </template>
                     <template if:true={editUserData}>
                         <section class='dataContainer'>
-                            <lightning-input value={username} label="Nazwa użytkownika" id='username' style='width: 50%;' max-length="25" min-length="1"></lightning-input>
+                            <lightning-input value={profile.Email__c} label="Nazwa użytkownika" id='username' style='width: 50%;' max-length="25" min-length="1"></lightning-input>
                             <button class="slds-button slds-button_brand" style='height: 2rem;' onclick={changeDataHandler}>Zmień</button>
                         </section>
                         <section class='dataContainer'>
-                            <lightning-input value={name} label="Imię" id='name' style='width: 50%;' min-length="1"></lightning-input>
+                            <lightning-input value={profile.Username__c} label="Imię" id='name' style='width: 50%;' min-length="1"></lightning-input>
                             <button class="slds-button slds-button_brand" style='height: 2rem;' onclick={changeDataHandler}>Zmień</button>
                         </section>
                     </template>
                     <template if:true={addBookToMyList}>
                         <section class='formContainer'>
-                            <form action="#">
-                                <c-title-search-lwc onrecordselection={onTitleSelection} aria-required="true"></c-title-search-lwc>
-                                <section class='dataContainer'>
-                                <span>Status</span>
-                                    <template if:true={status.data}>
-                                        <lightning-combobox 
-                                            name="Status"
-                                            value={value}
-                                            class="combobox"
-                                            style='min-width: 14.7rem;'
-                                            options={status.data.values}>
-                                        </lightning-combobox>
-                                    </template>
-                                </section>
-                            </form>
+                            <c-title-search-lwc ontitleselection={onTitleselection} aria-required="true"></c-title-search-lwc>
+                            <section class='dataContainer'>
+                            <span>Status</span>
+                                <template if:true={status.data}>
+                                    <lightning-combobox 
+                                        name="Status"
+                                        value={value}
+                                        class="combobox"
+                                        style='min-width: 14.7rem;'
+                                        options={status.data.values}
+                                        onchange={handleStatusChange}>
+                                    </lightning-combobox>
+                                </template>
+                            </section>
                         </section>
                     </template>
                 </div>
                 <footer class="slds-modal__footer">
-                    <button class="slds-button slds-button_brand" onclick={closeModal} title="OK">Zatwierdź</button>
+                    <button class="slds-button slds-button_brand" onclick={sendData} title="OK">Zatwierdź</button>
                 </footer>
             </div>
         </section>

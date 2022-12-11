@@ -9,16 +9,18 @@
                 <a href='rankingi' id='Rankingi' class='link'>Ranking</a>
                 <!--<a class='link'>Dodaj książkę</a>-->
                 <template if:true={loggedInUser}>
-                    <div class='positionRelative' style='padding-left: 1.5rem;' onmouseover={handleProfileHover} onmouseleave={handleProfileUnhover}>
-                        <div class='dropdownLink'>{username}</div>
-                        <div class='dropdownContent'>
-                            <a href='profil' id='Profil' class='dropdownLinks pinkColor'>Mój profil</a>
-                            <a href='mojalista' id='MojaLista' class='dropdownLinks pinkColor'>Moja lista</a>
-                            <a class='dropdownLinks pinkColor'>Wyloguj</a>
+                    <template if:true={profile}>
+                        <div class='positionRelative' style='padding-left: 1.5rem;' onmouseover={handleProfileHover} onmouseleave={handleProfileUnhover}>
+                            <div class='dropdownLink'>{profile.Nickname__c}</div>
+                            <div class='dropdownContent'>
+                                <a href='profil' id='Profil' class='dropdownLinks pinkColor'>Mój profil</a>
+                                <a href='mojalista' id='MojaLista' class='dropdownLinks pinkColor'>Moja lista</a>
+                                <a href={logoutLink} class='dropdownLinks pinkColor' >Wyloguj</a>
+                            </div>
                         </div>
-                    </div>
+                    </template>
                 </template>
-                <template  if:false={loggedInUser}>
+                <template if:false={loggedInUser}>
                     <a class='link' href='/login'>Zaloguj</a>
                 </template>
             </section>

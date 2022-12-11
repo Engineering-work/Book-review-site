@@ -58,8 +58,8 @@ findTitles({ searchKey: this.searchKey })
      });
 }
 onSeletedRecordUpdate(){
-    const passEventr = new CustomEvent('recordselection', {
-      detail: { selectedRecordId: this.selectedRecordId, selectedValue: this.selectedValue }
+    const passEventr = new CustomEvent('titleselection', {
+      detail: { selectedBookId: this.selectedRecordId, selectedTitle: this.selectedValue }
      });
      this.dispatchEvent(passEventr);
    }

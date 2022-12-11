@@ -10,18 +10,10 @@
                 <span class='addBook' onclick={handleAddBook}>Dodaj książkę</span>
             </section>
             <section class='myList'>
-                <template for:each={books} for:item='book'>
-                    <section class='bookContainer' key={book.id}>
-                        <span>{book.title}, {book.author}</span>
-                        <template if:true={status.data}>
-                            <lightning-combobox 
-                                name="Status"
-                                value={value}
-                                class="combobox"
-                                options={status.data.values}>
-                            </lightning-combobox>
-                        </template>
-                    </section>
+                <template if:true={books}>
+                    <template for:each={books} for:item='book'>
+                        <c-book-detailed-container key={book.id} book={book} bookcontainertype="bookListItem"></c-book-detailed-container>
+                    </template>
                 </template>
             </section>
         </section>

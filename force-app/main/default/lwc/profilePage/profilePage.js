@@ -1,5 +1,7 @@
 import { LightningElement, track } from 'lwc';
+import Id from '@salesforce/user/Id';
 import profileImages from '@salesforce/resourceUrl/profileImages';
+import getBookwormUser from '@salesforce/apex/UserController.getBookwormUser';
 
 const profile = 
     {   
@@ -11,7 +13,7 @@ const profile =
     }
 
 export default class ProfilePage extends LightningElement {
-    profile = profile;
+    profile;
     @track changeUserDataPopup = false;
     
 
@@ -25,5 +27,13 @@ export default class ProfilePage extends LightningElement {
     }
     closeModal(){
         this.changeUserDataPopup = false;
+    }
+
+    connectedCallback(){
+        getBookwormUser({
+            SFUserId: Id
+        }).then(user => {
+            this.profile = user;
+        })
     }
 }
