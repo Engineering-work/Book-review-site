@@ -79,3 +79,14 @@
     font-family: 'Salesforce Sans', sans-serif;
     font-weight: 400;
 }
+
+.bookListItemContainer{
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem;
+}
+
+.combobox{
+    min-width: 13rem;
+    margin-bottom: 0
+}

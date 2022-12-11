@@ -7,8 +7,8 @@
                 </section>
                 <section class='detailsContainer'>
                     <span class='bookDetail biggestFont cursorPoiner' onclick={goToDetailsAction}>{book.Title__c}</span>
-                    <span class='bookDetail bigFont cursorPoiner' onclick={goToAuthorAction}>{book.Author__r.Name}</span>
-                    <span class='bookDetail normalFont cursorPoiner'>Seria: {book.Book_Series__r.Name}</span>               
+                    <span class='bookDetail bigFont cursorPoiner' onclick={goToAuthorAction}>{book.Author__r.Name} {book.Author__r.Surname__c}</span>
+                    <span class='bookDetail normalFont cursorPoiner' onclick={goToSeriesAction}>Seria: {book.Book_Series__r.Name}</span>               
                     <span class='bookDetail'>Gatunek: {book.Genre__c}</span>
                 </section>
             </section>
@@ -26,11 +26,27 @@
             <section class='bookTitle'>
                 {book.Title__c}
             </section>
-            <template if:false={authorbooks}>
+            <template if:false={showAuthor}>
                 <section class='bookAuthor'>
                     {book.Author__r.Name__c}
                 </section>
             </template>
+        </section>
+    </template>
+    <template if:true={bookListItem}>
+        <section class='bookListItemContainer'>
+            <span>{book.Book__r.Title__c}, {book.Book__r.Author__r.Name__c} {book.Book__r.Author__r.Surname__c}</span>
+            <template if:true={status.data}>
+                <lightning-combobox 
+                    name="Status"
+                    value={book.Status__c}
+                    class="combobox"
+                    options={status.data.values}
+                    onchange={handleStatusChange}>
+                </lightning-combobox>
+            </template>
+            <lightning-icon icon-name="utility:close"
+                 size="xx-Small" class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true" onclick={handleDeleteListItem}></lightning-icon>
         </section>
     </template>
 </template>

@@ -1,7 +1,10 @@
-import { LightningElement, wire } from 'lwc';
+import { LightningElement, wire, track } from 'lwc';
+import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
 
 import logo from '@salesforce/resourceUrl/otherImages';
-import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
+import Id from '@salesforce/user/Id';
+import basePath from "@salesforce/community/basePath";
+import getBookwormUser from '@salesforce/apex/UserController.getBookwormUser';
 
 export default class Navigation extends NavigationMixin(LightningElement) {
     logoSRC = logo + '/otherImages/logo.png';
@@ -12,9 +15,8 @@ export default class Navigation extends NavigationMixin(LightningElement) {
         this._CurrentPageReference = pageRef;
     }
 
-    loggedInUser = true;
-    username = 'user13';
-    sfdcBaseURL;
+    @track loggedInUser = false;
+    profile;
 
     handleProfileHover(){
         const dropdownContainer = this.template.querySelector('.dropdownContent');
@@ -26,12 +28,38 @@ export default class Navigation extends NavigationMixin(LightningElement) {
         dropdownContainer.style.display = 'none';
     }
 
+    get logoutLink() {
+        const sitePrefix = basePath.replace(/\/s$/i, ""); // site prefix is the site base path without the trailing "/s"
+        return sitePrefix + "/secur/logout.jsp";
+    }
+
+    connectedCallback(){
+        if(Id !== null && Id !== undefined){
+            if(Id !== "0057S000000bDjTQAU"){
+                this.loggedInUser = true;
+                getBookwormUser({
+                    SFUserId: Id
+                }).then(user => {
+                    this.profile = user;
+                })
+            }
+            else{
+                this.loggedInUser = false;
+            }
+        }
+        else{
+            this.loggedInUser = false;
+        }
+    }
+
     renderedCallback(){
         let activeNavItemName = this._CurrentPageReference.attributes.name.split('_')[0];
         if(activeNavItemName==='Katalog' || activeNavItemName==='Rankingi' || activeNavItemName==='MojaLista' || activeNavItemName==='Profil'){
             let navItemInHTML = this.template.querySelector(`a[id^="${activeNavItemName}"]`);
-            navItemInHTML.style.backgroundColor = '#FFB2B2 !important';
-            navItemInHTML.style.fontWeight = 'bold';
+            if(navItemInHTML !== null){
+                navItemInHTML.style.backgroundColor = '#FFB2B2';
+                navItemInHTML.style.fontWeight = 'bold';
+            }
         }
     }
 

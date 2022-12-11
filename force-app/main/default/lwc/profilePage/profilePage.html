@@ -4,24 +4,26 @@
         </c-pop-up>
     </template>
     <section class='mainContainer'>
-        <section class='profileDetailsContainer'>
-            <section>
-                <img src={profile.src}>
+        <template if:true={profile}>
+            <section class='profileDetailsContainer'>
+                <section>
+                    <img src={profile.Photo__c} style='max-height: 70px;'>
+                </section>
+                <section class='profileDetails'>
+                    <section class='login'>
+                        {profile.Nickname__c}
+                    </section>
+                    <section class='otherDetails'>
+                        {profile.name}
+                    </section>
+                    <section class='otherDetails'>
+                        {profile.Email__c}
+                    </section>
+                </section>
             </section>
-            <section class='profileDetails'>
-                <section class='login'>
-                    {profile.login}
-                </section>
-                <section class='otherDetails'>
-                    {profile.name}
-                </section>
-                <section class='otherDetails'>
-                    {profile.email}
-                </section>
+            <section class='settingsLink'>
+                <span onclick={changeUserDataPopuphandle} style='cursor: pointer;'>Zmień dane</span>
             </section>
-        </section>
-        <section class='settingsLink'>
-            <span onclick={changeUserDataPopuphandle} style='cursor: pointer;'>Zmień dane</span>
-        </section>
+        </template>
     </section>
 </template>

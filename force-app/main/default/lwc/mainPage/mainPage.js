@@ -12,13 +12,21 @@ export default class MainPage extends LightningElement {
     next = icons + '/otherImages/next.png';
 
     loggedInUser = true;
-    username = 'user13';
+    userId = Id;
 
     suggestedBooks;
     newBooks;
 
     connectedCallback(){
-        console.log(this.Id);
+        if(this.userId !== null || this.userId !== undefined){
+            if(this.userId !== "0057S000000bDjTQAU"){
+                this.loggedInUser = true;
+                console.log('userId'+' '+this.userId);
+            }
+            else{
+                this.loggedInUser = false;
+            }
+        }
 
         getNewestBooks({}).then(books => {
             this.newBooks = books;

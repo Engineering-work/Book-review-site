@@ -9,6 +9,7 @@ export default class BooksContainer extends LightningElement {
     @api loggedinuser;
     @api bookslist;
     @api bookcontainertype;
+    @api seriesname;
 
     previous = icons + '/otherImages/Left.png';
     next = icons + '/otherImages/Right.png';
@@ -19,6 +20,7 @@ export default class BooksContainer extends LightningElement {
     recommendedBooks = false;
     newBooks = false;
     authorBooks = false;
+    seriesBooks = false;
 
     books;
     filteredBooksList;
@@ -69,6 +71,9 @@ export default class BooksContainer extends LightningElement {
         }
         else if(this.bookscomponent === 'author'){
             this.authorBooks = true;
+        }
+        else if(this.bookscomponent === 'series'){
+            this.seriesBooks = true;
         }
         this.books = this.bookslist.slice(this.firstSlice, this.lastSlice);
     }
