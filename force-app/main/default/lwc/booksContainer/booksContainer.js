@@ -1,50 +1,14 @@
 import { LightningElement, api} from 'lwc';
+import { NavigationMixin } from 'lightning/navigation';
 
-import bookImages from '@salesforce/resourceUrl/bookImages';
+import getBooksByGenre from '@salesforce/apex/HomePageController.getBooksByGenre';
 import icons from '@salesforce/resourceUrl/otherImages';
-
-const books = [
-    {   
-        id: 0,
-        title: 'Opowieści z Narnii',
-        author: 'C.S.Lewis',
-        src: bookImages + '/bookImages/opowiesciZNarniiLewCzarownicaIStaraSzafa.jpg'
-    },
-    {
-        id: 1,
-        title: 'Ostatnie życzenie',
-        author: 'Andrzej Sapkowski',
-        src: bookImages + '/bookImages/wiedzminOstatnieZyczenie.jpg'
-    },
-    {
-        id: 2,
-        title: 'Gra o tron',
-        author: 'George R.R.Martin',
-        src: bookImages + '/bookImages/graOTron.jpg'
-    },
-    {
-        id: 3,
-        title: "Pies Baskerville'ów",
-        author: 'Arthur Conan Doyle',
-        src: bookImages + '/bookImages/piesBaskervilleow.jpg'
-    },
-    {
-        id: 4,
-        title: 'TO',
-        author: 'Stephen King',
-        src: bookImages + '/bookImages/TO.jpg'
-    },
-    {
-        id: 5,
-        title: 'TO',
-        author: 'Stephen King',
-        src: bookImages + '/bookImages/TO.jpg'
-    }
-]
 
 export default class BooksContainer extends LightningElement {
     @api bookscomponent;
     @api loggedinuser;
+    @api bookslist;
+    @api bookcontainertype;
 
     previous = icons + '/otherImages/Left.png';
     next = icons + '/otherImages/Right.png';
@@ -56,21 +20,44 @@ export default class BooksContainer extends LightningElement {
     newBooks = false;
     authorBooks = false;
 
-    books = books.slice(this.firstSlice, this.lastSlice);
+    books;
+    filteredBooksList;
+    activeGenre = 'wszystkie';
 
     renderPreviousBook(){
         if(this.firstSlice>0){
             this.firstSlice -= 1;
             this.lastSlice -= 1;
-            this.books = books.slice(this.firstSlice, this.lastSlice);
+            if(this.activeGenre === 'wszystkie'){
+                this.books = this.bookslist.slice(this.firstSlice, this.lastSlice);
+            }
+            else{
+                this.books = this.filteredBooksList.slice(this.firstSlice, this.lastSlice);
+            }
         }
     }
     renderNextBook(){
-        if(this.lastSlice<books.length){
+        if(this.lastSlice<this.bookslist.length){
             this.firstSlice += 1;
             this.lastSlice += 1;
-            this.books = books.slice(this.firstSlice, this.lastSlice);
+            if(this.activeGenre === 'wszystkie'){
+                this.books = this.bookslist.slice(this.firstSlice, this.lastSlice);
+            }
+            else{
+                this.books = this.filteredBooksList.slice(this.firstSlice, this.lastSlice);
+            }
         }
+    }
+
+    goToDetailsAction(){
+        localStorage.setItem('bookid', this.book.Id);
+
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'Szczegoly__c'
+            }
+        });
     }
 
     connectedCallback(){
@@ -83,6 +70,7 @@ export default class BooksContainer extends LightningElement {
         else if(this.bookscomponent === 'author'){
             this.authorBooks = true;
         }
+        this.books = this.bookslist.slice(this.firstSlice, this.lastSlice);
     }
 
     changeGenre(event){
@@ -92,5 +80,21 @@ export default class BooksContainer extends LightningElement {
 
         previousActive.classList.remove('active');
         clicked.classList.add('active');
+
+        this.activeGenre = clickedString;
+        this.firstSlice = 0;
+        this.lastSlice = 5;
+
+        if(this.activeGenre === 'wszystkie'){
+            this.books = this.bookslist.slice(this.firstSlice, this.lastSlice);
+        }
+        else{
+            getBooksByGenre({
+                genre: this.activeGenre
+            }).then( books => {
+                this.filteredBooksList = books;
+                this.books = this.filteredBooksList.slice(this.firstSlice, this.lastSlice);
+            })
+        }
     }
 }

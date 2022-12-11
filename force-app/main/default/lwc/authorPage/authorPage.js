@@ -1,21 +1,25 @@
-import { LightningElement, track } from 'lwc';
-import bookImages from '@salesforce/resourceUrl/bookImages';
-import icons from '@salesforce/resourceUrl/otherImages';
-import profileImages from '@salesforce/resourceUrl/profileImages';
-import authorImages from '@salesforce/resourceUrl/authorImages';
+import { LightningElement } from 'lwc';
 
-const author = 
-    {   
-        id: 0,
-        name: 'Test',
-        author: 'Andrzej Sapkowski',
-        birthDate: '10.03.1978',
-        deathDate: '29.01.2022',
-        description: 'ASfkjsdkfjbdjfbgdjgbjdfb sjdfgndjkfgbdbg dfgdnfkgjdiu sdgkhdfjgdb d guidhfgiuhdgudf skdjbfjhsdfgvds sfbsuhdfbusdf sdubfsuvdfsdf sdfbsudvf',
-        src: authorImages + '/authorImages/andrzej_sapkowski.jpg'
-    }
+import getAuthor from '@salesforce/apex/AuthorController.getAuthor';
+import getBooksByAuthor from '@salesforce/apex/AuthorController.getBooksByAuthor';
 
 export default class AuthorPage extends LightningElement {
-    author = author;
-    
+    author;
+    booksByAuthor;
+
+    connectedCallback(){
+        let authorid = localStorage.getItem('authorid');
+        getAuthor({
+            authorId: authorid
+        }).then(author => {
+            this.author = author;
+        })
+
+        getBooksByAuthor({
+            authorId: authorid
+        }).then(booksByAuthor => {
+            this.booksByAuthor = booksByAuthor;
+            console.log(this.booksByAuthor);
+        })
+    }
 }

@@ -3,10 +3,14 @@ import { NavigationMixin } from 'lightning/navigation';
 
 export default class BookDetailedContainer extends NavigationMixin(LightningElement) {
     @api book;
+    @api bookcontainertype;
+    @api authorbooks;
     series = false;
+    bookListPage;
+    booksContainer;
 
     goToDetailsAction(){
-        localStorage.setItem('id', this.book.Id);
+        localStorage.setItem('bookid', this.book.Id);
 
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
@@ -17,7 +21,7 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
     }
 
     goToAuthorAction(){
-        localStorage.setItem('id', this.book.Author__c);
+        localStorage.setItem('authorid', this.book.Author__c);
 
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
@@ -27,5 +31,12 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
         });
     }
 
-
+    connectedCallback(){
+        if(this.bookcontainertype === 'listPage'){
+            this.bookListPage = true;
+        }
+        else if(this.bookcontainertype === 'booksContainer'){
+            this.booksContainer = true;
+        }
+    }
 }
