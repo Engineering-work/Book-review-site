@@ -2,10 +2,12 @@ import { LightningElement, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
 import getBook from '@salesforce/apex/BookController.getBook';
+
 import icons from '@salesforce/resourceUrl/otherImages';
 import profileImages from '@salesforce/resourceUrl/profileImages';
 
 import getBookRatings from '@salesforce/apex/BookRatingController.getBookRatings';
+
 
 const ratings = [
     {   
@@ -32,9 +34,23 @@ star = icons + '/otherImages/star.png';
 ratingsEmpty;
 
     goToDiscussions(){
+        localStorage.setItem('bookName', this.book.Title__c);
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'Dyskusje__c'
+            }
+        });
         
     }
     goToReviews(){
+       localStorage.setItem('bookName', this.book.Title__c);
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'Rezenzja__c'
+            }
+        });
 
     }
 
@@ -48,6 +64,7 @@ ratingsEmpty;
             }
         });
     }
+
     goToSeriesAction(){
         localStorage.setItem('seriesid', this.book.Book_Series__r.Id);
 
@@ -67,6 +84,7 @@ ratingsEmpty;
         this.ispopupactive = event.detail;
     }
     connectedCallback(){
+
         let bookid = localStorage.getItem('bookid');
         getBook({
             bookId: bookid

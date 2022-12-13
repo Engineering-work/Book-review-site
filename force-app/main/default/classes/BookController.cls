@@ -74,11 +74,13 @@ public with sharing class BookController {
                 WHERE Genre__c INCLUDES (:genre)
             ];
 
+
             return books;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
     }
+
 
     @AuraEnabled(cacheable=true)
     public static List<Book__c> getAllBooksToRanking() {
@@ -102,9 +104,12 @@ public with sharing class BookController {
                 LIMIT 20
             ];
 
+
             return books;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
     }
+
 }
+

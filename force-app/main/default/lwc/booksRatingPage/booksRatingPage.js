@@ -1,5 +1,7 @@
 import { LightningElement, wire } from 'lwc';
 
+
+
 import getAllBooksToRanking from '@salesforce/apex/BookController.getAllBooksToRanking';
 
 export default class BooksRatingPage extends LightningElement {

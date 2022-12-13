@@ -13,6 +13,7 @@
             <template if:true={authorBooks}>
                 <section class='title'>Książki tego autora</section>
             </template>
+
             <template if:true={seriesBooks}>
                 <section class='title'>Książki z serii {seriesName}</section>
             </template>
@@ -30,7 +31,7 @@
                     <template for:each={books} for:item='book'>
                         <c-book-detailed-container key={book.id} book={book} authorbooks={authorBooks} seriesbooks={seriesBooks} bookcontainertype={bookcontainertype} style="margin: 1rem; width:20%;">
                         </c-book-detailed-container>
-                    </template>
+
                 </template>
             </section>
         </section>

@@ -26,6 +26,10 @@
                 <behavior>Edit</behavior>
                 <field>Book__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Post_Number__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

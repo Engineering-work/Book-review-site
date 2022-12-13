@@ -9,6 +9,7 @@
                 <a href='rankingi' id='Rankingi' class='link'>Ranking</a>
                 <!--<a class='link'>Dodaj książkę</a>-->
                 <template if:true={loggedInUser}>
+
                     <template if:true={profile}>
                         <div class='positionRelative' style='padding-left: 1.5rem;' onmouseover={handleProfileHover} onmouseleave={handleProfileUnhover}>
                             <div class='dropdownLink'>{profile.Nickname__c}</div>

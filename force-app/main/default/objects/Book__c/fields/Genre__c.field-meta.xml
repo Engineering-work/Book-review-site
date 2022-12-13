@@ -46,9 +46,9 @@
                 <label>Romans</label>
             </value>
             <value>
-                <fullName>Science Fiction</fullName>
+                <fullName>Fantastyka naukowa</fullName>
                 <default>false</default>
-                <label>Science Fiction</label>
+                <label>Fantastyka naukowa</label>
             </value>
             <value>
                 <fullName>Thriller</fullName>

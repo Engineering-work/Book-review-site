@@ -26,6 +26,18 @@
                 <isActive>false</isActive>
                 <label>Admin</label>
             </value>
+            <value>
+                <fullName>Reader</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Reader</label>
+            </value>
+            <value>
+                <fullName>Reviewer</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Reviewer</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

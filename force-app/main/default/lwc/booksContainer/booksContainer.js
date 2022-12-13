@@ -20,11 +20,13 @@ export default class BooksContainer extends LightningElement {
     recommendedBooks = false;
     newBooks = false;
     authorBooks = false;
+
     seriesBooks = false;
 
     books;
     filteredBooksList;
     activeGenre = 'wszystkie';
+
 
     renderPreviousBook(){
         if(this.firstSlice>0){
@@ -65,6 +67,7 @@ export default class BooksContainer extends LightningElement {
     connectedCallback(){
         if(this.bookscomponent === 'recommended'){
             this.recommendedBooks = true;
+
         }
         else if(this.bookscomponent === 'new'){
             this.newBooks = true;

@@ -11,6 +11,7 @@
                 <a href='/register'>Zarejestruj się</a>, aby zobaczyć książki polecane dla Ciebie!
             </section>
         </template>
+
         <template if:true={newBooks}>
             <c-books-Container bookscomponent="new" bookslist={newBooks} bookcontainertype="booksContainer">
             </c-books-Container>

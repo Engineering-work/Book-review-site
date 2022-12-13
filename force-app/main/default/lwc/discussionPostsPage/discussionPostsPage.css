@@ -1,0 +1,121 @@
+.cursorPointer{
+    cursor: pointer;
+}
+.navigationBar{
+    margin: 2rem 8vw;
+}
+.navigationBar span{
+    font-weight: bold;
+}
+
+
+.mainContainer{
+    width: 85%;
+    margin: 2rem auto;
+    background-color: #FFB2B2;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: right;
+}
+
+.discussion{
+    margin-top: 1.1rem;
+    padding-left: 20px; 
+    margin-bottom: 0.5rem;
+    
+}
+
+.title{
+    font-weight: 400;
+    font-size: 24px;
+    font-family: 'Salesforce Sans', sans-serif;
+}
+
+.heading{
+    display: column;
+    flex-direction: row;
+}
+
+.firstLine{
+    display: flex;
+    flex-direction: row;
+}
+
+.description{
+    margin-left: 2rem;
+    margin-top: -0.5rem;
+}
+
+
+.profileImg{
+    width:75px;
+    height: 75px;
+    border-radius: 50%;
+    margin-left:5px;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.firstPost{
+    margin-top: 0.5rem;
+}
+
+.postTitle{
+    margin: 2rem 8rem;
+    font-size: 24px;
+    font-family: 'Salesforce Sans', sans-serif;
+}
+.postInput{
+    padding: 2rem 0 3rem 3rem;
+    border: none;
+    resize: none;
+    outline: none;
+    width: 75%;
+    background-color: transparent;
+    overflow: hidden;
+}
+.yourPostContainer{
+    width: 85%;
+    margin: 2rem auto;
+    background-color: #FFC8C8;
+    border-radius: 12px;
+    position: relative;
+}
+.buttonContainer{
+    position: absolute;
+    right:    3rem;
+    bottom:   0.5rem;
+}
+
+.buttonStyle{
+    background-color: #fc9999;
+    border-radius: 10%;
+    border-width: medium;
+    padding: 0 1rem;
+    
+}
+
+
+.postContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    align-items: center;
+    margin: 2rem auto;
+}
+.postDetails{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+.post{
+    background-color: #FFC8C8;
+    border-radius: 0px 11px 11px 11px;
+    padding: 1rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

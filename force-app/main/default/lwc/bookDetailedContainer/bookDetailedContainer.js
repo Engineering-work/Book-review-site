@@ -6,6 +6,7 @@ import BookStatus from "@salesforce/schema/Book_List_Item__c.Status__c";
 import changeBookListItemStatus from '@salesforce/apex/BookListController.changeBookListItemStatus';
 import deleteBookListItem from '@salesforce/apex/BookListController.deleteBookListItem';
 
+
 export default class BookDetailedContainer extends NavigationMixin(LightningElement) {
     @api book;
     @api bookcontainertype;
@@ -26,6 +27,7 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
 
     goToDetailsAction(){
         localStorage.setItem('bookid', this.book.Id);
+
 
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
@@ -48,6 +50,7 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
 
     goToAuthorAction(){
         localStorage.setItem('authorid', this.book.Author__c);
+
 
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
@@ -91,4 +94,5 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
             this.showAuthor = false;
         }
     }
+
 }

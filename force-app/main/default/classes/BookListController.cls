@@ -3,6 +3,7 @@ public with sharing class BookListController {
     public static List<Book_List_Item__c> getUserBooks(Id SFUserId) {
         try {
 
+
             User__c bookwormUser = [SELECT Id, Alt__c, Email__c, Nickname__c, SFUser__c, Photo__c, Role__c FROM User__c WHERE SFUser__c = :SFUserId LIMIT 1];
             Id bookwormUserId = bookwormUser.Id;
 
@@ -11,11 +12,13 @@ public with sharing class BookListController {
                 FROM Book_List_Item__c
                 WHERE User__c =:bookwormUserId
             ];
+
             return bookList;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
     }
+
     @AuraEnabled
     public static Book_List_Item__c addBookListItem(Id bookId, Id bookwormUserId, String status) {
         Book_List_Item__c bookListItem;
