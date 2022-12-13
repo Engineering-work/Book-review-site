@@ -1,17 +1,13 @@
-
-    <template> 
-        <template if:true={discussions.data}> 
+<template> 
+        <template if:true={discussions}> 
             <section class="navSection">
            <p class="navigationBar"><span class ="cursorPointer" onclick={goToBookDetails}>{bookName}</span>>>dyskusje</p>
            <button class="buttonStyle" onclick={addDiscussionAction}>dodaj dyskusje</button>
            </section>
-                <template for:each={discussions.data} for:item='discussion'> 
+                <template for:each={discussions} for:item='discussion'> 
                     <c-discussion-container key={discussion.id} discussion={discussion}> </c-discussion-container> 
                 </template>
                 </template>  
-                <template if:true={discussions.error}>
-                    {discussions.error}           
-            </template>
             <template if:true={addDiscussion}>
                 <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
                     <div class="slds-modal__container">
@@ -27,8 +23,8 @@
                         </header>
        
                         <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1"> 
-                            <lightning-input name="discussionTitle" label="Tytuł dyskusji"></lightning-input>           
-                            <lightning-textarea  name="firstPost" label="Pierwszy post" placeholder="Napisz tutaj..."></lightning-textarea>
+                            <lightning-input name="discussionTitle" label="Tytuł dyskusji" value={newDiscussionTitle} required="true"></lightning-input>           
+                            <lightning-textarea  name="firstPost" label="Pierwszy post" placeholder="Napisz tutaj..." value={newFirstPost} required="true"></lightning-textarea>
                         </div>
     
                         <footer class="slds-modal__footer">
@@ -39,6 +35,3 @@
                 <div class="slds-backdrop slds-backdrop_open"></div>
             </template>
     </template>
-
-
-    

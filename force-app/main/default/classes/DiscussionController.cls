@@ -21,5 +21,19 @@ public with sharing class DiscussionController {
             throw new AuraHandledException(e.getMessage());
         }
     }
+
+    @AuraEnabled
+    public static Discussion__c addNewDiscussion(String title, String firstPost, id userId, id bookId){
+        Discussion__c newDiscussion = new Discussion__c(Title__c = title, First_Post__c = firstPost, User__c = userId, Book__c = bookId);
+        try {
+            insert newDiscussion;
+            return newDiscussion;
+            
+        } catch (DmlException e) {
+            System.debug(e.getMessage());
+        }
+        return null;
+        
+    }
    
 }

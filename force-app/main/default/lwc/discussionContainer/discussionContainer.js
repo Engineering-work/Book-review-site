@@ -4,7 +4,7 @@ import { NavigationMixin } from 'lightning/navigation';
 export default class DiscussionContainer extends NavigationMixin(LightningElement) {
     @api discussion;
     
-    goToPostsAction(){
+    goToPostsAction(){  
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
