@@ -83,11 +83,13 @@ export default class PopUp extends LightningElement {
                 console.log(this.bookId + ' ' +Id+''+this.statusValue);
                 addBookListItem({
                     bookId: this.bookId,
-                    bookwormUserId: Id,
+                    bookwormUserId: this.profile.Id,
                     status: this.statusValue
                 }).then(result => {
                     console.log(result);
                     this.closeModal();
+                    const updateMyListEvent = new CustomEvent("mylistchange", {});
+                    this.dispatchEvent(updateMyListEvent);
                 });
             }
         }else{

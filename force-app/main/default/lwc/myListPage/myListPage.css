@@ -42,3 +42,9 @@
 .addBook:hover{
     color: red;
 }
+
+.noBooksFindText{
+    display: block;
+    margin: 2rem;
+    padding: 1px 6px;
+}

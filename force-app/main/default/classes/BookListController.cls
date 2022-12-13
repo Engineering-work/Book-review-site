@@ -1,7 +1,11 @@
 public with sharing class BookListController {
     @AuraEnabled(cacheable=true)
-    public static List<Book_List_Item__c> getUserBooks(Id bookwormUserId) {
+    public static List<Book_List_Item__c> getUserBooks(Id SFUserId) {
         try {
+
+            User__c bookwormUser = [SELECT Id, Alt__c, Email__c, Nickname__c, SFUser__c, Photo__c, Role__c FROM User__c WHERE SFUser__c = :SFUserId LIMIT 1];
+            Id bookwormUserId = bookwormUser.Id;
+
             List<Book_List_Item__c> bookList = [
                 SELECT Id, User__c,Book__c, Book__r.Title__c, Book__r.Author__c, Book__r.Author__r.Name__c, Book__r.Author__r.Surname__c, Status__c
                 FROM Book_List_Item__c
@@ -15,7 +19,7 @@ public with sharing class BookListController {
     @AuraEnabled
     public static Book_List_Item__c addBookListItem(Id bookId, Id bookwormUserId, String status) {
         Book_List_Item__c bookListItem;
-        if (status === null || status === '') {
+        if (status == null || status == '') {
             bookListItem = new Book_List_Item__c(Book__c = bookId, User__c = bookwormUserId);
         } else {
             bookListItem = new Book_List_Item__c(Book__c = bookId, User__c = bookwormUserId, Status__c = status);
@@ -30,7 +34,7 @@ public with sharing class BookListController {
         return null;
     }
 
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static Book_List_Item__c changeBookListItemStatus(Id bookListItemId, String newStatus) {
         Book_List_Item__c bookListItem = [SELECT Id, Status__c FROM Book_List_Item__c WHERE Id =:bookListItemId];
 
@@ -45,13 +49,13 @@ public with sharing class BookListController {
         return null;
     }
 
-    @AuraEnabled(cacheable=true)
-    public static Book_List_Item__c deleteBookListItem(Id bookListItemId) {
+    @AuraEnabled
+    public static String deleteBookListItem(Id bookListItemId) {
         Book_List_Item__c bookListItem = [SELECT Id, Status__c FROM Book_List_Item__c WHERE Id =:bookListItemId];
 
         try {
             delete bookListItem;
-            return bookListItem;
+            return 'Record successfully deleted';
         } catch (DmlException e) {
             System.debug(e.getMessage());
         }
