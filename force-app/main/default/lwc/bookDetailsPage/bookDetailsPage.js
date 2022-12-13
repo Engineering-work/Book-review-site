@@ -2,9 +2,12 @@ import { LightningElement, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 
 import getBook from '@salesforce/apex/BookController.getBook';
-import bookImages from '@salesforce/resourceUrl/bookImages';
+
 import icons from '@salesforce/resourceUrl/otherImages';
 import profileImages from '@salesforce/resourceUrl/profileImages';
+
+import getBookRatings from '@salesforce/apex/BookRatingController.getBookRatings';
+
 
 const ratings = [
     {   
@@ -25,9 +28,10 @@ const ratings = [
 
 export default class BookDetailsPage extends NavigationMixin(LightningElement) {
 book;
-ratings = ratings;
+ratings;
 star = icons + '/otherImages/star.png';
 @track ispopupactive = false;
+ratingsEmpty;
 
     goToDiscussions(){
         localStorage.setItem('bookName', this.book.Title__c);
@@ -51,12 +55,23 @@ star = icons + '/otherImages/star.png';
     }
 
     goToAuthorAction(){
-        localStorage.setItem('id', this.book.Author__c);
+        localStorage.setItem('authorid', this.book.Author__c);
 
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
                 name: 'Autor__c'
+            }
+        });
+    }
+
+    goToSeriesAction(){
+        localStorage.setItem('seriesid', this.book.Book_Series__r.Id);
+
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'Seria__c'
             }
         });
     }
@@ -69,12 +84,22 @@ star = icons + '/otherImages/star.png';
         this.ispopupactive = event.detail;
     }
     connectedCallback(){
-        let bookid = localStorage.getItem('id');
+
+        let bookid = localStorage.getItem('bookid');
         getBook({
             bookId: bookid
         }).then(book => {
             this.book = book;
         })
-        
+
+        getBookRatings({
+            bookId: bookid
+        }).then(ratings=> {
+            this.ratings = ratings;
+            if(ratings.length===0){
+                this.ratingsEmpty = true;
+            }
+        })
+
     }
 }

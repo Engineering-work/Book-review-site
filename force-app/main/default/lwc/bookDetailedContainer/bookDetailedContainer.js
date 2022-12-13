@@ -1,12 +1,33 @@
-import { LightningElement, api } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
+import { getPicklistValues, getObjectInfo } from 'lightning/uiObjectInfoApi';
+import BookListObject from "@salesforce/schema/Book_List_Item__c";
+import BookStatus from "@salesforce/schema/Book_List_Item__c.Status__c";
+import changeBookListItemStatus from '@salesforce/apex/BookListController.changeBookListItemStatus';
+import deleteBookListItem from '@salesforce/apex/BookListController.deleteBookListItem';
+
 
 export default class BookDetailedContainer extends NavigationMixin(LightningElement) {
     @api book;
+    @api bookcontainertype;
+    @api authorbooks;
+    @api seriesbooks;
     series = false;
+    bookListPage;
+    booksContainer;
+    bookListItem;
+
+    showAuthor = true;
+    statusValue = '';
+
+    @wire(getObjectInfo, {objectApiName: BookListObject}) bookListInfo;
+
+    @wire(getPicklistValues, {recordTypeId: '$bookListInfo.data.defaultRecordTypeId', fieldApiName: BookStatus}) status;
+
 
     goToDetailsAction(){
-        localStorage.setItem('id', this.book.Id);
+        localStorage.setItem('bookid', this.book.Id);
+
 
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
@@ -16,8 +37,20 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
         });
     }
 
+    goToSeriesAction(){
+        localStorage.setItem('seriesid', this.book.Book_Series__r.Id);
+
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'Seria__c'
+            }
+        });
+    }
+
     goToAuthorAction(){
-        localStorage.setItem('id', this.book.Author__c);
+        localStorage.setItem('authorid', this.book.Author__c);
+
 
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
@@ -27,5 +60,39 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
         });
     }
 
+    handleStatusChange(event){
+        changeBookListItemStatus({
+            bookListItemId: this.book.Id,
+            newStatus: event.detail.value
+        }).then(result => {
+            console.log(result);
+        })
+    }
+
+    handleDeleteListItem(){
+        deleteBookListItem({
+            bookListItemId: this.book.Id
+        }).then(result => {
+            console.log(result);
+            const updateMyListEvent = new CustomEvent("mylistchange", {});
+            this.dispatchEvent(updateMyListEvent);
+        })
+    }
+
+    connectedCallback(){
+        if(this.bookcontainertype === 'listPage'){
+            this.bookListPage = true;
+        }
+        else if(this.bookcontainertype === 'booksContainer'){
+            this.booksContainer = true;
+        }
+        else if(this.bookcontainertype === 'bookListItem'){
+            this.bookListItem = true;
+        }
+
+        if(this.authorbooks === true || this.seriesbooks === true){
+            this.showAuthor = false;
+        }
+    }
 
 }

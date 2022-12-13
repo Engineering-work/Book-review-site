@@ -1,0 +1,29 @@
+.login{
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+}
+.otherDetails{
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 0.3rem;
+}
+.mainContainer{
+    display: flex;
+    width: 70%;
+    background-color: #FFB2B2 !important;
+    border-radius: 12px;
+    margin: 3rem auto;
+    padding: 1rem;
+    justify-content: space-between;
+}
+.profileDetails{
+    margin-left: 3rem;
+}
+.profileDetailsContainer{
+    display: flex;
+}
+.settingsLink{
+    display: flex;
+    align-items: flex-end;
+}

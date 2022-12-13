@@ -1,5 +1,4 @@
-import { LightningElement, wire, track } from 'lwc';
-import bookImages from '@salesforce/resourceUrl/bookImages';
+import { LightningElement, wire } from 'lwc';
 
 import { getPicklistValues, getObjectInfo } from 'lightning/uiObjectInfoApi';
 import getAllBooks from '@salesforce/apex/BookController.getAllBooks';
@@ -29,12 +28,13 @@ export default class BooksListPage extends LightningElement {
     wiredBooks({ error, data }) {
         if (data) {
             this.allBooks = data;
-            console.log(this.allBooks);
+
+
             this.books = this.allBooks.slice(this.firstSlice, this.lastSlice);
             this.error = undefined;
         } else if (error) {
             this.error = error;
-            this.contacts = undefined;
+
         }
     }
 

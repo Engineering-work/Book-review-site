@@ -203,6 +203,11 @@
         <field>User__c.Photo__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>User__c.SFUser__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <layoutAssignments>
         <layout>Author__c-Author Layout</layout>
     </layoutAssignments>
