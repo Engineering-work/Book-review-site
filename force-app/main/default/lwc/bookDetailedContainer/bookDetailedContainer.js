@@ -38,14 +38,19 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
     }
 
     goToSeriesAction(){
-        localStorage.setItem('seriesid', this.book.Book_Series__r.Id);
+        if(this.book.Book_Series__r.Name == 'Brak'){
+            
+        }
+        else{
+            localStorage.setItem('seriesid', this.book.Book_Series__r.Id);
 
-        this[NavigationMixin.Navigate]({
-            type: 'comm__namedPage',
-            attributes: {
-                name: 'Seria__c'
-            }
-        });
+            this[NavigationMixin.Navigate]({
+                type: 'comm__namedPage',
+                attributes: {
+                    name: 'Seria__c'
+                }
+            });
+        }
     }
 
     goToAuthorAction(){
