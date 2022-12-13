@@ -4,7 +4,7 @@ public with sharing class BookListController {
         try {
 
 
-            User__c bookwormUser = [SELECT Id, Alt__c, Email__c, Nickname__c, SFUser__c, Photo__c, Role__c FROM User__c WHERE SFUser__c = :SFUserId LIMIT 1];
+            User__c bookwormUser = UserController.getBookwormUser(SFUserId);
             Id bookwormUserId = bookwormUser.Id;
 
             List<Book_List_Item__c> bookList = [
