@@ -1,21 +1,22 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track, wire } from 'lwc';
+import {refreshApex} from '@salesforce/apex';
 import Id from '@salesforce/user/Id';
-import profileImages from '@salesforce/resourceUrl/profileImages';
 import getBookwormUser from '@salesforce/apex/UserController.getBookwormUser';
-
-const profile = 
-    {   
-        id: 0,
-        name: 'Mariia Kazanov',
-        src: profileImages + '/profileImages/mariia.png',
-        email: 'mariia3x@gmail.com',
-        login: 'user13'
-    }
 
 export default class ProfilePage extends LightningElement {
     profile;
+    wiredUser;
     @track changeUserDataPopup = false;
     
+    @wire(getBookwormUser, {SFUserId: Id}) profile(result){
+        this.wiredUser = result;
+        if(result.data){
+            this.profile = result.data;
+        }
+        else if(result.error){
+            this.error = result.error;
+        }
+    };
 
     changeUserDataPopuphandle(){
         if(this.changeUserDataPopup === false){
@@ -29,11 +30,7 @@ export default class ProfilePage extends LightningElement {
         this.changeUserDataPopup = false;
     }
 
-    connectedCallback(){
-        getBookwormUser({
-            SFUserId: Id
-        }).then(user => {
-            this.profile = user;
-        })
+    handleUserChange(){
+        refreshApex(this.wiredUser);
     }
 }

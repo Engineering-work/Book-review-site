@@ -1,0 +1,35 @@
+.headerStyling{
+    font-weight: 400;
+}
+.slider{
+    --slds-c-slider-track-color-background: #dcdcdc;
+    --slds-c-slider-thumb-color-foreground: #FFC8C8;
+    --slds-c-slider-thumb-color-foreground-active: #FFC8C8;
+    --slds-c-slider-thumb-color-foreground-focus: #FFC8C8;
+    --slds-c-slider-thumb-color-foreground-hover: #FFC8C8;
+}
+.slds-modal__footer{
+    border: none;
+}
+.slds-button, .slds-button_brand{
+    background-color: #FFC8C8;
+    border: none;
+}
+
+.dataContainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.formContainer{
+    display: flex;
+    flex-direction: column;
+}
+.width{
+    width: 60%;
+}
+.noLoggedInUserText{
+    display: block;
+    margin: 2rem;
+    padding: 1px 6px;
+}
