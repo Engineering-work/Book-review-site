@@ -1,4 +1,4 @@
-public class BookSeriesController {
+public with sharing class BookSeriesController {
     @AuraEnabled(cacheable=true)
     public static List<Book__c> getBooksFromSeries(Id bookSeriesId) {
         try {

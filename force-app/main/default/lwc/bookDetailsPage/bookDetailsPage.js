@@ -76,14 +76,19 @@ export default class BookDetailsPage extends NavigationMixin(LightningElement) {
     }
 
     goToSeriesAction(){
-        localStorage.setItem('seriesid', this.book.Book_Series__r.Id);
+        if(this.book.Book_Series__r.Name == 'Brak'){
+            
+        }
+        else{
+            localStorage.setItem('seriesid', this.book.Book_Series__r.Id);
 
-        this[NavigationMixin.Navigate]({
-            type: 'comm__namedPage',
-            attributes: {
-                name: 'Seria__c'
-            }
-        });
+            this[NavigationMixin.Navigate]({
+                type: 'comm__namedPage',
+                attributes: {
+                    name: 'Seria__c'
+                }
+            });
+        }
     }
     handleAddRating(){
         if(this.ispopupactive === false){
