@@ -1,5 +1,8 @@
-import { LightningElement, api } from 'lwc';
+import { LightningElement, api, wire } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
+import { getPicklistValues, getObjectInfo } from 'lightning/uiObjectInfoApi';
+import BookListObject from "@salesforce/schema/Book_List_Item__c";
+import BookStatus from "@salesforce/schema/Book_List_Item__c.Status__c";
 import changeBookListItemStatus from '@salesforce/apex/BookListController.changeBookListItemStatus';
 import deleteBookListItem from '@salesforce/apex/BookListController.deleteBookListItem';
 
@@ -15,6 +18,11 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
 
     showAuthor = true;
     statusValue = '';
+
+    @wire(getObjectInfo, {objectApiName: BookListObject}) bookListInfo;
+
+    @wire(getPicklistValues, {recordTypeId: '$bookListInfo.data.defaultRecordTypeId', fieldApiName: BookStatus}) status;
+
 
     goToDetailsAction(){
         localStorage.setItem('bookid', this.book.Id);
@@ -51,7 +59,7 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
 
     handleStatusChange(event){
         changeBookListItemStatus({
-            bookListItemId: book.Id,
+            bookListItemId: this.book.Id,
             newStatus: event.detail.value
         }).then(result => {
             console.log(result);
@@ -60,9 +68,11 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
 
     handleDeleteListItem(){
         deleteBookListItem({
-            bookListItem: book.Id
+            bookListItemId: this.book.Id
         }).then(result => {
             console.log(result);
+            const updateMyListEvent = new CustomEvent("mylistchange", {});
+            this.dispatchEvent(updateMyListEvent);
         })
     }
 

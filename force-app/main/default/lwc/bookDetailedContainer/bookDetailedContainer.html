@@ -35,18 +35,19 @@
     </template>
     <template if:true={bookListItem}>
         <section class='bookListItemContainer'>
-            <span>{book.Book__r.Title__c}, {book.Book__r.Author__r.Name__c} {book.Book__r.Author__r.Surname__c}</span>
+            <span style='width: 55%;'>{book.Book__r.Title__c}, {book.Book__r.Author__r.Name__c} {book.Book__r.Author__r.Surname__c}</span>
             <template if:true={status.data}>
                 <lightning-combobox 
                     name="Status"
                     value={book.Status__c}
                     class="combobox"
                     options={status.data.values}
-                    onchange={handleStatusChange}>
+                    onchange={handleStatusChange}
+                    variant = "label-hidden">
                 </lightning-combobox>
             </template>
             <lightning-icon icon-name="utility:close"
-                 size="xx-Small" class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true" onclick={handleDeleteListItem}></lightning-icon>
+                 size="xx-Small" class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true" onclick={handleDeleteListItem} style='cursor: pointer;'></lightning-icon>
         </section>
     </template>
 </template>
