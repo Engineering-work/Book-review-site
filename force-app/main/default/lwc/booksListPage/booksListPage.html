@@ -26,7 +26,9 @@
                 </template>
                 <template if:false={noFilteredBooks}>
                     <template for:each={books} for:item='book'>
+
                         <c-book-detailed-container key={book.id} book={book} bookcontainertype="listPage">
+
                         </c-book-detailed-container>
                     </template>
                 </template>

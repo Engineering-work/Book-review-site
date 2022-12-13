@@ -1,0 +1,50 @@
+.mainContainer{
+    margin: 5rem 7rem;
+}
+.myListContainer{
+    background-color: #FFB2B2;
+    border-radius: 12px;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 3rem;
+    max-height: 43rem;
+}
+.slds-form-element__label:empty{
+    display: none;
+}
+
+.myList{
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+} 
+::-webkit-scrollbar-thumb {
+    background: #EEEEEE;
+    border-radius: 10px;
+}
+.titleContainer{
+    display: flex;
+    justify-content: space-between;
+}
+.title{
+    font-size: 1.5rem;
+    margin-bottom: 1.9rem;
+}
+.addBook{
+    cursor: pointer;
+}
+.addBook:hover{
+    color: red;
+}
+
+.noBooksFindText{
+    display: block;
+    margin: 2rem;
+    padding: 1px 6px;
+}

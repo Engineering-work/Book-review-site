@@ -9,12 +9,23 @@ import {refreshApex} from '@salesforce/apex';
 export default class DiscussionPage extends  NavigationMixin(LightningElement) {
     bookId = localStorage.getItem('bookid');
     bookName = localStorage.getItem('bookName');
-    profile;
-    newDiscussionTitle='dzialasada';
-    newFirstPost='fziala';
+    profile;    
     @track addDiscussion = false;
     discussions;
     wiredDiscussions;
+    newDiscussionTitle= null;
+    newFirstPost = null;
+
+
+
+    titleChange(event){
+        this.newDiscussionTitle= event.target.value;
+
+    }
+    postChange(event){
+        this.newFirstPost= event.target.value;
+
+    }
 
 
     @wire(getDiscussionList, {bookId: '$bookId'}) discussions(result){
@@ -26,10 +37,6 @@ export default class DiscussionPage extends  NavigationMixin(LightningElement) {
             this.error = result.error;
         }
     };
-
-    // @wire(getDiscussionList, {bookId: '$bookId'}) 
-    // discussions;
-
     @wire(getBookwormUser, {SFUserId: Id}) 
     bookwormUserId;
 
@@ -47,15 +54,25 @@ export default class DiscussionPage extends  NavigationMixin(LightningElement) {
         this.addDiscussion = true;
     }
 
-    closeModal() {
-
-        addNewDiscussion({title: this.newDiscussionTitle, firstPost: this.newFirstPost, userId: this.bookwormUserId.data.Id, bookId: this.bookId
+    addDiscussion() {
+        console.log(this.bookwormUserId.data.Id)
+        console.log(this.bookId)
+        console.log(this.newDiscussionTitle)
+        console.log(this.newFirstPost)
+        addNewDiscussion({title: this.newDiscussionTitle, 
+            firstPost: this.newFirstPost, 
+            userId: this.bookwormUserId.data.Id, 
+            bookId: this.bookId
         }).then(el =>{
             console.log(el);
         })
 
             refreshApex(this.wiredDiscussions);
         
+        this.addDiscussion = false;
+    }
+
+    closeModal() {
         this.addDiscussion = false;
     }
 
@@ -67,4 +84,4 @@ export default class DiscussionPage extends  NavigationMixin(LightningElement) {
                 })
             }
             
-        }
+}

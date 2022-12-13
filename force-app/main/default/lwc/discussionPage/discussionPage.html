@@ -23,12 +23,12 @@
                         </header>
        
                         <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1"> 
-                            <lightning-input name="discussionTitle" label="Tytuł dyskusji" value={newDiscussionTitle} required="true"></lightning-input>           
-                            <lightning-textarea  name="firstPost" label="Pierwszy post" placeholder="Napisz tutaj..." value={newFirstPost} required="true"></lightning-textarea>
+                            <lightning-input type="text" name="discussionTitle" label="Tytuł dyskusji" required="true" onchange={titleChange} ></lightning-input>           
+                            <lightning-textarea type="text" name="firstPost" label="Pierwszy post" placeholder="Napisz tutaj..."  required="true" onchange={postChange}></lightning-textarea>
                         </div>
     
                         <footer class="slds-modal__footer">
-                            <button class="slds-button slds-button_brand" onclick={closeModal}>Zatwierdź</button>
+                            <button class="slds-button slds-button_brand" onclick={addDiscussion}>Zatwierdź</button>
                         </footer>
                     </div>
                 </section>

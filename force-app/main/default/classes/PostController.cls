@@ -10,17 +10,18 @@ public with sharing class PostController {
         }
     }
 
-    @AuraEnabled(cacheable=true)
-    public static Post__c createPost(String name, String content, id userId, id discussionId){
-        Post__c newPost = new Post__c(Name=name, Content__c = content, User__c = userId, Discussion__c = discussionId);
+    @AuraEnabled
+    public static Post__c createPost(String content, id userId, id discussionId){
+        Post__c newPost = new Post__c(Content__c = content, User__c = userId, Discussion__c = discussionId);
         try {
            
             insert newPost;
+            return newPost;
             
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
+        } catch (DmlException e) {
+            System.debug(e.getMessage());
         }
         System.debug('jakas wiadomosc');
-        return newPost;
+        return null;
     }
 }

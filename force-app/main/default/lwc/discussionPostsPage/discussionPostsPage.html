@@ -26,16 +26,16 @@
                 <p class="postTitle">Posty</p>
                
                     <section class='yourPostContainer'>
-                        <div><textarea class="postInput" maxlength="500" placeholder="Twoja odpowiedź..." value={msg}>
+                        <div><textarea class="postInput" maxlength="500" placeholder="Twoja odpowiedź..." onchange={changePost}>
                                 
                             </textarea>
                         </div>
-                        <div class="buttonContainer"><button class=" buttonStyle" onclick={handleSubmit}>Dodaj</button></div>
+                        <div class="buttonContainer"><button class=" buttonStyle" onclick={addPost}>Dodaj</button></div>
                     </section>
               
               
-                <template if:true={posts.data}>
-                    <template for:each={posts.data} for:item='post'>
+                <template if:true={posts}>
+                    <template for:each={posts} for:item='post'>
                         <section class='postContainer' key={post.id}>
                             <section>
                                 <img src={post.User__r.Photo__c} class ='profileImg' />
