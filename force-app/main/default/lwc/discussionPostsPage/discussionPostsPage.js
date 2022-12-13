@@ -1,6 +1,5 @@
 import { LightningElement, wire, track } from 'lwc';
-import { createRecord } from 'lightning/uiRecordApi';
-// import profile from '@salesforce/resourceUrl/images';
+import { NavigationMixin } from 'lightning/navigation';
 import getDiscussion from '@salesforce/apex/DiscussionController.getDiscussion';
 import getAllPosts from '@salesforce/apex/PostController.getAllPosts';
 import createPost from '@salesforce/apex/PostController.createPost';
@@ -11,9 +10,8 @@ import currentUserId from '@salesforce/user/Id';
 
 // const test =  {user_icon: profile + '/authorImages/authorImage2.jpg'}
 
-export default class DiscussionPostsPage extends LightningElement {
-    ampm = false;
-    // test = test;
+export default class DiscussionPostsPage  extends  NavigationMixin(LightningElement) {
+    bookName = localStorage.getItem('bookName');
     msg = "";
     discussionId = localStorage.getItem('discussionId');;
     userId = currentUserId;
@@ -22,19 +20,8 @@ export default class DiscussionPostsPage extends LightningElement {
     @wire(getAllPosts, {discussionId: '$discussionId'}) posts;
  
     connectedCallback(){
-        console.log('dwafafafawfafwafa');
         console.log(this.id);
     }
-    // changeHandler(event){
-    //     const {value, name} = event.target
-    //     this.formFields = {...this.formFields, [name]:value}
-    //     // this.formFields.Event_Detail = event.target
-    //     //this.richtext = event.target.value
-    //    // console.log(this.formFields);
-    //     //this.formFields.Event_Detail = event.target.Event_Detail
-    //    }
-
-       
        handleSubmit(){
         // console.log(this.msg);
         // console.log(this.userId);
@@ -46,5 +33,25 @@ export default class DiscussionPostsPage extends LightningElement {
             this.error = error;
         });
        }
+
+       goToDiscusionAction(){
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'Dyskusje__c'
+            }
+        });
+    }
+
+       goToBookDetailsAction(){
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'Szczegoly__c'
+            }
+        });
+        
+
+    }
     
 }

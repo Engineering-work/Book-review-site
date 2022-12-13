@@ -1,33 +1,33 @@
-import { LightningElement, wire, api} from 'lwc';
+import { LightningElement, wire, track} from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import getDiscussionList from '@salesforce/apex/DiscussionController.getAllDiscussions';
 
 
 export default class DiscussionPage extends  NavigationMixin(LightningElement) {
-    bookId = localStorage.getItem('bookId');
+    bookId = localStorage.getItem('id');
+    bookName = localStorage.getItem('bookName');
+
+    @track addDiscussion = false;
+
     @wire(getDiscussionList, {bookId: '$bookId'}) 
     discussions
 
     
-    // goToPostsAction(){
-    //     localStorage.setItem('id', this.book.Id);
+    goToBookDetails(){
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'Szczegoly__c'
+            }
+        });       
+    }
 
-    //     this[NavigationMixin.Navigate]({
-    //         type: 'comm__namedPage',
-    //         attributes: {
-    //             name: 'Szczegoly__c'
-    //         }
-    //     });
-    // }
-    
-    // connectedCallback(){
-    //     let bookid = localStorage.getItem('id');
-    //     getBook({
-    //         bookId: bookid
-    //     }).then(book => {
-    //         this.book = book;
-    //     })
-    // }
-    
+    addDiscussionAction() {
+        this.addDiscussion = true;
+    }
 
+    closeModal() {
+
+        this.addDiscussion = false;
+    }
 }

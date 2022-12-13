@@ -1,22 +1,34 @@
-import { LightningElement, wire} from 'lwc';
+import { LightningElement, wire, track} from 'lwc';
+import { NavigationMixin } from 'lightning/navigation';
 import getReviewList from '@salesforce/apex/ReviewController.getAllReviews';
-// import profile from '@salesforce/resourceUrl/like';
-// import profile1 from '@salesforce/resourceUrl/images';
+import icons from '@salesforce/resourceUrl/otherImages';
 
 
-// const plus = { user_icon: profile + '/like/plus.png'}
-// const minus = {user_icon: profile + '/like/minus.png'}
+
+const plus = { icon: icons + '/otherImages/plus.png'}
+const minus = {icon: icons + '/otherImages/minus.png'}
 // const author = {user_icon: profile1 + '/authorImages/authorImage2.jpg'}
 
-export default class ReviewPage extends LightningElement {
-    bookId = 'a053O00000J2A4VQAV';
-    // plus = plus
-    // minus = minus
-    // author = author
+export default class ReviewPage extends  NavigationMixin(LightningElement)  {
+    plus = plus
+    minus = minus
+    bookId = localStorage.getItem('id');
+    bookName = localStorage.getItem('bookName');
+
+    @track addReview = false;
+
 
     @wire(getReviewList, {bookId: '$bookId'}) 
     reviews
 
+    goToBookDetailsAction(){
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'Szczegoly__c'
+            }
+        });
+    }
     increseLike(){
 
     }
@@ -24,6 +36,13 @@ export default class ReviewPage extends LightningElement {
     increseDislike(){
         
     }
-    
 
+    addReviewAction() {
+        this.addReview = true;
+    }
+
+    closeModal() {
+
+        this.addReview = false;
+    }
 }

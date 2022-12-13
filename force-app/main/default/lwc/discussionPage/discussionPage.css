@@ -1,44 +1,44 @@
-.mainContainer{
-    width: 85%;
-    margin: 2rem auto;
-    background-color: #FFB2B2;
-    border-radius: 12px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: right;
-}
-
-.discussion{
-    margin-top: 1.1rem;
-    padding-left: 10px; 
-    margin-bottom: 0.5rem;
-    
-}
-
-.title{
-    font-weight: 400;
-    font-size: 24px;
-    font-family: 'Salesforce Sans', sans-serif;
-
-}
-
 .cursorPointer{
     cursor: pointer;
 }
 
+.navigationBar span{
+    font-weight: bold;
+}
 
-
-.firstLine{
+.navSection{
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
+    margin: 2rem 8vw 2rem 8vw;
+}
+
+.buttonStyle{
+    background-color: #fc9999;
+    border-radius: 10%;
+    border-width: medium;
+    padding: 0 1rem;
+    
+}
+
+.headerStyling{
+    font-weight: 400;
+}
+.slider{
+    --slds-c-slider-track-color-background: #dcdcdc;
+    --slds-c-slider-thumb-color-foreground: #FFC8C8;
+    --slds-c-slider-thumb-color-foreground-active: #FFC8C8;
+    --slds-c-slider-thumb-color-foreground-focus: #FFC8C8;
+    --slds-c-slider-thumb-color-foreground-hover: #FFC8C8;
+}
+.slds-modal__footer{
+    border: none;
+}
+.slds-button, .slds-button_brand{
+    background-color: #FFC8C8;
+    border: none;
 }
 
 
-.profileImg{
-    width:75px;
-    height: 75px;
-    border-radius: 50%;
-    margin-left:5px;
-    padding: 5px;
-}
+
+
+

@@ -30,8 +30,7 @@ star = icons + '/otherImages/star.png';
 @track ispopupactive = false;
 
     goToDiscussions(){
-        localStorage.setItem('bookId', this.book.Id);
-
+        localStorage.setItem('bookName', this.book.Title__c);
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
@@ -41,6 +40,13 @@ star = icons + '/otherImages/star.png';
         
     }
     goToReviews(){
+       localStorage.setItem('bookName', this.book.Title__c);
+        this[NavigationMixin.Navigate]({
+            type: 'comm__namedPage',
+            attributes: {
+                name: 'Rezenzja__c'
+            }
+        });
 
     }
 
@@ -69,5 +75,6 @@ star = icons + '/otherImages/star.png';
         }).then(book => {
             this.book = book;
         })
+        
     }
 }

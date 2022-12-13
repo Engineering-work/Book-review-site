@@ -1,24 +1,51 @@
 <template>
         <template if:true={reviews.data}>
+            <section class="navSection">
+                <p class="navigationBar"><span class ="cursorPointer" onclick={goToBookDetailsAction}>{bookName}</span>>>recenzje</p>
+                <button class="buttonStyle" onclick={addReviewAction}>Dodaj recenzję</button>
+                </section>
             <template for:each={reviews.data} for:item='review'>
                 <section class='reviewContainer' key={review.id}>
                     <section>
-                        <img src={author.user_icon} class ='profileImg' />
+                        <img src={review.User__r.Photo__c} class ='profileImg' />
                         <section class="gradesContainer">
-                            <button class="ratingButton" onclick={increseLike}><img class="rating" src={plus.user_icon}/> {review.Likes__c}</button>
-                            <button class="ratingButton" onclick={increseDislike}><img class="rating" src={minus.user_icon}/> {review.Dislikes__c}</button>
+                            <button class="ratingButton" onclick={increseLike}><img class="rating" src={plus.icon}/> {review.Likes__c}</button>
+                            <button class="ratingButton" onclick={increseDislike}><img class="rating" src={minus.icon}/> {review.Dislikes__c}</button>
                         </section>
                     </section>
                     <section class='reviewDetails'>
-                        <span class='profileName'>{review.User__r.Nickname__c}  dodano o <lightning-formatted-date-time value={review.CreatedDate}  hour="2-digit" minute="2-digit"  hour12={ampm}></lightning-formatted-date-time></span>
+                        <span class='profileName'>{review.User__r.Nickname__c}  dodano <lightning-formatted-date-time value={review.CreatedDate}  day="numeric"></lightning-formatted-date-time>/
+                            <lightning-formatted-date-time value={review.CreatedDate} month="numeric"  year="numeric" ></lightning-formatted-date-time></div></span>
                         <section class='review'>
                             <div class='reviewDescription'>{review.Content__c}</div>
                         </section>
                     </section>
                 </section>
-
             </template>
-        
         </template>
-                
+        <template if:true={addReview}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                            <lightning-icon icon-name="utility:close"
+                                alternative-text="close"
+                                variant="inverse"
+                                size="small" ></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Dodaj recenzję</h2>
+                    </header>
+   
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">            
+                        <lightning-textarea  name="reviewDescription" label="Twoja recenzja" placeholder="Napisz tutaj..."></lightning-textarea>
+                    </div>
+
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_brand" onclick={closeModal}>Zatwierdź</button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
     </template>

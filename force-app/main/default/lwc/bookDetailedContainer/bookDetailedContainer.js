@@ -5,7 +5,7 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
     @api book;
     series = false;
 
-    goToPostsAction(){
+    goToDetailsAction(){
         localStorage.setItem('id', this.book.Id);
 
         this[NavigationMixin.Navigate]({

@@ -1,3 +1,14 @@
+.cursorPointer{
+    cursor: pointer;
+}
+.navigationBar{
+    margin: 2rem 8vw;
+}
+.navigationBar span{
+    font-weight: bold;
+}
+
+
 .mainContainer{
     width: 85%;
     margin: 2rem auto;
@@ -99,6 +110,7 @@
     flex-direction: column;
     width: 90%;
 }
+
 .post{
     background-color: #FFC8C8;
     border-radius: 0px 11px 11px 11px;

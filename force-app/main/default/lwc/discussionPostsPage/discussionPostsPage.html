@@ -2,23 +2,21 @@
         
         
          <template if:true={discussion.data}> 
-           
+            <p class="navigationBar"><span class="cursorPointer" onclick={goToBookDetailsAction}>{bookName}</span>>><span class="cursorPointer" onclick={goToDiscusionAction}>dyskusje</span></p>
                     <template for:each={discussion.data} for:item='discussion'>
-                        
                         <section key={discussion.id}>   
                             <section class='mainContainer'>  
                             <section class='firstLine'>
                                 <div class="heading">
                                     <div class="discussion title">{discussion.Title__c}</div>
-                                    <div class="description">dodano o <lightning-formatted-date-time value={discussion.CreatedDate}  hour="2-digit" minute="2-digit"  hour12={ampm}></lightning-formatted-date-time> przez  {discussion.User__r.Nickname__c} </div>
+                                    <div class="description">dodano <lightning-formatted-date-time value={discussion.CreatedDate}  day="numeric"></lightning-formatted-date-time>/
+                                        <lightning-formatted-date-time value={discussion.CreatedDate} month="numeric"  year="numeric" ></lightning-formatted-date-time> przez {discussion.User__r.Nickname__c} </div>
                                 </div>
                                
                                 <div><img src={discussion.User__r.Photo__c} class ='profileImg'></div> 
                             </section> 
-                            <section class="discussion">
-                              
-                                <div>{discussion.First_Post__c}</div>
-                                <div class="firstPost">{discussion.Post_Number__c} posty</div>                          
+                            <section class="discussion">           
+                                <div>{discussion.First_Post__c}</div>                     
                             </section>  
                         </section>
                     </section>
@@ -43,39 +41,14 @@
                                 <img src={post.User__r.Photo__c} class ='profileImg' />
                             </section>
                             <section class='postDetails'>
-                                <span class='profileName'>{post.User__r.Nickname__c}  dodano <lightning-formatted-date-time value={discussion.CreatedDate}  year="numeric" month="numeric" day="numeric"></lightning-formatted-date-time></span>
+                                <span class='profileName'>{post.User__r.Nickname__c}  dodano <lightning-formatted-date-time value={post.CreatedDate}  day="numeric"></lightning-formatted-date-time>/
+                                    <lightning-formatted-date-time value={post.CreatedDate} month="numeric"  year="numeric" ></lightning-formatted-date-time></div></span>
                                 <section class='post'>
                                     <div>{post.Content__c}</div>
                                 </section>
                             </section>
                         </section>
 
-                    </template>
-                
-                </template>
-
-                <!-- <section class='allRatings'>
-                    <span class='title allRatingTitle'>Oceny</span>
-                    <template for:each={ratings} for:item='rating'>
-                        <section class='ratingContainer' key={rating.id}>
-                            <section class='profileImage'>
-                                <img src={rating.src} />
-                            </section>
-                            <section class='ratingDetails'>
-                                <span class='profileName'>{rating.name}</span>
-                                <section class='rating'>
-                                    <div class='ratingDescription'>{rating.description}</div>
-                                    <section class='numberAndStarImage'>
-                                        <span class='ratingNumber'>{rating.number}</span>
-                                        <span class='starImage'>
-                                            <img src={star} alt='star'/>
-                                        </span>
-                                    </section>
-                                </section>
-                            </section>
-                        </section>
-                    </template>
-                </section>
-            </section> -->
-               
+                    </template>         
+                </template>  
     </template>
