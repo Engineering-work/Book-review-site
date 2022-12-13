@@ -1,0 +1,20 @@
+.headerStyling{
+    font-weight: 400;
+}
+.slds-modal__footer{
+    border: none;
+}
+.slds-button, .slds-button_brand{
+    background-color: #FFC8C8;
+    border: none;
+}
+
+.dataContainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.formContainer{
+    display: flex;
+    flex-direction: column;
+}
