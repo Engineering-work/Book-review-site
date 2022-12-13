@@ -6,20 +6,14 @@ import Id from '@salesforce/user/Id';
 import addBookListItem from '@salesforce/apex/BookListController.addBookListItem';
 import getBookwormUser from '@salesforce/apex/UserController.getBookwormUser';
 
-export default class PopUp extends LightningElement {
-    @api popuptype;
+export default class AddBookToMyList extends LightningElement {
     @api ispopupactive;
     @track titleValue;
     @track selectedTitle = false;
-    addRating = false;
-    addBookToMyList = false;
-    editUserData = false;
-    @track loggedInUser = false;
     profile;
     bookId;
-
+    loggedInUser;
     statusValue = null;
-
 
     @wire(getObjectInfo, {objectApiName: BookListObject}) bookListInfo;
 
@@ -32,7 +26,7 @@ export default class PopUp extends LightningElement {
         }
         this.bookId = event.detail.selectedBookId;
     }
-    
+
     closeModal(){
         this.ispopupactive = false;
         const changePopupStateEvent = new CustomEvent("ispopupactivechange", {
@@ -41,17 +35,29 @@ export default class PopUp extends LightningElement {
           
         this.dispatchEvent(changePopupStateEvent);
     }
-    
+
+    handleStatusChange(event){
+        this.statusValue = event.detail.value;
+    }
+
+    addBookToMyList(){
+            if(this.bookId === null){
+
+            }
+            else{
+                addBookListItem({
+                    bookId: this.bookId,
+                    bookwormUserId: this.profile.Id,
+                    status: this.statusValue
+                }).then(result => {
+                    console.log(result);
+                    this.closeModal();
+                    const updateMyListEvent = new CustomEvent("mylistchange", {});
+                    this.dispatchEvent(updateMyListEvent);
+                });
+            }
+    }
     connectedCallback(){
-        if(this.popuptype === 'addRating'){
-            this.addRating = true;
-        }
-        else if(this.popuptype === 'addBookToMyList'){
-            this.addBookToMyList = true;
-        }
-        else if(this.popuptype === 'editUserData'){
-            this.editUserData = true;
-        }
         if(Id !== null && Id !== undefined){
             if(Id !== "0057S000000bDjTQAU"){
                 this.loggedInUser = true;
@@ -68,44 +74,5 @@ export default class PopUp extends LightningElement {
         else{
             this.loggedInUser = false;
         }
-    }
-
-    handleStatusChange(event){
-        this.statusValue = event.detail.value;
-    }
-
-    sendData(event){
-        if(this.addBookToMyList){
-            if(this.titleValue === null){
-
-            }
-            else{
-                console.log(this.bookId + ' ' +Id+''+this.statusValue);
-                addBookListItem({
-                    bookId: this.bookId,
-                    bookwormUserId: this.profile.Id,
-                    status: this.statusValue
-                }).then(result => {
-                    console.log(result);
-                    this.closeModal();
-                    const updateMyListEvent = new CustomEvent("mylistchange", {});
-                    this.dispatchEvent(updateMyListEvent);
-                });
-            }
-        }else{
-            this.closeModal();
-        }
-    }
-
-    changeDataHandler(event){
-        let clicked = event.target.id.split('-')[0]
-        let field = this.template.querySelector(`lightning-input[id^="${clicked}"]`);
-        if(clicked==='username'){
-            
-        }
-        else{
-            
-        }
-
     }
 }

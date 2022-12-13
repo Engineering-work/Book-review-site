@@ -1,7 +1,7 @@
 <template>
     <template if:true={isAddBookPopupactive}>
-            <c-pop-up popuptype='addBookToMyList' ispopupactive={isAddBookPopupactive} onispopupactivechange={handleispopupactiveChange} onmylistchange={handleMyListChange}>
-            </c-pop-up>
+            <c-add-book-to-my-list ispopupactive={isAddBookPopupactive} onispopupactivechange={handleispopupactiveChange} onmylistchange={handleMyListChange}>
+            </c-add-book-to-my-list>
         </template>
     <section class='mainContainer'>
         <section class='myListContainer'>

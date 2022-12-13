@@ -50,8 +50,8 @@
             </section>
         </template>
         <template if:true={ispopupactive}>
-            <c-pop-up popuptype='addRating' ispopupactive={ispopupactive} onispopupactivechange={handleispopupactiveChange}>
-            </c-pop-up>
+            <c-add-rating-pop-up ispopupactive={ispopupactive} onispopupactivechange={handleispopupactiveChange} onratingchange={handleRatingsChange}>
+            </c-add-rating-pop-up>
         </template>
         <section class='allRatings'>
             <span class='title allRatingTitle'>Oceny</span>
