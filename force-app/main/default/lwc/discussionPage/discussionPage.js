@@ -2,6 +2,7 @@ import { LightningElement, wire, track} from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import getDiscussionList from '@salesforce/apex/DiscussionController.getAllDiscussions';
 import addNewDiscussion from '@salesforce/apex/DiscussionController.addNewDiscussion';
+import userHasDiscussion from '@salesforce/apex/DiscussionController.userHasDiscussion';
 import getBookwormUser from '@salesforce/apex/UserController.getBookwormUser';
 import Id from '@salesforce/user/Id';
 import {refreshApex} from '@salesforce/apex';
@@ -15,6 +16,14 @@ export default class DiscussionPage extends  NavigationMixin(LightningElement) {
     newDiscussionTitle= null;
     newFirstPost = null;
 
+    loggedInUser = false;
+
+    discussionsEmpty = false;
+
+    userdiscussion;
+    thisDiscussion;
+    wiredUserDiscussion;
+
 
 
     titleChange(event){
@@ -26,20 +35,22 @@ export default class DiscussionPage extends  NavigationMixin(LightningElement) {
 
     }
 
+    @wire(getBookwormUser, {SFUserId: Id}) 
+    bookwormUserId;
 
     @wire(getDiscussionList, {bookId: '$bookId'}) discussions(result){
         this.wiredDiscussions = result;
         if(result.data){
             this.discussions = result.data;
+            if(result.data.length===0){
+                this.discussionsEmpty = true;
+            }
         }
         else if(result.error){
             this.error = result.error;
         }
     };
-    @wire(getBookwormUser, {SFUserId: Id}) 
-    bookwormUserId;
 
-    
     goToBookDetails(){
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
@@ -64,23 +75,48 @@ export default class DiscussionPage extends  NavigationMixin(LightningElement) {
             bookId: this.bookId
         }).then(el =>{
             console.log(el);
+            refreshApex(this.wiredDiscussions);
         })
 
-            refreshApex(this.wiredDiscussions);
+           
         
+        this.addDiscussion = false;
+    }
+
+    editDiscussionRecord() {
+
+        console.log('edit')
+        this.addDiscussion = false;
+    }
+
+    deleteDiscussionRecord() {
+
+        console.log('delete');
         this.addDiscussion = false;
     }
 
     closeModal() {
         this.addDiscussion = false;
     }
+ 
 
     connectedCallback(){
-                getBookwormUser({
-                    SFUserId: Id
-                }).then(user => {
-                    this.profile = user;
-                })
+        if(Id !== null && Id !== undefined){
+            if(this.userId !== "0057S000000bDjTQAU"){
+                this.loggedInUser = true;
+                console.log('userId'+' '+this.userId);
             }
-            
+            else{
+                this.loggedInUser = false;
+            }
+        }
+            userHasDiscussion({
+                SFuserId: Id,
+                bookId: this.bookId
+                }).then(hasDiscussion =>{
+                    this.thisDiscussion= hasDiscussion;
+                    console.log(this.thisDiscussion)
+                })
+           
+            } 
 }

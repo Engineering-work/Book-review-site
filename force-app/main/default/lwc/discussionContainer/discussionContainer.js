@@ -14,5 +14,18 @@ export default class DiscussionContainer extends NavigationMixin(LightningElemen
         });
     }
 
+    editDiscussionPost(){
+
+    }
+    deleteDiscussion(){
+        deleteReviewRating({
+            reviewRating: result
+        }).then
+        (result =>{
+            console.log(result)
+        })
+
+    }
+
 
 }

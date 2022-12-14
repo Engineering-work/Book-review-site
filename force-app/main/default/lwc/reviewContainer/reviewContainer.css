@@ -102,3 +102,7 @@
     background-color: #FFC8C8;
     border: none;
 }
+
+.disable{
+    pointer-events: none;
+}

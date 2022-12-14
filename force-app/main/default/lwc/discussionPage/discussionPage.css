@@ -6,6 +6,11 @@
     font-weight: bold;
 }
 
+.information{
+    margin: 3rem 8vw 3rem 8vw;
+    font-size: 20px;
+}
+
 .navSection{
     display: flex;
     justify-content: space-between;

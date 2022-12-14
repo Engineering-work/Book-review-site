@@ -9,6 +9,15 @@ public class ReviewController {
     }
 
     @AuraEnabled(cacheable=true)
+    public static Review__c getReview(Id reviewId) {
+        return [
+            SELECT Id, Book__c, Book__r.Title__c, Content__c, Dislikes__c, Likes__c, User__r.Nickname__c, User__r.Photo__c, User__r.Alt__c, CreatedDate
+            FROM Review__c
+            WHERE Id = :reviewId
+        ];
+    }
+
+    @AuraEnabled(cacheable=true)
     public static Boolean isUserReviewer(User__c bookwormUser) {
         if (bookwormUser.Role__c == 'Recenzent') {
             return true;

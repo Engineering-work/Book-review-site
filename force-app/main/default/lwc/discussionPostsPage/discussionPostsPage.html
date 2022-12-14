@@ -1,4 +1,5 @@
 <template>
+    
         
         
          <template if:true={discussion}> 
@@ -11,8 +12,7 @@
                                     <div class="discussion title">{discussion.Title__c}</div>
                                     <div class="description">dodano <lightning-formatted-date-time value={discussion.CreatedDate}  day="numeric"></lightning-formatted-date-time>/
                                         <lightning-formatted-date-time value={discussion.CreatedDate} month="numeric"  year="numeric" ></lightning-formatted-date-time> przez {discussion.User__r.Nickname__c} </div>
-                                </div>
-                               
+                                </div>                     
                                 <div><img src={discussion.User__r.Photo__c} class ='profileImg'></div> 
                             </section> 
                             <section class="discussion">           
@@ -24,16 +24,19 @@
                 </template>   
 
                 <p class="postTitle">Posty</p>
-               
+                <template if:true={loggedInUser}>
                     <section class='yourPostContainer'>
-                        <div><textarea class="postInput" maxlength="500" placeholder="Twoja odpowiedź..." onchange={changePost}>
-                                
+                        <div><textarea class="postInput" maxlength="500" placeholder="Twoja odpowiedź..." onchange={changePost}>          
                             </textarea>
                         </div>
                         <div class="buttonContainer"><button class=" buttonStyle" onclick={addPost}>Dodaj</button></div>
-                    </section>
+                    </section>      
+                </template>
+                    
               
-              
+                <template if:true={postsEmpty}>
+                    <p class="information">Aktualnie nie ma żadnych postów</p>
+               </template>
                 <template if:true={posts}>
                     <template for:each={posts} for:item='post'>
                         <section class='postContainer' key={post.id}>

@@ -17,6 +17,9 @@ export default class DiscussionPostsPage  extends  NavigationMixin(LightningElem
     posts
     wiredPosts
     content = null
+    loggedInUser = false
+
+    postsEmpty = false
 
     @wire(getBookwormUser, {SFUserId: Id}) 
     bookwormUserId;
@@ -25,6 +28,9 @@ export default class DiscussionPostsPage  extends  NavigationMixin(LightningElem
         this.wiredDiscussion = result;
         if(result.data){
             this.discussion = result.data;
+            if(result.data.length===0){
+               
+            }
         }
         else if(result.error){
             this.error = result.error;
@@ -35,6 +41,11 @@ export default class DiscussionPostsPage  extends  NavigationMixin(LightningElem
         this.wiredPosts = result;
         if(result.data){
             this.posts = result.data;
+            if(result.data.length===0){
+                this.postsEmpty = true;
+            }
+           
+
         }
         else if(result.error){
             this.error = result.error;
@@ -56,12 +67,11 @@ export default class DiscussionPostsPage  extends  NavigationMixin(LightningElem
             userId: this.bookwormUserId.data.Id, 
             discussionId: this.discussionId
         }).then(result => {
-            console.log(result)
+            console.log(result);
+            refreshApex(this.wiredPosts);
         })
 
-            refreshApex(this.wiredPosts);
-        
-        this.addDiscussion = false;
+           
     }
     
        goToDiscusionAction(){
@@ -84,16 +94,15 @@ export default class DiscussionPostsPage  extends  NavigationMixin(LightningElem
     }
 
     connectedCallback(){
-        getBookwormUser({
-            SFUserId: Id
-        }).then(user => {
-            this.profile = user;
-        })
+        if(Id !== null && Id !== undefined){
+            if(this.userId !== "0057S000000bDjTQAU"){
+                this.loggedInUser = true;
+                console.log('userId'+' '+this.userId);
+            }
+            else{
+                this.loggedInUser = false;
+            }
+        }
     }
     
 }
-    
-
-
-    // @wire(getDiscussion, {discussionId: '$discussionId'}) discussion;
-    // @wire(getAllPosts, {discussionId: '$discussionId'}) posts;

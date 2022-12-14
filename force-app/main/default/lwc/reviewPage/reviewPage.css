@@ -102,3 +102,8 @@
     background-color: #FFC8C8;
     border: none;
 }
+
+.information{
+    margin: 3rem 8vw 3rem 8vw;
+    font-size: 20px;
+}

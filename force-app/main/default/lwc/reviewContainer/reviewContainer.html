@@ -2,10 +2,19 @@
     <section class='reviewContainer'>
         <section>
             <img src={review.User__r.Photo__c} class ='profileImg' />
-            <section class="gradesContainer">
-                <button class="ratingButton" onclick={increseLike}><img class="rating" src={plus.icon}/> {review.Likes__c}</button>
-                <button class="ratingButton" onclick={increseDislike}><img class="rating" src={minus.icon}/> {review.Dislikes__c}</button>
-            </section>
+            <template if:true={loggedInUser}>
+                <section class="gradesContainer">
+                    <button  class="ratingButton" onclick={increseLike}><img class="rating" src={plus.icon}/> {review.Likes__c}</button>
+                    <button  class="ratingButton" onclick={increseDislike}><img class="rating" src={minus.icon}/> {review.Dislikes__c}</button>
+                </section>     
+            </template>
+            <template if:false={loggedInUser}>
+                <section class="gradesContainer">
+                    <button  class="ratingButton disable" onclick={increseLike}><img class="rating" src={plus.icon}/> {review.Likes__c}</button>
+                    <button  class="ratingButton disable" onclick={increseDislike}><img class="rating" src={minus.icon}/> {review.Dislikes__c}</button>
+                </section>     
+            </template>
+            
         </section>
         <section class='reviewDetails'>
             <span class='profileName'>{review.User__r.Nickname__c}  dodano <lightning-formatted-date-time value={review.CreatedDate}  day="numeric"></lightning-formatted-date-time>/

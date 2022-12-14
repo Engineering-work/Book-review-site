@@ -1,9 +1,19 @@
 <template>
         <template if:true={reviews}>
-            <section class="navSection">
+            <template if:true={loggedInUser}>
+                <section class="navSection">
                 <p class="navigationBar"><span class ="cursorPointer" onclick={goToBookDetailsAction}>{bookName}</span>>>recenzje</p>
                 <button class="buttonStyle" onclick={addReviewAction}>Dodaj recenzję</button>
                 </section>
+            </template>
+            <template if:false={loggedInUser}>
+                <section class="navSection">
+                <p class="navigationBar"><span class ="cursorPointer" onclick={goToBookDetailsAction}>{bookName}</span>>>recenzje</p>
+                </section>
+            </template>
+            <template if:true={reviewsEmpty}>
+                <p class="information">Aktualnie nie ma żadnych recenzji</p>
+           </template>
                 <template for:each={reviews} for:item='review'> 
                     <c-review-container key={review.id} review={review}> </c-review-container> 
                 </template>

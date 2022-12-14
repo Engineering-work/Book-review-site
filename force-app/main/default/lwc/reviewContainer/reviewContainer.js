@@ -1,5 +1,5 @@
 import { LightningElement, api, wire} from 'lwc';
-
+import getReview from '@salesforce/apex/ReviewController.getReview';
 import addReviewRating from '@salesforce/apex/ReviewRatingController.addReviewRating';
 import userHasRatingReview from '@salesforce/apex/ReviewRatingController.userHasRatingReview';
 import changeReviewRating from '@salesforce/apex/ReviewRatingController.changeReviewRating';
@@ -8,6 +8,7 @@ import icons from '@salesforce/resourceUrl/otherImages';
 
 import getBookwormUser from '@salesforce/apex/UserController.getBookwormUser';
 import Id from '@salesforce/user/Id';
+import {refreshApex} from '@salesforce/apex';
 
 const plus = { icon: icons + '/otherImages/plus.png'}
 const minus = {icon: icons + '/otherImages/minus.png'}
@@ -19,10 +20,24 @@ export default class ReviewContainer extends LightningElement {
     like = null;
     reviewRatingLike = null
     reviewRatingId = null
+    loggedInUser = false
+    wiredReview;
+    actuallyReview
 
     @wire(getBookwormUser, {SFUserId: Id}) 
     bookwormUserId;
 
+
+    @wire(getReview, {reviewId: this.review.Id})  review(result){
+        this.wiredReview = result;
+        console.log(this.review)
+        if(result.data){
+            this.actuallyReview = result.data
+        } else if(result.error){
+            this.error = result.error;
+        }
+    }
+   
 
     increseLike(){
         console.log(this.review)
@@ -34,7 +49,8 @@ export default class ReviewContainer extends LightningElement {
                         bookwormUserId: this.bookwormUserId.data.Id, 
                         isLike: this.like
                     }).then(result => {
-                       console.log(result)
+                       console.log(result);
+                       refreshApex(this.wiredReview);
                     })
                 }else{
                 this.reviewRatingLike = result.Like__c;
@@ -64,6 +80,7 @@ export default class ReviewContainer extends LightningElement {
     }
 
     increseDislike(){
+       
         console.log(this.review)
         userHasRatingReview({review: this.review, bookwormUserId: this.bookwormUserId.data.Id}).then
             (result =>{
@@ -97,8 +114,18 @@ export default class ReviewContainer extends LightningElement {
                     }
                 }
             })
+            
+    }
 
-           
-    
-}
+    connectedCallback(){
+        if(Id !== null && Id !== undefined){
+            if(this.userId !== "0057S000000bDjTQAU"){
+                this.loggedInUser = true;
+                console.log('userId'+' '+this.userId);
+            }
+            else{
+                this.loggedInUser = false;
+            }
+        }
+    }
 }
