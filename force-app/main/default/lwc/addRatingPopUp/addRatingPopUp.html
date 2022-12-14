@@ -35,12 +35,14 @@
                 </template>
             </div>
             <footer class="slds-modal__footer">
-                <template if:true={userHasRating}>
-                    <button class="slds-button slds-button_brand" onclick={editRatingData} title="Edytuj">Edytuj</button>
-                    <button class="slds-button slds-button_brand" onclick={deleteRatingData} title="Usun">Usuń</button>
-                </template>
-                <template if:false={userHasRating}>
-                    <button class="slds-button slds-button_brand" onclick={addRating} title="OK">Dodaj</button>
+                <template if:true={loggedInUser}>
+                    <template if:true={userHasRating}>
+                        <button class="slds-button slds-button_brand" onclick={editRatingData} title="Edytuj">Edytuj</button>
+                        <button class="slds-button slds-button_brand" onclick={deleteRatingData} title="Usun">Usuń</button>
+                    </template>
+                    <template if:false={userHasRating}>
+                        <button class="slds-button slds-button_brand" onclick={addRating} title="OK">Dodaj</button>
+                    </template>
                 </template>
             </footer>
         </div>

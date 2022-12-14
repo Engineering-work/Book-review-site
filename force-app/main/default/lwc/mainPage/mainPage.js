@@ -21,6 +21,12 @@ export default class MainPage extends LightningElement {
             if(Id !== "0057S000000bDjTQAU"){
                 this.loggedInUser = true;
                 console.log('userId'+' '+Id);
+                getUserSuggestion({
+                    SFUserId: Id
+                }).then(books => {
+                    this.suggestedBooks = books;
+                    console.log(this.suggestedBooks);
+                })
             }
             else{
                 this.loggedInUser = false;
@@ -29,13 +35,6 @@ export default class MainPage extends LightningElement {
 
         getNewestBooks({}).then(books => {
             this.newBooks = books;
-        })
-
-        getUserSuggestion({
-            SFUserId: Id
-        }).then(books => {
-            this.suggestedBooks = books;
-            console.log(this.suggestedBooks);
         })
     }
 }

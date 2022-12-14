@@ -1,10 +1,12 @@
 import { LightningElement, api, track } from 'lwc';
+import { NavigationMixin } from 'lightning/navigation';
 import findTitles from "@salesforce/apex/findTitles.findTitles";
-export default class TitleSearchLwc extends LightningElement {
 
+export default class TitleSearchNavigationLwc extends NavigationMixin(LightningElement) {
+
+    
  @track recordsList;
  @track searchKey = "";
- @api selectedValue;
  @api selectedRecordId;
  @api iconName;
  @track message;
@@ -19,22 +21,21 @@ export default class TitleSearchLwc extends LightningElement {
 
  onRecordSelection(event) {
   this.selectedRecordId = event.target.dataset.key;
-  this.selectedValue = event.target.dataset.name;
   this.searchKey = "";
-  this.onSeletedRecordUpdate();
+  localStorage.setItem('bookid', event.target.dataset.key);
+    this[NavigationMixin.Navigate]({
+        type: 'comm__namedPage',
+        attributes: {
+            name: 'Szczegoly__c'
+        }
+    });
  }
  handleKeyChange(event) {
   const searchKey = event.target.value;
   this.searchKey = searchKey;
   this.getLookupResult();
  }
- removeRecordOnLookup(event) {
-  this.searchKey = "";
-  this.selectedValue = null;
-  this.selectedRecordId = null;
-  this.recordsList = null;
-  this.onSeletedRecordUpdate();
-}
+
 getLookupResult() {
 findTitles({ searchKey: this.searchKey })
      .then((result) => {
@@ -52,10 +53,4 @@ findTitles({ searchKey: this.searchKey })
       this.recordsList = undefined;
      });
 }
-onSeletedRecordUpdate(){
-    const passEventr = new CustomEvent('titleselection', {
-      detail: { selectedBookId: this.selectedRecordId, selectedTitle: this.selectedValue }
-     });
-     this.dispatchEvent(passEventr);
-   }
 }
