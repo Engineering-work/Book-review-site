@@ -15,7 +15,7 @@
                 <p class="information">Aktualnie nie ma żadnych recenzji</p>
            </template>
                 <template for:each={reviews} for:item='review'> 
-                    <c-review-container key={review.id} review={review}> </c-review-container> 
+                    <c-review-container key={review.id} review={review} onchangereviewstate={changeReviewState}></c-review-container> 
                 </template>
         </template>
         <template if:true={addReview}>

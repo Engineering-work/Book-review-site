@@ -56,9 +56,6 @@ export default class ReviewPage extends  NavigationMixin(LightningElement)  {
             refreshApex(this.wiredReviews);
         })
             this.closeModal();
-           
-
-        
     }
 
     closeModal() {
@@ -73,6 +70,11 @@ export default class ReviewPage extends  NavigationMixin(LightningElement)  {
                 name: 'Szczegoly__c'
             }
         });
+    }
+
+    changeReviewState(){
+        console.log('refresh');
+        refreshApex(this.wiredReviews);
     }
 
     connectedCallback(){

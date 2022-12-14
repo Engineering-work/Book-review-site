@@ -94,5 +94,4 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
             this.showAuthor = false;
         }
     }
-
 }

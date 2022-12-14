@@ -1,5 +1,4 @@
 import { LightningElement, api, wire} from 'lwc';
-import getReview from '@salesforce/apex/ReviewController.getReview';
 import addReviewRating from '@salesforce/apex/ReviewRatingController.addReviewRating';
 import userHasRatingReview from '@salesforce/apex/ReviewRatingController.userHasRatingReview';
 import changeReviewRating from '@salesforce/apex/ReviewRatingController.changeReviewRating';
@@ -27,20 +26,10 @@ export default class ReviewContainer extends LightningElement {
     @wire(getBookwormUser, {SFUserId: Id}) 
     bookwormUserId;
 
-
-    @wire(getReview, {reviewId: this.review.Id})  review(result){
-        this.wiredReview = result;
-        console.log(this.review)
-        if(result.data){
-            this.actuallyReview = result.data
-        } else if(result.error){
-            this.error = result.error;
-        }
-    }
-   
-
     increseLike(){
         console.log(this.review)
+        const changeReviewRaingStateEvent = new CustomEvent("changereviewstate", {
+        });
         userHasRatingReview({review: this.review, bookwormUserId: this.bookwormUserId.data.Id}).then
             (result =>{
                 if(result == null){
@@ -50,7 +39,7 @@ export default class ReviewContainer extends LightningElement {
                         isLike: this.like
                     }).then(result => {
                        console.log(result);
-                       refreshApex(this.wiredReview);
+                       this.dispatchEvent(changeReviewRaingStateEvent);
                     })
                 }else{
                 this.reviewRatingLike = result.Like__c;
@@ -61,6 +50,7 @@ export default class ReviewContainer extends LightningElement {
                     }).then
                     (result =>{
                         console.log(result)
+                        this.dispatchEvent(changeReviewRaingStateEvent);
                     })
                     }
                     else{
@@ -69,30 +59,34 @@ export default class ReviewContainer extends LightningElement {
                             reviewRating: result,
                             isLike: true
                         }).then(result =>{
-                                  console.log(result)
-                                })
+                            console.log(result)
+                            this.dispatchEvent(changeReviewRaingStateEvent);
+                        })
         
                     }
                 }
             })
-        
           
     }
 
     increseDislike(){
-       
         console.log(this.review)
-        userHasRatingReview({review: this.review, bookwormUserId: this.bookwormUserId.data.Id}).then
-            (result =>{
-                if(result == null){
-                    this.like = false
-                    addReviewRating({reviewId: this.review.Id, 
-                        bookwormUserId: this.bookwormUserId.data.Id, 
-                        isLike: this.like
-                    }).then(result => {
-                       console.log(result)
-                    })
-                }else{
+        const changeReviewRaingStateEvent = new CustomEvent("changereviewstate", {
+        });
+        userHasRatingReview({
+            review: this.review, 
+            bookwormUserId: this.bookwormUserId.data.Id
+        }).then(result =>{
+            if(result == null){
+                this.like = false
+                addReviewRating({reviewId: this.review.Id, 
+                    bookwormUserId: this.bookwormUserId.data.Id, 
+                    isLike: this.like
+                }).then(result => {
+                    console.log(result)
+                    this.dispatchEvent(changeReviewRaingStateEvent);
+                })
+            }else{
                 this.reviewRatingLike = result.Like__c;
                 this.reviewRatingId = result.Id;
                 if(this.reviewRatingLike == false){
@@ -101,20 +95,21 @@ export default class ReviewContainer extends LightningElement {
                     }).then
                     (result =>{
                         console.log(result)
+                        this.dispatchEvent(changeReviewRaingStateEvent);
                     })
-                    }
-                    else{
-                        changeReviewRating({
-                            reviewRating: result,
-                            isLike: false
-                        }).then(result =>{
-                                  console.log(result)
-                                })
-        
-                    }
                 }
-            })
-            
+                else{
+                    changeReviewRating({
+                        reviewRating: result,
+                        isLike: false
+                    }).then(result =>{
+                        console.log(result)
+                        this.dispatchEvent(changeReviewRaingStateEvent);
+                    })
+        
+                }
+            }
+        })
     }
 
     connectedCallback(){
