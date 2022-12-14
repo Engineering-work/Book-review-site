@@ -9,6 +9,8 @@
                 </template>
                 </template>  
             <template if:true={addDiscussion}>
+                    <!-- <c-add-review-pop-up adddiscussion={addDiscussion}>
+                    </c-add-review-pop-up> -->
                 <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
                     <div class="slds-modal__container">
                         <header class="slds-modal__header">
@@ -28,7 +30,7 @@
                         </div>
     
                         <footer class="slds-modal__footer">
-                            <button class="slds-button slds-button_brand" onclick={addDiscussion}>Zatwierdź</button>
+                            <button class="slds-button slds-button_brand" onclick={addDiscussionRecord}>Zatwierdź</button>
                         </footer>
                     </div>
                 </section>

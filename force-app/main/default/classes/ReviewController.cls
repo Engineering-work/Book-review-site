@@ -27,7 +27,7 @@ public class ReviewController {
         return null;
     }
 
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static Review__c addReview(Id bookId, Id bookwormUserId, String content) {
         Review__c review = new Review__c(Book__c = bookId, Content__c = content, Date__c = Date.today(), User__c = bookwormUserId);
         try {

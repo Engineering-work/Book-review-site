@@ -103,6 +103,9 @@ public with sharing class BookController {
                 ORDER BY Average_Rating__c DESC NULLS LAST
                 LIMIT 20
             ];
+            for(Integer i =0; i< 20; i++){
+                System.debug(books[i].Average_Rating__c);
+            }
 
 
             return books;

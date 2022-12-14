@@ -1,5 +1,5 @@
 public class ReviewRatingController {
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static Review_Rating__c addReviewRating(Id reviewId, Id bookwormUserId, Boolean isLike) {
         Review_Rating__c reviewRating = new Review_Rating__c(Review__c = reviewId, Like__c = isLike, User__c = bookwormUserId);
         try {
@@ -13,10 +13,18 @@ public class ReviewRatingController {
 
     @AuraEnabled(cacheable=true)
     public static Review_Rating__c userHasRatingReview(Review__c review, Id bookwormUserId) {
-        return [SELECT Id, Like__c, User__c, Review__c FROM Review_Rating__c WHERE Review__c = :review AND User__c = :bookwormUserId LIMIT 1];
+    List<Review_Rating__c> reviewRating = [SELECT Id, Like__c, User__c, Review__c FROM Review_Rating__c WHERE Review__c = :review.Id AND User__c = :bookwormUserId LIMIT 1];
+        if(reviewRating.size() > 0){
+            return reviewRating[0];
+        }
+        else{
+            return null;
+        }
+        
+
     }
 
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static Review_Rating__c changeReviewRating(Review_Rating__c reviewRating, Boolean isLike) {
         reviewRating.Like__c = isLike;
         try {
@@ -28,7 +36,7 @@ public class ReviewRatingController {
         return null;
     }
 
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static Review_Rating__c deleteReviewRating(Review_Rating__c reviewRating) {
         try {
             delete reviewRating;

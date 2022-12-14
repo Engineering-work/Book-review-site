@@ -8,8 +8,7 @@ import {refreshApex} from '@salesforce/apex';
 
 export default class DiscussionPage extends  NavigationMixin(LightningElement) {
     bookId = localStorage.getItem('bookid');
-    bookName = localStorage.getItem('bookName');
-    profile;    
+    bookName = localStorage.getItem('bookName');  
     @track addDiscussion = false;
     discussions;
     wiredDiscussions;
@@ -54,7 +53,7 @@ export default class DiscussionPage extends  NavigationMixin(LightningElement) {
         this.addDiscussion = true;
     }
 
-    addDiscussion() {
+    addDiscussionRecord() {
         console.log(this.bookwormUserId.data.Id)
         console.log(this.bookId)
         console.log(this.newDiscussionTitle)
