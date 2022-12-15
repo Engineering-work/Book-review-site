@@ -12,10 +12,12 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
     @api bookcontainertype;
     @api authorbooks;
     @api seriesbooks;
+    @api bookscomponent;
     series = false;
     bookListPage;
     booksContainer;
     bookListItem;
+    recommended = false;
 
     showAuthor = true;
     statusValue = '';
@@ -94,10 +96,17 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
         else if(this.bookcontainertype === 'bookListItem'){
             this.bookListItem = true;
         }
+        
+        if(this.bookscomponent === 'recommended'){
+            this.recommended = true;
+        }
 
         if(this.authorbooks === true || this.seriesbooks === true){
             this.showAuthor = false;
         }
+
+        console.log(this.recommended);
+        console.log(this.book);
     }
 
 }

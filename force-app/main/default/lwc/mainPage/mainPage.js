@@ -10,7 +10,6 @@ export default class MainPage extends LightningElement {
     previous = icons + '/otherImages/previous.png';
     next = icons + '/otherImages/next.png';
 
-
     loggedInUser = false;
     
     suggestedBooks;

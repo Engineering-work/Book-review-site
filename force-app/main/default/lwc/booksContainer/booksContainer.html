@@ -29,7 +29,7 @@
             <section class='booksList'>
                 <template if:true={books}>
                     <template for:each={books} for:item='book'>
-                        <c-book-detailed-container key={book.id} book={book} authorbooks={authorBooks} seriesbooks={seriesBooks} bookcontainertype={bookcontainertype} style="margin: 1rem; width:20%;">
+                        <c-book-detailed-container key={book.id} book={book} authorbooks={authorBooks} bookscomponent={bookscomponent} seriesbooks={seriesBooks} bookcontainertype={bookcontainertype} style="margin: 1rem; width:20%;">
                         </c-book-detailed-container>
                     </template>
                 </template>

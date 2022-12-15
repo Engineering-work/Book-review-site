@@ -12,7 +12,7 @@
                                 {book.Title__c}
                             </span>
                             <span class='author' onclick={goToAuthorAction} style='cursor: pointer;'>
-                                Autor: <span class='colorBlue'>{book.Author__r.Name}</span>
+                                Autor: <span class='colorBlue'>{book.Author__r.Name__c} {book.Author__r.Surname__c}</span>
                             </span>
                             <span class='pagesNumber'>
                                 Liczba stron: {book.Pages__c}

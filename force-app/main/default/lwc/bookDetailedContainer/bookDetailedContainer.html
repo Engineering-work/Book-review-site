@@ -1,5 +1,4 @@
 <template>
-
     <template if:true={bookListPage}>
         <section class='bookContainer'>
             <section class='mainDetailsContainer'>
@@ -22,14 +21,29 @@
     <template if:true={booksContainer}>
         <section class='booksContainer'> 
             <section class='bookImage'>
-                <img src={book.Photo__c} onclick={goToDetailsAction} style="max-height: 225px; cursor: pointer;">
+                <template if:false={recommended}>
+                    <img src={book.Photo__c} onclick={goToDetailsAction} style="max-height: 225px; cursor: pointer;">
+                </template>
+                <template if:true={recommended}>
+                    <img src={book.Book__r.Photo__c} onclick={goToDetailsAction} style="max-height: 225px; cursor: pointer;">
+                </template>
             </section>
             <section class='bookTitle'>
-                {book.Title__c}
+                <template if:false={recommended}>
+                    {book.Title__c}
+                </template>
+                <template if:true={recommended}>
+                    {book.Book__r.Title__c}
+                </template>
             </section>
-            <template if:false={showAuthor}>
+            <template if:true={showAuthor}>
                 <section class='bookAuthor'>
-                    {book.Author__r.Name__c}
+                    <template if:false={recommended}>
+                        {book.Author__r.Name__c} {book.Author__r.Surname__c}
+                    </template>
+                    <template if:true={recommended}>
+                        {book.Book__r.Author__r.Name__c} {book.Book__r.Author__r.Surname__c}
+                    </template>
                 </section>
             </template>
         </section>
