@@ -27,7 +27,7 @@ export default class ReviewContainer extends LightningElement {
     bookwormUserId;
 
     increseLike(){
-        console.log(this.review)
+        console.log("@" + this.review)
         const changeReviewRaingStateEvent = new CustomEvent("changereviewstate", {
         });
         userHasRatingReview({review: this.review, bookwormUserId: this.bookwormUserId.data.Id}).then
@@ -54,7 +54,6 @@ export default class ReviewContainer extends LightningElement {
                     })
                     }
                     else{
-                        console.log('zmien')
                         changeReviewRating({
                             reviewRating: result,
                             isLike: true
@@ -77,6 +76,7 @@ export default class ReviewContainer extends LightningElement {
             review: this.review, 
             bookwormUserId: this.bookwormUserId.data.Id
         }).then(result =>{
+            console.log(result)
             if(result == null){
                 this.like = false
                 addReviewRating({reviewId: this.review.Id, 

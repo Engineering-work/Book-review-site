@@ -1,10 +1,7 @@
-<template>
-    
-        
-        
-         <template if:true={discussion}> 
+<template>  
+         <template if:true={discussion.data}> 
             <p class="navigationBar"><span class="cursorPointer" onclick={goToBookDetailsAction}>{bookName}</span>>><span class="cursorPointer" onclick={goToDiscusionAction}>dyskusje</span></p>
-                    <template for:each={discussion} for:item='discussion'>
+                    <template for:each={discussion.data} for:item='discussion'>
                         <section key={discussion.id}>   
                             <section class='mainContainer'>  
                             <section class='firstLine'>
@@ -21,7 +18,7 @@
                         </section>
                     </section>
                     </template>    
-                </template>   
+         </template>   
 
                 <p class="postTitle">Posty</p>
                 <template if:true={loggedInUser}>

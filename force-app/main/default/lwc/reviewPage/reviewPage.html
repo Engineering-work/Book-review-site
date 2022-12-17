@@ -29,7 +29,13 @@
                                 size="small" ></lightning-icon>
                             <span class="slds-assistive-text">Close</span>
                         </button>
+                        <template if:false={thisReview}>
                         <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Dodaj recenzję</h2>
+                        </template>
+                        <template if:true={thisReview}>
+                            <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">Edytuj recenzję</h2>
+                        </template>
+
                     </header>
    
                     <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">            
@@ -37,7 +43,13 @@
                     </div>
 
                     <footer class="slds-modal__footer">
-                        <button class="slds-button slds-button_brand" onclick={addReviewRecord}>Zatwierdź</button>
+                        <template if:false={thisReview}> 
+                            <button class="slds-button slds-button_brand" onclick={addReviewRecord}>Zatwierdź</button>
+                        </template>
+                        <template if:true={thisReview}> 
+                            <button class="slds-button slds-button_brand" onclick={editReviewRecord}>Edytuj</button>
+                            <button class="slds-button slds-button_brand" onclick={deleteReviewRecord}>Usuń</button>
+                        </template>
                     </footer>
                 </div>
             </section>

@@ -4,6 +4,10 @@ import { NavigationMixin } from 'lightning/navigation';
 import getReviewList from '@salesforce/apex/ReviewController.getAllReviews';
 import addReview from '@salesforce/apex/ReviewController.addReview';
 import getBookwormUser from '@salesforce/apex/UserController.getBookwormUser';
+import editReview from '@salesforce/apex/ReviewController.editReview';
+import deleteReview from '@salesforce/apex/ReviewController.deleteReview';
+import userHasReview from '@salesforce/apex/ReviewController.userHasReview';
+
 import Id from '@salesforce/user/Id';
 import {refreshApex} from '@salesforce/apex';
 
@@ -15,18 +19,17 @@ export default class ReviewPage extends  NavigationMixin(LightningElement)  {
     wiredReviews;
     reviewContent = null;
     loggedInUser = false
-    reviewsEmpty = false;
-    @wire(getBookwormUser, {SFUserId: Id}) 
-    bookwormUserId;
+    reviewsEmpty;
+    userId;
+    bookwormUser;
+
+    thisReview;
 
     @wire(getReviewList, {bookId: '$bookId'}) reviews(result){
         this.wiredReviews = result;
         if(result.data){
             this.reviews = result.data;
-            if(result.data.length ===0){
-            this.reviewsEmpty = true;
-            }
-            if(this.bookwormUserId.data.Role__c !== "Recenzent"){
+            if(this.bookwormUser.Role__c !== "Recenzent"){
                 this.loggedInUser = false;
             }
         }
@@ -49,13 +52,39 @@ export default class ReviewPage extends  NavigationMixin(LightningElement)  {
         console.log(this.bookId)
 
         addReview({bookId: this.bookId, 
-            bookwormUserId: this.bookwormUserId.data.Id, 
+            bookwormUserId: this.bookwormUser.Id, 
             content: this.reviewContent
         }).then(result => {
             console.log(result)
             refreshApex(this.wiredReviews);
         })
             this.closeModal();
+    }
+
+    editReviewRecord() {
+        editReview({
+            review: this.thisReview,
+            content: this.reviewContent})
+            .then(result=>{
+                console.log(result)
+                refreshApex(this.wiredReviews);
+            })
+        console.log('edit')
+        this.addReview = false;
+    }
+
+    deleteReviewRecord() {
+        const changeReviewRaingStateEvent = new CustomEvent("changereviewstate", {
+        });
+        deleteReview({
+            review: this.thisReview})
+            .then(result=>{
+                console.log(result)
+                refreshApex(this.wiredReviews);
+            })
+            this.dispatchEvent(changeReviewRaingStateEvent);
+        console.log('delete');
+        this.addReview = false;
     }
 
     closeModal() {
@@ -82,11 +111,28 @@ export default class ReviewPage extends  NavigationMixin(LightningElement)  {
             if(this.userId !== "0057S000000bDjTQAU"){
                 
                 this.loggedInUser = true;
-                console.log('userId'+' '+this.userId);
+                getBookwormUser({
+                    SFUserId: Id
+                }).then(user => {
+                    this.bookwormUser = user;
+                })
             }
             else{
                 this.loggedInUser = false;
             }
         }
-}
+
+        userHasReview({
+            bookId: this.bookId,
+            SFuserId: Id
+            }).then(hasReview =>{
+                this.thisReview= hasReview;
+                console.log('----------')
+                console.log(this.thisReview)
+                console.log('----------')
+                if(hasReview === null){
+                    this.reviewsEmpty = true;
+                }   
+            })
+    }
 }

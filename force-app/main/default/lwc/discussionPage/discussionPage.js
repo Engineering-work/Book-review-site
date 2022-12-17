@@ -3,6 +3,10 @@ import { NavigationMixin } from 'lightning/navigation';
 import getDiscussionList from '@salesforce/apex/DiscussionController.getAllDiscussions';
 import addNewDiscussion from '@salesforce/apex/DiscussionController.addNewDiscussion';
 import userHasDiscussion from '@salesforce/apex/DiscussionController.userHasDiscussion';
+import updateDiscussion from '@salesforce/apex/DiscussionController.updateDiscussion';
+import deleteDiscussion from '@salesforce/apex/DiscussionController.deleteDiscussion';
+
+
 import getBookwormUser from '@salesforce/apex/UserController.getBookwormUser';
 import Id from '@salesforce/user/Id';
 import {refreshApex} from '@salesforce/apex';
@@ -15,9 +19,7 @@ export default class DiscussionPage extends  NavigationMixin(LightningElement) {
     wiredDiscussions;
     newDiscussionTitle= null;
     newFirstPost = null;
-
     loggedInUser = false;
-
     discussionsEmpty = false;
 
     userdiscussion;
@@ -42,7 +44,7 @@ export default class DiscussionPage extends  NavigationMixin(LightningElement) {
         this.wiredDiscussions = result;
         if(result.data){
             this.discussions = result.data;
-            if(result.data.length===0){
+            if(result.data.length ===0){
                 this.discussionsEmpty = true;
             }
         }
@@ -84,12 +86,25 @@ export default class DiscussionPage extends  NavigationMixin(LightningElement) {
     }
 
     editDiscussionRecord() {
-
+        updateDiscussion({
+            discussion: this.thisDiscussion,
+            post: this.newFirstPost})
+            .then(result=>{
+                console.log(result)
+                refreshApex(this.wiredDiscussions);
+            })
         console.log('edit')
         this.addDiscussion = false;
     }
 
     deleteDiscussionRecord() {
+
+        deleteDiscussion({
+            discussion: this.thisDiscussion})
+            .then(result=>{
+                console.log(result)
+                refreshApex(this.wiredDiscussions);
+            })
 
         console.log('delete');
         this.addDiscussion = false;
@@ -116,6 +131,7 @@ export default class DiscussionPage extends  NavigationMixin(LightningElement) {
                 }).then(hasDiscussion =>{
                     this.thisDiscussion= hasDiscussion;
                     console.log(this.thisDiscussion)
+                    console.log(this.thisDiscussion.Id)
                 })
            
             } 

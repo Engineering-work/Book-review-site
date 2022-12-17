@@ -1,14 +1,15 @@
 public with sharing class DiscussionController {
-
     @AuraEnabled(cacheable=true)
-    public static List<Discussion__c> getDiscussion(id discussionId){
+    public static Discussion__c getDiscussion(id discussionId){
         try {
-            List<Discussion__c> discussion = [SELECT User__r.SFUser__c, Book__r.Title__c, User__r.Photo__c,Post_Number__c, Title__c,CreatedDate, User__r.Nickname__c,  First_Post__c FROM Discussion__c WHERE Id =:discussionId ];
+            Discussion__c discussion = [SELECT User__r.SFUser__c, Book__r.Title__c, User__r.Photo__c,Post_Number__c, Title__c,CreatedDate, User__r.Nickname__c,  First_Post__c FROM Discussion__c WHERE Id =:discussionId LIMIT 1];
+            System.debug(discussion);
             return discussion;
-            
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
+         
+        } catch (DmlException e) {
+            System.debug(e.getMessage());
         }
+        return null;
     }
 
     @AuraEnabled(cacheable=true)
@@ -44,7 +45,28 @@ public with sharing class DiscussionController {
             System.debug(e.getMessage());
         }
         return null;
-        
+    }
+    @AuraEnabled
+    public static Discussion__c updateDiscussion(Discussion__c discussion, String post) {
+        discussion.First_Post__c = post;
+        try {
+            update discussion;
+            return discussion;
+        } catch (DmlException e) {
+            System.debug(e.getMessage());
+        }
+        return null;
+    }
+
+    @AuraEnabled
+    public static Discussion__c deleteDiscussion(Discussion__c discussion) {
+        try {
+            delete discussion;
+            return discussion;
+        } catch (DmlException e) {
+            System.debug(e.getMessage());
+        }
+        return null;
     }
    
 }

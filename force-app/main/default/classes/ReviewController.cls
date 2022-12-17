@@ -40,7 +40,7 @@ public class ReviewController {
         return null;
     }
 
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static Review__c editReview(Review__c review, String content) {
         review.Content__c = content;
 
@@ -53,7 +53,7 @@ public class ReviewController {
         return null;
     }
 
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static Review__c deleteReview(Review__c review) {
         try {
             delete review;
