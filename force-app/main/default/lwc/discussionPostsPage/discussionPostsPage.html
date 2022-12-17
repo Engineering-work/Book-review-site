@@ -1,23 +1,21 @@
 <template>  
          <template if:true={discussion.data}> 
             <p class="navigationBar"><span class="cursorPointer" onclick={goToBookDetailsAction}>{bookName}</span>>><span class="cursorPointer" onclick={goToDiscusionAction}>dyskusje</span></p>
-                    <template for:each={discussion.data} for:item='discussion'>
-                        <section key={discussion.id}>   
+                        <section>   
                             <section class='mainContainer'>  
                             <section class='firstLine'>
                                 <div class="heading">
-                                    <div class="discussion title">{discussion.Title__c}</div>
+                                    <div class="discussion title">{discussion.data.Title__c}</div>
                                     <div class="description">dodano <lightning-formatted-date-time value={discussion.CreatedDate}  day="numeric"></lightning-formatted-date-time>/
-                                        <lightning-formatted-date-time value={discussion.CreatedDate} month="numeric"  year="numeric" ></lightning-formatted-date-time> przez {discussion.User__r.Nickname__c} </div>
+                                        <lightning-formatted-date-time value={discussion.CreatedDate} month="numeric"  year="numeric" ></lightning-formatted-date-time> przez {discussion.data.User__r.Nickname__c} </div>
                                 </div>                     
-                                <div><img src={discussion.User__r.Photo__c} class ='profileImg'></div> 
+                                <div><img src={discussion.data.User__r.Photo__c} class ='profileImg'></div> 
                             </section> 
                             <section class="discussion">           
-                                <div>{discussion.First_Post__c}</div>                     
+                                <div>{discussion.data.First_Post__c}</div>                     
                             </section>  
                         </section>
-                    </section>
-                    </template>    
+                    </section>  
          </template>   
 
                 <p class="postTitle">Posty</p>
