@@ -1,6 +1,6 @@
-import { LightningElement, wire, track, api } from 'lwc';
+import { LightningElement, wire, track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
-import getThisDiscussion from '@salesforce/apex/DiscussionController.getDiscussion';
+import getDiscussion from '@salesforce/apex/DiscussionController.getDiscussion';
 import getAllPosts from '@salesforce/apex/PostController.getAllPosts';
 import createPost from '@salesforce/apex/PostController.createPost';
 import getBookwormUser from '@salesforce/apex/UserController.getBookwormUser';
@@ -11,8 +11,8 @@ import {refreshApex} from '@salesforce/apex';
 
 export default class DiscussionPostsPage  extends  NavigationMixin(LightningElement) {
     bookName = localStorage.getItem('bookName');
-    discussionId = localStorage.getItem('discussionId');
-    @api discussion;
+    discussionId = localStorage.getItem('discussionId');;
+    discussion;
     posts;
     wiredPosts;
     content = null
@@ -20,31 +20,23 @@ export default class DiscussionPostsPage  extends  NavigationMixin(LightningElem
     userId;
     postsEmpty = false
 
-    // @wire(getBookwormUser, {SFUserId: Id}) 
-    // bookwormUserId;
-
-    // @wire(getThisDiscussion, {discussionId: '$discussionId'})
-    // discussion
-
-    // @wire(getThisDiscussion, {discussionId: '$discussionId'}) discussion(result){
-    //     if(result.data){
-    //         this.discussion = result.data;
-    //     }
-    //     else if(result.error){
-    //         this.error = result.error;
-    //     }
-    // };
+    @wire(getThisDiscussion, {discussionId: '$discussionId'}) discussion(result){
+        if(result.data){
+            this.discussion = result.data;
+        }
+        else if(result.error){
+            this.error = result.error;
+        }
+    };
 
     @wire(getAllPosts, {discussionId: '$discussionId'}) posts(result){
         this.wiredPosts = result;
         if(result.data){
             this.posts = result.data;
             console.log(this.posts)
-            // if(result.data.lenght===0){
-            //     this.postsEmpty = true;
-            // }
-           
-
+            if(result.data.lenght===0){
+                this.postsEmpty = true;
+            }
         }
         else if(result.error){
             this.error = result.error;
@@ -102,6 +94,16 @@ export default class DiscussionPostsPage  extends  NavigationMixin(LightningElem
                 this.loggedInUser = false;
             }
         }
+
+        getDiscussion({
+            discussionId: '$discussionId'
+            }).then(discussion =>{
+                this.discussion= discussion;
+                console.log(this.discussion)
+            })
+       
+
+
     }
     
 }

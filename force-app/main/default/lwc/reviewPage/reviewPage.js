@@ -27,6 +27,7 @@ export default class ReviewPage extends  NavigationMixin(LightningElement)  {
 
     @wire(getReviewList, {bookId: '$bookId'}) reviews(result){
         this.wiredReviews = result;
+        console.log(this.wiredReviews)
         if(result.data){
             this.reviews = result.data;
             if(this.bookwormUser.Role__c !== "Recenzent"){
@@ -74,15 +75,17 @@ export default class ReviewPage extends  NavigationMixin(LightningElement)  {
     }
 
     deleteReviewRecord() {
-        const changeReviewRaingStateEvent = new CustomEvent("changereviewstate", {
-        });
+
         deleteReview({
             review: this.thisReview})
             .then(result=>{
                 console.log(result)
                 refreshApex(this.wiredReviews);
             })
-            this.dispatchEvent(changeReviewRaingStateEvent);
+            if(this.wiredReviews == 0){
+                console.log('niby nic nie ma')
+                this.reviewsEmpty = true;
+            }
         console.log('delete');
         this.addReview = false;
     }
@@ -121,7 +124,6 @@ export default class ReviewPage extends  NavigationMixin(LightningElement)  {
                 this.loggedInUser = false;
             }
         }
-
         userHasReview({
             bookId: this.bookId,
             SFuserId: Id
@@ -132,7 +134,7 @@ export default class ReviewPage extends  NavigationMixin(LightningElement)  {
                 console.log('----------')
                 if(hasReview === null){
                     this.reviewsEmpty = true;
-                }   
+                }
             })
-    }
+}
 }
