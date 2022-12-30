@@ -22,16 +22,20 @@ export default class ReviewPage extends  NavigationMixin(LightningElement)  {
     reviewsEmpty;
     userId;
     bookwormUser;
-
     thisReview;
 
     @wire(getReviewList, {bookId: '$bookId'}) reviews(result){
         this.wiredReviews = result;
-        console.log(this.wiredReviews)
         if(result.data){
             this.reviews = result.data;
             if(this.bookwormUser.Role__c !== "Recenzent"){
                 this.loggedInUser = false;
+            }
+            if(result.data.length===0){
+                this.reviewsEmpty = true;
+            }
+            else{
+                this.reviewsEmpty = false;
             }
         }
         else if(result.error){
@@ -48,9 +52,6 @@ export default class ReviewPage extends  NavigationMixin(LightningElement)  {
     }
 
     addReviewRecord(){
-        console.log(this.bookId)
-        console.log(this.bookId)
-        console.log(this.bookId)
 
         addReview({bookId: this.bookId, 
             bookwormUserId: this.bookwormUser.Id, 
@@ -58,8 +59,9 @@ export default class ReviewPage extends  NavigationMixin(LightningElement)  {
         }).then(result => {
             console.log(result)
             refreshApex(this.wiredReviews);
+            this.thisReview = result
         })
-            this.closeModal();
+        this.closeModal();
     }
 
     editReviewRecord() {
@@ -70,7 +72,6 @@ export default class ReviewPage extends  NavigationMixin(LightningElement)  {
                 console.log(result)
                 refreshApex(this.wiredReviews);
             })
-        console.log('edit')
         this.addReview = false;
     }
 
@@ -82,11 +83,7 @@ export default class ReviewPage extends  NavigationMixin(LightningElement)  {
                 console.log(result)
                 refreshApex(this.wiredReviews);
             })
-            if(this.wiredReviews == 0){
-                console.log('niby nic nie ma')
-                this.reviewsEmpty = true;
-            }
-        console.log('delete');
+        this.thisReview = false;
         this.addReview = false;
     }
 
@@ -111,8 +108,7 @@ export default class ReviewPage extends  NavigationMixin(LightningElement)  {
 
     connectedCallback(){
         if(Id !== null && Id !== undefined){
-            if(this.userId !== "0057S000000bDjTQAU"){
-                
+            if(Id !== "0057S000000bDjTQAU"){
                 this.loggedInUser = true;
                 getBookwormUser({
                     SFUserId: Id
@@ -129,12 +125,6 @@ export default class ReviewPage extends  NavigationMixin(LightningElement)  {
             SFuserId: Id
             }).then(hasReview =>{
                 this.thisReview= hasReview;
-                console.log('----------')
-                console.log(this.thisReview)
-                console.log('----------')
-                if(hasReview === null){
-                    this.reviewsEmpty = true;
-                }
             })
 }
 }

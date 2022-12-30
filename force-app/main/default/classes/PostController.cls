@@ -2,7 +2,7 @@ public with sharing class PostController {
     @AuraEnabled(cacheable=true)
     public static List<Post__c> getAllPosts(id discussionId){
         try {
-            List<Post__c> posts = [SELECT User__r.Nickname__c, User__r.Photo__c, CreatedDate, Content__c  FROM Post__c WHERE Discussion__r.Id =: discussionId];
+            List<Post__c> posts = [SELECT Id, User__r.Nickname__c, User__r.Photo__c, CreatedDate, Content__c  FROM Post__c WHERE Discussion__r.Id =: discussionId];
             return posts;
             
         } catch (Exception e) {
@@ -22,6 +22,29 @@ public with sharing class PostController {
             System.debug(e.getMessage());
         }
         System.debug('jakas wiadomosc');
+        return null;
+    }
+
+    @AuraEnabled
+    public static Post__c updatePost(Post__c post, String content) {
+        post.Content__c = content;
+        try {
+            update post;
+            return post;
+        } catch (DmlException e) {
+            System.debug(e.getMessage());
+        }
+        return null;
+    }
+
+    @AuraEnabled
+    public static Post__c deletePost(Post__c post) {
+        try {
+            delete post;
+            return post;
+        } catch (DmlException e) {
+            System.debug(e.getMessage());
+        }
         return null;
     }
 }

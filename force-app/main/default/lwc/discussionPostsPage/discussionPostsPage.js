@@ -1,4 +1,4 @@
-import { LightningElement, wire, track } from 'lwc';
+import { LightningElement, wire, track, api } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 import getDiscussion from '@salesforce/apex/DiscussionController.getDiscussion';
 import getAllPosts from '@salesforce/apex/PostController.getAllPosts';
@@ -11,32 +11,39 @@ import {refreshApex} from '@salesforce/apex';
 
 export default class DiscussionPostsPage  extends  NavigationMixin(LightningElement) {
     bookName = localStorage.getItem('bookName');
-    discussionId = localStorage.getItem('discussionId');;
+    discussionId = localStorage.getItem('discussionId');
     discussion;
+    wiredDiscussion;
     posts;
     wiredPosts;
     content = null
     loggedInUser = false
     userId;
-    postsEmpty = false
+    postsEmpty;
 
-    @wire(getThisDiscussion, {discussionId: '$discussionId'}) discussion(result){
+    @wire(getDiscussion, {discussionId: localStorage.getItem('discussionId')}) discussion(result){
+        this.wiredDiscussion = result;
         if(result.data){
             this.discussion = result.data;
+            refreshApex(this.wiredDiscussion);
         }
         else if(result.error){
             this.error = result.error;
         }
     };
 
-    @wire(getAllPosts, {discussionId: '$discussionId'}) posts(result){
+    @wire(getAllPosts, {discussionId: localStorage.getItem('discussionId')}) posts(result){
         this.wiredPosts = result;
         if(result.data){
             this.posts = result.data;
-            console.log(this.posts)
-            if(result.data.lenght===0){
+            if(result.data.length===0){
                 this.postsEmpty = true;
             }
+            else{
+                this.postsEmpty = false;
+            }
+           
+
         }
         else if(result.error){
             this.error = result.error;
@@ -48,22 +55,17 @@ export default class DiscussionPostsPage  extends  NavigationMixin(LightningElem
         this.content = event.target.value;
     }
  
-
     addPost() {
-        console.log(this.bookwormUserId.Id)
-        console.log(this.discussionId)
-        console.log(this.content)
-
         createPost({content: this.content, 
-            userId: this.bookwormUserId.Id, 
+            userId: this.bookwormUser.Id, 
             discussionId: this.discussionId
         }).then(result => {
             console.log(result);
             refreshApex(this.wiredPosts);
-        })
-
-           
+            
+        })  
     }
+    
     
        goToDiscusionAction(){
         this[NavigationMixin.Navigate]({
@@ -84,26 +86,27 @@ export default class DiscussionPostsPage  extends  NavigationMixin(LightningElem
         
     }
 
+    changeReviewState(){
+        console.log('refresh');
+        refreshApex(this.wiredPosts);
+    }
+
     connectedCallback(){
         if(Id !== null && Id !== undefined){
             if(this.userId !== "0057S000000bDjTQAU"){
                 this.loggedInUser = true;
-              //  console.log('userId'+' '+this.userId);
+                getBookwormUser({
+                    SFUserId: Id
+                }).then(user => {
+                    this.bookwormUser = user;
+                    localStorage.setItem('userId', this.bookwormUser.Id);
+                })
             }
             else{
                 this.loggedInUser = false;
             }
         }
-
-        getDiscussion({
-            discussionId: '$discussionId'
-            }).then(discussion =>{
-                this.discussion= discussion;
-                console.log(this.discussion)
-            })
-       
-
-
+        
     }
     
 }

@@ -14,18 +14,18 @@ export default class DiscussionContainer extends NavigationMixin(LightningElemen
         });
     }
 
-    editDiscussionPost(){
+    // editDiscussionPost(){
 
-    }
-    deleteDiscussion(){
-        deleteReviewRating({
-            reviewRating: result
-        }).then
-        (result =>{
-            console.log(result)
-        })
+    // }
+    // deleteDiscussion(){
+    //     deleteReviewRating({
+    //         reviewRating: result
+    //     }).then
+    //     (result =>{
+    //         console.log(result)
+    //     })
 
-    }
+    // }
 
 
 }

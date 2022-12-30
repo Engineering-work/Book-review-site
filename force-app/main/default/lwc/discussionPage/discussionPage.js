@@ -21,7 +21,7 @@ export default class DiscussionPage extends  NavigationMixin(LightningElement) {
     newFirstPost = null;
     loggedInUser = false;
     discussionsEmpty = false;
-
+    discussionExist
     userdiscussion;
     thisDiscussion;
     wiredUserDiscussion;
@@ -47,6 +47,9 @@ export default class DiscussionPage extends  NavigationMixin(LightningElement) {
             if(result.data.length ===0){
                 this.discussionsEmpty = true;
             }
+            else{
+                this.discussionsEmpty = false;
+            }
         }
         else if(result.error){
             this.error = result.error;
@@ -67,16 +70,14 @@ export default class DiscussionPage extends  NavigationMixin(LightningElement) {
     }
 
     addDiscussionRecord() {
-        console.log(this.bookwormUserId.data.Id)
-        console.log(this.bookId)
-        console.log(this.newDiscussionTitle)
-        console.log(this.newFirstPost)
         addNewDiscussion({title: this.newDiscussionTitle, 
             firstPost: this.newFirstPost, 
             userId: this.bookwormUserId.data.Id, 
             bookId: this.bookId
         }).then(el =>{
             console.log(el);
+            this.thisDiscussion = el
+            this.discussionExist = true;
             refreshApex(this.wiredDiscussions);
         })
 
@@ -93,6 +94,7 @@ export default class DiscussionPage extends  NavigationMixin(LightningElement) {
                 console.log(result)
                 refreshApex(this.wiredDiscussions);
             })
+
         console.log('edit')
         this.addDiscussion = false;
     }
@@ -103,6 +105,7 @@ export default class DiscussionPage extends  NavigationMixin(LightningElement) {
             discussion: this.thisDiscussion})
             .then(result=>{
                 console.log(result)
+                this.discussionExist = false;
                 refreshApex(this.wiredDiscussions);
             })
 
@@ -117,9 +120,8 @@ export default class DiscussionPage extends  NavigationMixin(LightningElement) {
 
     connectedCallback(){
         if(Id !== null && Id !== undefined){
-            if(this.userId !== "0057S000000bDjTQAU"){
+            if(Id !== "0057S000000bDjTQAU"){
                 this.loggedInUser = true;
-                console.log('userId'+' '+this.userId);
             }
             else{
                 this.loggedInUser = false;
@@ -130,8 +132,7 @@ export default class DiscussionPage extends  NavigationMixin(LightningElement) {
                 bookId: this.bookId
                 }).then(hasDiscussion =>{
                     this.thisDiscussion= hasDiscussion;
-                    console.log(this.thisDiscussion)
-                    console.log(this.thisDiscussion.Id)
+                    this.discussionExist = hasDiscussion;
                 })
            
             } 

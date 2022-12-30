@@ -1,51 +1,40 @@
 <template>  
-         <template if:true={discussion.data}> 
-            <p class="navigationBar"><span class="cursorPointer" onclick={goToBookDetailsAction}>{bookName}</span>>><span class="cursorPointer" onclick={goToDiscusionAction}>dyskusje</span></p>
-                    
-                            <section class='mainContainer'>  
-                            <section class='firstLine'>
-                                <div class="heading">
-                                    <div class="discussion title">{discussion.Title__c}</div>
-                                    <div class="description">dodano <lightning-formatted-date-time value={discussion.CreatedDate}  day="numeric"></lightning-formatted-date-time>/
-                                        <lightning-formatted-date-time value={discussion.CreatedDate} month="numeric"  year="numeric" ></lightning-formatted-date-time> przez {discussion.User__r.Nickname__c} </div>
-                                </div>                     
-                                <div><img src={discussion.User__r.Photo__c} class ='profileImg'></div> 
-                            </section> 
-                            <section class="discussion">           
-                                <div>{discussion.First_Post__c}</div>                     
-                            </section>  
-                        </section>  
-                </template>   
+    <template if:true={discussion}> 
+       <p class="navigationBar"><span class="cursorPointer" onclick={goToBookDetailsAction}>{bookName}</span>>><span class="cursorPointer" onclick={goToDiscusionAction}>dyskusje</span></p>
+                   <section>   
+                       <section class='mainContainer'>  
+                       <section class='firstLine'>
+                           <div class="heading">
+                               <div class="discussion title">{discussion.Title__c}</div>
+                               <div class="description">dodano <lightning-formatted-date-time value={discussion.CreatedDate}  day="numeric"></lightning-formatted-date-time>/
+                                   <lightning-formatted-date-time value={discussion.CreatedDate} month="numeric"  year="numeric" ></lightning-formatted-date-time> przez {discussion.User__r.Nickname__c} </div>
+                           </div>                     
+                           <div><img src={discussion.User__r.Photo__c} class ='profileImg'></div> 
+                       </section> 
+                       <section class="discussion">           
+                           <div>{discussion.First_Post__c}</div>                     
+                       </section>  
+                   </section>
+               </section>  
+    </template>   
 
-                <p class="postTitle">Posty</p>
-                <template if:true={loggedInUser}>
-                    <section class='yourPostContainer'>
-                        <div><textarea class="postInput" maxlength="500" placeholder="Twoja odpowiedź..." onchange={changePost}>          
-                            </textarea>
-                        </div>
-                        <div class="buttonContainer"><button class=" buttonStyle" onclick={addPost}>Dodaj</button></div>
-                    </section>      
-                </template>
-                    
-              
-                <template if:true={postsEmpty}>
-                    <p class="information">Aktualnie nie ma żadnych postów</p>
-               </template>
-                <template if:true={posts}>
-                    <template for:each={posts} for:item='post'>
-                        <section class='postContainer' key={post.id}>
-                            <section>
-                                <img src={post.User__r.Photo__c} class ='profileImg' />
-                            </section>
-                            <section class='postDetails'>
-                                <span class='profileName'>{post.User__r.Nickname__c}  dodano <lightning-formatted-date-time value={post.CreatedDate}  day="numeric"></lightning-formatted-date-time>/
-                                    <lightning-formatted-date-time value={post.CreatedDate} month="numeric"  year="numeric" ></lightning-formatted-date-time></div></span>
-                                <section class='post'>
-                                    <div>{post.Content__c}</div>
-                                </section>
-                            </section>
-                        </section>
-
-                    </template>         
-                </template>  
-    </template>
+           <p class="postTitle">Posty</p>
+           <template if:true={loggedInUser}>
+               <section class='yourPostContainer'>
+                   <div><textarea class="postInput" maxlength="500" placeholder="Twoja odpowiedź..." onchange={changePost}>          
+                       </textarea>
+                   </div>
+                   <div class="buttonContainer"><button class=" buttonStyle" onclick={addPost}>Dodaj</button></div>
+               </section>      
+           </template>
+               
+         
+           <template if:true={postsEmpty}>
+               <p class="information">Aktualnie nie ma żadnych postów</p>
+          </template>
+           <template if:true={posts}>
+               <template for:each={posts} for:item='post'>
+                <c-post-container key={post.id} post={post} onchangereviewstate={changeReviewState}>  </c-post-container> 
+               </template>         
+           </template>  
+</template>

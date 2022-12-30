@@ -27,7 +27,6 @@ export default class ReviewContainer extends LightningElement {
     bookwormUserId;
 
     increseLike(){
-        console.log("@" + this.review)
         const changeReviewRaingStateEvent = new CustomEvent("changereviewstate", {
         });
         userHasRatingReview({review: this.review, bookwormUserId: this.bookwormUserId.data.Id}).then
@@ -39,8 +38,10 @@ export default class ReviewContainer extends LightningElement {
                         isLike: this.like
                     }).then(result => {
                        console.log(result);
+                       this.review = result;
                        this.dispatchEvent(changeReviewRaingStateEvent);
                     })
+                    console.log('dodano')
                 }else{
                 this.reviewRatingLike = result.Like__c;
                 this.reviewRatingId = result.Id;
@@ -52,7 +53,8 @@ export default class ReviewContainer extends LightningElement {
                         console.log(result)
                         this.dispatchEvent(changeReviewRaingStateEvent);
                     })
-                    }
+                    console.log('usunieto')
+                    }       
                     else{
                         changeReviewRating({
                             reviewRating: result,
@@ -61,7 +63,7 @@ export default class ReviewContainer extends LightningElement {
                             console.log(result)
                             this.dispatchEvent(changeReviewRaingStateEvent);
                         })
-        
+                        console.log('zmieniono')
                     }
                 }
             })
@@ -69,14 +71,12 @@ export default class ReviewContainer extends LightningElement {
     }
 
     increseDislike(){
-        console.log(this.review)
         const changeReviewRaingStateEvent = new CustomEvent("changereviewstate", {
         });
         userHasRatingReview({
             review: this.review, 
             bookwormUserId: this.bookwormUserId.data.Id
         }).then(result =>{
-            console.log(result)
             if(result == null){
                 this.like = false
                 addReviewRating({reviewId: this.review.Id, 
@@ -84,8 +84,10 @@ export default class ReviewContainer extends LightningElement {
                     isLike: this.like
                 }).then(result => {
                     console.log(result)
+                    this.review = result;
                     this.dispatchEvent(changeReviewRaingStateEvent);
                 })
+                console.log('dodaj')
             }else{
                 this.reviewRatingLike = result.Like__c;
                 this.reviewRatingId = result.Id;
@@ -97,6 +99,7 @@ export default class ReviewContainer extends LightningElement {
                         console.log(result)
                         this.dispatchEvent(changeReviewRaingStateEvent);
                     })
+                    console.log('usun')
                 }
                 else{
                     changeReviewRating({
@@ -106,7 +109,7 @@ export default class ReviewContainer extends LightningElement {
                         console.log(result)
                         this.dispatchEvent(changeReviewRaingStateEvent);
                     })
-        
+                    console.log('zmieniono')
                 }
             }
         })
@@ -116,7 +119,6 @@ export default class ReviewContainer extends LightningElement {
         if(Id !== null && Id !== undefined){
             if(this.userId !== "0057S000000bDjTQAU"){
                 this.loggedInUser = true;
-                console.log('userId'+' '+this.userId);
             }
             else{
                 this.loggedInUser = false;
