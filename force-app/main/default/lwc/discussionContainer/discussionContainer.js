@@ -5,6 +5,7 @@ export default class DiscussionContainer extends NavigationMixin(LightningElemen
     @api discussion;
     
     goToPostsAction(){
+        localStorage.setItem('discussionId', this.discussion.Id);
         this[NavigationMixin.Navigate]({
             type: 'comm__namedPage',
             attributes: {
@@ -12,6 +13,19 @@ export default class DiscussionContainer extends NavigationMixin(LightningElemen
             }
         });
     }
+
+    // editDiscussionPost(){
+
+    // }
+    // deleteDiscussion(){
+    //     deleteReviewRating({
+    //         reviewRating: result
+    //     }).then
+    //     (result =>{
+    //         console.log(result)
+    //     })
+
+    // }
 
 
 }

@@ -84,9 +84,8 @@
     position: relative;
 }
 .buttonContainer{
-    position: absolute;
-    right:    3rem;
-    bottom:   0.5rem;
+    display: flex;
+    justify-content: space-between;
 }
 
 .buttonStyle{
@@ -94,10 +93,24 @@
     border-radius: 10%;
     border-width: medium;
     padding: 0 1rem;
+    margin: 0.5rem;
     
 }
 
+.postContent{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    
+}
 
+.wrap { 
+    white-space: pre-wrap;      /* CSS3 */   
+    white-space: -moz-pre-wrap; /* Firefox */    
+    white-space: -pre-wrap;     /* Opera <7 */   
+    white-space: -o-pre-wrap;   /* Opera 7 */    
+    word-wrap: break-word;      /* IE */
+ }
 .postContainer{
     display: flex;
     justify-content: space-between;
@@ -116,9 +129,12 @@
     border-radius: 0px 11px 11px 11px;
     padding: 1rem 0.5rem;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
+
+
 
 .information{
     margin: 3rem 8vw 3rem 8vw;

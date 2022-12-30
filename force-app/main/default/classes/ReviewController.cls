@@ -28,6 +28,17 @@ public class ReviewController {
     }
 
     @AuraEnabled(cacheable=true)
+    public static Review__c userHasReview(Id bookId,Id SFuserId) {
+        List<Review__c> reviews = getAllReviews(bookId);
+        for (Review__c review : reviews) {
+            if (review.User__r.SFUser__c == SFuserId) {
+                return review;
+            }
+        }
+        return null;
+    }
+
+    @AuraEnabled
     public static Review__c addReview(Id bookId, Id bookwormUserId, String content) {
         Review__c review = new Review__c(Book__c = bookId, Content__c = content, Date__c = Date.today(), User__c = bookwormUserId);
         try {
@@ -39,7 +50,7 @@ public class ReviewController {
         return null;
     }
 
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static Review__c editReview(Review__c review, String content) {
         review.Content__c = content;
 
@@ -52,7 +63,7 @@ public class ReviewController {
         return null;
     }
 
-    @AuraEnabled(cacheable=true)
+    @AuraEnabled
     public static Review__c deleteReview(Review__c review) {
         try {
             delete review;

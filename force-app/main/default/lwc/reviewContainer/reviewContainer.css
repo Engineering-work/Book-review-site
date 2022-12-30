@@ -103,7 +103,6 @@
     border: none;
 }
 
-.information{
-    margin: 3rem 8vw 3rem 8vw;
-    font-size: 20px;
+.disable{
+    pointer-events: none;
 }

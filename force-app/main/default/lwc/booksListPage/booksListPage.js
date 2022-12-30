@@ -1,4 +1,5 @@
 import { LightningElement, wire } from 'lwc';
+import { LightningElement, wire } from 'lwc';
 
 import { getPicklistValues, getObjectInfo } from 'lightning/uiObjectInfoApi';
 import getAllBooks from '@salesforce/apex/BookController.getAllBooks';
@@ -28,6 +29,8 @@ export default class BooksListPage extends LightningElement {
     wiredBooks({ error, data }) {
         if (data) {
             this.allBooks = data;
+
+
 
 
             this.books = this.allBooks.slice(this.firstSlice, this.lastSlice);

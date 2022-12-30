@@ -6,6 +6,12 @@ import BookStatus from "@salesforce/schema/Book_List_Item__c.Status__c";
 import changeBookListItemStatus from '@salesforce/apex/BookListController.changeBookListItemStatus';
 import deleteBookListItem from '@salesforce/apex/BookListController.deleteBookListItem';
 
+import { getPicklistValues, getObjectInfo } from 'lightning/uiObjectInfoApi';
+import BookListObject from "@salesforce/schema/Book_List_Item__c";
+import BookStatus from "@salesforce/schema/Book_List_Item__c.Status__c";
+import changeBookListItemStatus from '@salesforce/apex/BookListController.changeBookListItemStatus';
+import deleteBookListItem from '@salesforce/apex/BookListController.deleteBookListItem';
+
 
 export default class BookDetailedContainer extends NavigationMixin(LightningElement) {
     @api book;
@@ -28,6 +34,8 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
 
 
     goToDetailsAction(){
+        localStorage.setItem('bookid', this.book.Id);
+
         localStorage.setItem('bookid', this.book.Id);
 
 
@@ -56,6 +64,8 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
     }
 
     goToAuthorAction(){
+        localStorage.setItem('authorid', this.book.Author__c);
+
         localStorage.setItem('authorid', this.book.Author__c);
 
 
@@ -109,4 +119,8 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
         console.log(this.book);
     }
 
+        if(this.authorbooks === true || this.seriesbooks === true){
+            this.showAuthor = false;
+        }
+    }
 }
