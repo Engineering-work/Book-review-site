@@ -17,9 +17,17 @@
             <template if:true={seriesBooks}>
                 <section class='title'>Książki z serii {seriesName}</section>
             </template>
+
+            <template if:true={seriesBooks}>
+                <section class='title'>Książki z serii {seriesName}</section>
+            </template>
             <template if:true={newBooks}>
                 <section class='newBooksGenres'>
                     <a class='link active' id='wszystkie' onclick={changeGenre}>Wszystkie</a>
+                    <a class='link' id='Horror' onclick={changeGenre}>Horror</a>
+                    <a class='link' id='Tajemnica' onclick={changeGenre}>Tajemnica</a>
+                    <a class='link' id='Romans' onclick={changeGenre}>Romans</a>
+                    <a class='link' id='Fantastyka' onclick={changeGenre}>Fantastyka</a>
                     <a class='link' id='Horror' onclick={changeGenre}>Horror</a>
                     <a class='link' id='Tajemnica' onclick={changeGenre}>Tajemnica</a>
                     <a class='link' id='Romans' onclick={changeGenre}>Romans</a>

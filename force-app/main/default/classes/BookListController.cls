@@ -1,6 +1,8 @@
 public with sharing class BookListController {
     @AuraEnabled(cacheable=true)
     public static List<Book_List_Item__c> getUserBooks(Id SFUserId) {
+    @AuraEnabled(cacheable=true)
+    public static List<Book_List_Item__c> getUserBooks(Id SFUserId) {
         try {
 
 
@@ -31,6 +33,52 @@ public with sharing class BookListController {
         try {
             insert bookListItem;
             return bookListItem;
+        } catch (DmlException e) {
+            System.debug(e.getMessage());
+        }
+        return null;
+    }
+
+    @AuraEnabled
+    public static Book_List_Item__c addBookListItem(Id bookId, Id bookwormUserId, String status) {
+        Book_List_Item__c bookListItem;
+        if (status == null || status == '') {
+            bookListItem = new Book_List_Item__c(Book__c = bookId, User__c = bookwormUserId);
+        } else {
+            bookListItem = new Book_List_Item__c(Book__c = bookId, User__c = bookwormUserId, Status__c = status);
+        }
+
+        try {
+            insert bookListItem;
+            return bookListItem;
+        } catch (DmlException e) {
+            System.debug(e.getMessage());
+        }
+        return null;
+    }
+
+    @AuraEnabled
+    public static Book_List_Item__c changeBookListItemStatus(Id bookListItemId, String newStatus) {
+        Book_List_Item__c bookListItem = [SELECT Id, Status__c FROM Book_List_Item__c WHERE Id =:bookListItemId];
+
+        bookListItem.Status__c = newStatus;
+
+        try {
+            update bookListItem;
+            return bookListItem;
+        } catch (DmlException e) {
+            System.debug(e.getMessage());
+        }
+        return null;
+    }
+
+    @AuraEnabled
+    public static String deleteBookListItem(Id bookListItemId) {
+        Book_List_Item__c bookListItem = [SELECT Id, Status__c FROM Book_List_Item__c WHERE Id =:bookListItemId];
+
+        try {
+            delete bookListItem;
+            return 'Record successfully deleted';
         } catch (DmlException e) {
             System.debug(e.getMessage());
         }

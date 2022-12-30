@@ -4,6 +4,7 @@ import {refreshApex} from '@salesforce/apex';
 
 import getBook from '@salesforce/apex/BookController.getBook';
 
+
 import icons from '@salesforce/resourceUrl/otherImages';
 
 import getBookRatings from '@salesforce/apex/BookRatingController.getBookRatings';
@@ -65,6 +66,7 @@ export default class BookDetailsPage extends NavigationMixin(LightningElement) {
     }
 
     goToAuthorAction(){
+        localStorage.setItem('authorid', this.book.Author__c);
         localStorage.setItem('authorid', this.book.Author__c);
 
         this[NavigationMixin.Navigate]({

@@ -9,5 +9,8 @@
         <target>
             lightningCommunity__Page
         </target>
+        <target>
+            lightning__AppPage
+        </target>
     </targets>
 </LightningComponentBundle>

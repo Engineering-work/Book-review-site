@@ -1,7 +1,28 @@
 public with sharing class BookController {
     @AuraEnabled(cacheable=true)
     public static Book__c getBook(String bookId) {
+    public static Book__c getBook(String bookId) {
         try {
+            Book__c book = [
+                SELECT
+                    Id,
+                    Genre__c,
+                    Title__c,
+                    Pages__c,
+                    Release_Date__c,
+                    Book_Series__r.Id,
+                    Book_Series__r.Name,
+                    Author__r.Id,
+                    Author__r.Name__c,
+                    Author__r.Surname__c,
+                    Photo__c,
+                    Average_Rating__c,
+                    Alt__c,
+                    Publishing_House__c
+                FROM Book__c
+                WHERE Id = :bookId
+            ];
+
             Book__c book = [
                 SELECT
                     Id,
@@ -29,7 +50,25 @@ public with sharing class BookController {
     }
     @AuraEnabled(cacheable=true)
     public static List<Book__c> getAllBooks() {
+    public static List<Book__c> getAllBooks() {
         try {
+            List<Book__c> books = [
+                SELECT
+                    Id,
+                    Genre__c,
+                    Title__c,
+                    Pages__c,
+                    Release_Date__c,
+                    Book_Series__r.Id,
+                    Book_Series__r.Name,
+                    Author__r.Id,
+                    Author__r.Name__c,
+                    Author__r.Surname__c,
+                    Photo__c,
+                    Average_Rating__c
+                FROM Book__c
+            ];
+
             List<Book__c> books = [
                 SELECT
                     Id,
@@ -55,7 +94,28 @@ public with sharing class BookController {
 
     @AuraEnabled(cacheable=true)
     public static List<Book__c> getAllBooksByGenre(String genre) {
+    @AuraEnabled(cacheable=true)
+    public static List<Book__c> getAllBooksByGenre(String genre) {
         try {
+            List<Book__c> books = [
+                SELECT
+                    Id,
+                    Genre__c,
+                    Title__c,
+                    Pages__c,
+                    Release_Date__c,
+                    Book_Series__r.Id,
+                    Book_Series__r.Name,
+                    Author__r.Id,
+                    Author__r.Name__c,
+                    Author__r.Surname__c,
+                    Photo__c,
+                    Average_Rating__c
+                FROM Book__c
+                WHERE Genre__c INCLUDES (:genre)
+            ];
+
+
             List<Book__c> books = [
                 SELECT
                     Id,
@@ -82,7 +142,10 @@ public with sharing class BookController {
     }
 
 
+
+
     @AuraEnabled(cacheable=true)
+    public static List<Book__c> getAllBooksToRanking() {
     public static List<Book__c> getAllBooksToRanking() {
         try {
             List<Book__c> books = [
@@ -111,5 +174,8 @@ public with sharing class BookController {
         }
     }
 
+
 }
+
+
 
