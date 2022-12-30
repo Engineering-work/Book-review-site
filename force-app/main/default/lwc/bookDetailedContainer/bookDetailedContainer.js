@@ -6,13 +6,6 @@ import BookStatus from "@salesforce/schema/Book_List_Item__c.Status__c";
 import changeBookListItemStatus from '@salesforce/apex/BookListController.changeBookListItemStatus';
 import deleteBookListItem from '@salesforce/apex/BookListController.deleteBookListItem';
 
-import { getPicklistValues, getObjectInfo } from 'lightning/uiObjectInfoApi';
-import BookListObject from "@salesforce/schema/Book_List_Item__c";
-import BookStatus from "@salesforce/schema/Book_List_Item__c.Status__c";
-import changeBookListItemStatus from '@salesforce/apex/BookListController.changeBookListItemStatus';
-import deleteBookListItem from '@salesforce/apex/BookListController.deleteBookListItem';
-
-
 export default class BookDetailedContainer extends NavigationMixin(LightningElement) {
     @api book;
     @api bookcontainertype;
@@ -114,13 +107,7 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
         if(this.authorbooks === true || this.seriesbooks === true){
             this.showAuthor = false;
         }
-
         console.log(this.recommended);
         console.log(this.book);
-    }
-
-        if(this.authorbooks === true || this.seriesbooks === true){
-            this.showAuthor = false;
-        }
-    }
+    }        
 }

@@ -1,5 +1,4 @@
 import { LightningElement, wire } from 'lwc';
-import { LightningElement, wire } from 'lwc';
 
 import { getPicklistValues, getObjectInfo } from 'lightning/uiObjectInfoApi';
 import getAllBooks from '@salesforce/apex/BookController.getAllBooks';
