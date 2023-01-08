@@ -16,6 +16,7 @@ public with sharing class BookController {
                     Author__r.Surname__c,
                     Photo__c,
                     Average_Rating__c,
+                    Rating_Count__c,
                     Alt__c,
                     Publishing_House__c
                 FROM Book__c
@@ -43,7 +44,8 @@ public with sharing class BookController {
                     Author__r.Name__c,
                     Author__r.Surname__c,
                     Photo__c,
-                    Average_Rating__c
+                    Average_Rating__c,
+                    Rating_Count__c
                 FROM Book__c
             ];
 
@@ -69,7 +71,8 @@ public with sharing class BookController {
                     Author__r.Name__c,
                     Author__r.Surname__c,
                     Photo__c,
-                    Average_Rating__c
+                    Average_Rating__c,
+                    Rating_Count__c
                 FROM Book__c
                 WHERE Genre__c INCLUDES (:genre)
             ];
@@ -96,7 +99,8 @@ public with sharing class BookController {
                     Author__r.Name__c,
                     Author__r.Surname__c,
                     Photo__c,
-                    Average_Rating__c
+                    Average_Rating__c,
+                    Rating_Count__c
                 FROM Book__c
                 ORDER BY Average_Rating__c DESC NULLS LAST
                 LIMIT 20
