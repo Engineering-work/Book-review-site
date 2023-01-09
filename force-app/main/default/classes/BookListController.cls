@@ -1,8 +1,6 @@
 public with sharing class BookListController {
     @AuraEnabled(cacheable=true)
     public static List<Book_List_Item__c> getUserBooks(Id SFUserId) {
-    @AuraEnabled(cacheable=true)
-    public static List<Book_List_Item__c> getUserBooks(Id SFUserId) {
         try {
 
 

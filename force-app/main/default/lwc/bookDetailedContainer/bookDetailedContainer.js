@@ -20,6 +20,7 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
 
     showAuthor = true;
     statusValue = '';
+    averageRating;
 
     @wire(getObjectInfo, {objectApiName: BookListObject}) bookListInfo;
 
@@ -92,6 +93,7 @@ export default class BookDetailedContainer extends NavigationMixin(LightningElem
     connectedCallback(){
         if(this.bookcontainertype === 'listPage'){
             this.bookListPage = true;
+            this.averageRating = (Math.round(this.book.Average_Rating__c * 100) / 100).toFixed(2);
         }
         else if(this.bookcontainertype === 'booksContainer'){
             this.booksContainer = true;
