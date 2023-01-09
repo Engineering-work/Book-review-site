@@ -7,14 +7,14 @@
                 </section>
                 <section class='detailsContainer'>
                     <span class='bookDetail biggestFont cursorPoiner' onclick={goToDetailsAction}>{book.Title__c}</span>
-                    <span class='bookDetail bigFont cursorPoiner' onclick={goToAuthorAction}>{book.Author__r.Name} {book.Author__r.Surname__c}</span>
+                    <span class='bookDetail bigFont cursorPoiner' onclick={goToAuthorAction}>{book.Author__r.Name__C} {book.Author__r.Surname__c}</span>
                     <span class='bookDetail normalFont cursorPoiner' onclick={goToSeriesAction}>Seria: {book.Book_Series__r.Name}</span>               
                     <span class='bookDetail'>Gatunek: {book.Genre__c}</span>
                 </section>
             </section>
             <section class='gradeContainer'>
                 <span class='bigFont'>Średnia ocena</span>
-                <span class='bigFont'>{book.Average_Rating__c}</span>
+                <span class='bigFont'>{averageRating} · {book.Rating_Count__c} ocen</span>
             </section>
         </section>
     </template>

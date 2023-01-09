@@ -18,11 +18,14 @@ export default class BookDetailsPage extends NavigationMixin(LightningElement) {
     wiredRatings;
     wiredBook;
     book;
+    averageRating;
+    rating
 
     @wire(getBook, {bookId: localStorage.getItem('bookid')}) book(result){
         this.wiredBook = result;
         if(result.data){
             this.book = result.data;
+            this.averageRating = (Math.round(this.book.Average_Rating__c * 100) / 100).toFixed(2);
         }
         else if(result.error){
             this.error = result.error;

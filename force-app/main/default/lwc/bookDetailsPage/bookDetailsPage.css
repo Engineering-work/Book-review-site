@@ -9,6 +9,7 @@
     border-radius: 12px;
     font-family: sans-serif;
     display: flex;
+    flex-direction: column;
     padding: 2rem;
     margin-bottom: 3rem;
 }
@@ -36,7 +37,8 @@
     font-size: 1.2rem;    
 }
 .ratingNumber{
-    margin-right: 0.75rem;;
+    margin-right: 0.75rem;
+    width: 20%;
 }
 .colorBlue{
     color: #0797FF;
@@ -44,6 +46,9 @@
 .author, .pagesNumber, .releaseDate, .series, .genre, .description, .addRating, .ratingDescription{
     font-weight: 400;
     font-size: 1rem;
+}
+.ratingDescription{
+    width: 85%;
 }
 .author:hover, .series:hover{
     font-size: 1.1rem;
@@ -123,6 +128,9 @@
 .numberAndStarImage{
     display: flex;
     align-items: center;
+}
+.starImage{
+    width: 40%;
 }
 .noRatingsFindText{
     display: block;

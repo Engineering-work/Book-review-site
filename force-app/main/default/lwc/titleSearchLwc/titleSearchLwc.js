@@ -16,13 +16,6 @@ export default class TitleSearchLwc extends LightningElement {
         this.recordsList = null;
     }, 300);
  }
-
- onRecordSelection(event) {
-  this.selectedRecordId = event.target.dataset.key;
-  this.selectedValue = event.target.dataset.name;
-  this.searchKey = "";
-  this.onSeletedRecordUpdate();
- }
  handleKeyChange(event) {
   const searchKey = event.target.value;
   this.searchKey = searchKey;
@@ -52,6 +45,12 @@ findTitles({ searchKey: this.searchKey })
       this.recordsList = undefined;
      });
 }
+onRecordSelection(event) {
+  this.selectedRecordId = event.target.dataset.key;
+  this.selectedValue = event.target.dataset.name;
+  this.searchKey = "";
+  this.onSeletedRecordUpdate();
+ }
 onSeletedRecordUpdate(){
     const passEventr = new CustomEvent('titleselection', {
       detail: { selectedBookId: this.selectedRecordId, selectedTitle: this.selectedValue }
