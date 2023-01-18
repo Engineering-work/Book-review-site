@@ -25,7 +25,7 @@ public class TestDataFactory {
     public static List<Book__c> createBooks(Boolean doInsert, Integer count, String title, Id authorId) {
         List<Book__c> books = new List<Book__c>();
         for (Integer i = 0; i < count; i++) {
-            books.add(new Book__c(Genre__c = 'Fantasy', Title__c = title, Pages__c = 100, Release_Date__c = Date.today(), Author__c = authorId));
+            books.add(new Book__c(Genre__c = 'Fantastyka', Title__c = title, Pages__c = 100, Release_Date__c = Date.today(), Author__c = authorId));
         }
 
         if (doInsert) {
