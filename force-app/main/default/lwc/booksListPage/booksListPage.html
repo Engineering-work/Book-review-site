@@ -1,0 +1,42 @@
+<template>
+    <section class='pageContainer'>
+        <section class='filters'>
+            <span class='biggestFont marginBottom'>Filtry</span>
+            <span class='bigFont'>Gatunek</span>
+            <template if:true={genres.data}>
+                <lightning-combobox 
+                    name="Genre"
+                    value={value}
+                    placeholder="Wybierz gatunek"
+                    options={genres.data.values}
+                    onchange={filterGenre}>
+                </lightning-combobox>
+            </template>
+            <span onclick={filterGenre} style='cursor: pointer;'>Wyczyść filtry</span>
+        </section>
+        <section class='booksList'>
+            <section class='numberOfShownBooksContainer'>
+                <span class='numberOfShownBooks active' onclick={changeNumberOfResults} id='five'>5</span>
+                <span class='numberOfShownBooks' onclick={changeNumberOfResults} id='ten'>10</span>
+                <span class='numberOfShownBooks' onclick={changeNumberOfResults} id='fifteen'>15</span>
+            </section>
+            <template if:true={allBooks}>
+                <template if:true={noFilteredBooks}>
+                    <span class='noBooksFindText'>Nie znaleziono książek z tym gatunkiem</span>
+                </template>
+                <template if:false={noFilteredBooks}>
+                    <template for:each={books} for:item='book'>
+
+                        <c-book-detailed-container key={book.id} book={book} bookcontainertype="listPage">
+
+                        </c-book-detailed-container>
+                    </template>
+                </template>
+            </template>
+            <section class='navigation'>
+                <button class='navigationButton' id='previous' onclick={changeResults}>Poprzednia strona</button>
+                <button class='navigationButton' id='next' onclick={changeResults}>Następna strona</button>
+            </section>
+        </section>
+    </section>
+</template>

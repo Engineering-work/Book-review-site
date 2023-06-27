@@ -1,0 +1,68 @@
+<template>
+    <template if:true={bookListPage}>
+        <section class='bookContainer'>
+            <section class='mainDetailsContainer'>
+                <section class='imageContainer'>
+                    <img src={book.Photo__c} class="cursorPoiner" style='max-height: 225px;' onclick={goToDetailsAction}>
+                </section>
+                <section class='detailsContainer'>
+                    <span class='bookDetail biggestFont cursorPoiner' onclick={goToDetailsAction}>{book.Title__c}</span>
+                    <span class='bookDetail bigFont cursorPoiner' onclick={goToAuthorAction}>{book.Author__r.Name__C} {book.Author__r.Surname__c}</span>
+                    <span class='bookDetail normalFont cursorPoiner' onclick={goToSeriesAction}>Seria: {book.Book_Series__r.Name}</span>               
+                    <span class='bookDetail'>Gatunek: {book.Genre__c}</span>
+                </section>
+            </section>
+            <section class='gradeContainer'>
+                <span class='bigFont'>Średnia ocena</span>
+                <span class='bigFont'>{averageRating} · {book.Rating_Count__c} ocen</span>
+            </section>
+        </section>
+    </template>
+    <template if:true={booksContainer}>
+        <section class='booksContainer'> 
+            <section class='bookImage'>
+                <template if:false={recommended}>
+                    <img src={book.Photo__c} onclick={goToDetailsAction} style="max-height: 225px; cursor: pointer;">
+                </template>
+                <template if:true={recommended}>
+                    <img src={book.Book__r.Photo__c} onclick={goToDetailsAction} style="max-height: 225px; cursor: pointer;">
+                </template>
+            </section>
+            <section class='bookTitle'>
+                <template if:false={recommended}>
+                    {book.Title__c}
+                </template>
+                <template if:true={recommended}>
+                    {book.Book__r.Title__c}
+                </template>
+            </section>
+            <template if:true={showAuthor}>
+                <section class='bookAuthor'>
+                    <template if:false={recommended}>
+                        {book.Author__r.Name__c} {book.Author__r.Surname__c}
+                    </template>
+                    <template if:true={recommended}>
+                        {book.Book__r.Author__r.Name__c} {book.Book__r.Author__r.Surname__c}
+                    </template>
+                </section>
+            </template>
+        </section>
+    </template>
+    <template if:true={bookListItem}>
+        <section class='bookListItemContainer'>
+            <span style='width: 55%;'>{book.Book__r.Title__c}, {book.Book__r.Author__r.Name__c} {book.Book__r.Author__r.Surname__c}</span>
+            <template if:true={status.data}>
+                <lightning-combobox 
+                    name="Status"
+                    value={book.Status__c}
+                    class="combobox"
+                    options={status.data.values}
+                    onchange={handleStatusChange}
+                    variant = "label-hidden">
+                </lightning-combobox>
+            </template>
+            <lightning-icon icon-name="utility:close"
+                 size="xx-Small" class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true" onclick={handleDeleteListItem} style='cursor: pointer;'></lightning-icon>
+        </section>
+    </template>
+</template>

@@ -1,0 +1,90 @@
+<template>
+    <section class='mainContainer'>
+        <template if:true={book}>
+            <section class='bookDetailsContainer'>
+                <section style="display: flex">
+                    <section class='bookDetails'>
+                        <section class='allDetails'>
+                            <section class='bookImage'>
+                                <img src={book.Photo__c} style='max-height: 225px;'/>
+                            </section>
+                            <section class='textDetails'>
+                                <span class='title'>
+                                    {book.Title__c}
+                                </span>
+                                <span class='author' onclick={goToAuthorAction} style='cursor: pointer;'>
+                                    Autor: <span class='colorBlue'>{book.Author__r.Name__c} {book.Author__r.Surname__c}</span>
+                                </span>
+                                <span class='pagesNumber'>
+                                    Liczba stron: {book.Pages__c}
+                                </span>
+                                <span class='releaseDate'>
+                                    Data wydania: {book.Release_Date__c}
+                                </span>
+
+                                <span class='series' style='cursor: pointer;' onclick={goToSeriesAction}>
+                                    Cykl: <span class='colorBlue'>{book.Book_Series__r.Name}</span>
+                                </span>
+                                <span class='genre'>
+                                    Gatunek: {book.Genre__c}
+                                </span>
+                                <span class='genre'>
+                                    Wydawnictwo: {book.Publishing_House__c}
+                                </span>
+                            </section>
+                        </section>   
+                    </section>
+                    <section class='averageRatingContainer'>
+                        <section class='averageRating'>
+                            <span class='averageRatingText'>Średnia ocena</span>
+                            <span class='averageRatingValue'>{averageRating}</span>
+                            <section class='ratingButtonsContainer'>
+                                <span class='ratingButton' onclick={goToDiscussions}>Dyskusje</span>
+                                <span class='ratingButton' onclick={goToReviews}>Recenzje</span>
+                            </section>
+                        </section>
+                        <section class='addRating' onclick={handleAddRating}>
+                            <span>Dodaj ocenę</span>
+                        </section>
+                    </section>
+                </section>
+                <section class='description'>
+                    {book.Description__c}
+                </section>
+            </section>
+        </template>
+        <template if:true={ispopupactive}>
+            <c-add-rating-pop-up ispopupactive={ispopupactive} onispopupactivechange={handleispopupactiveChange} onratingchange={handleRatingsChange}>
+            </c-add-rating-pop-up>
+        </template>
+        <section class='allRatings'>
+            <template if:true={book}>
+                <span class='title allRatingTitle'>Oceny · {book.Rating_Count__c}</span>
+            </template>
+            <template if:true={ratings}>
+                <template for:each={ratings} for:item='rating'>
+                    <section class='ratingContainer' key={rating.id}>
+                        <section class='profileImage'>
+                            <img src={rating.User__r.Photo__c} />
+                        </section>
+                        <section class='ratingDetails'>
+                            <span class='profileName'>{rating.User__r.Nickname__c}</span>
+                            <section class='rating'>
+                                <div class='ratingDescription'>{rating.Comment__c}</div>
+                                <section class='numberAndStarImage'>
+                                    <span class='ratingNumber'>{rating.Rating__c}</span>
+                                    <span class='starImage'>
+                                        <img src={star} alt='star'/>
+                                    </span>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                </template>
+            </template>
+            <template if:true={ratingsEmpty}>
+                <span class='noRatingsFindText'>Nie ma jeszcze ocen</span>
+            </template>
+        </section>
+    </section>
+</template>

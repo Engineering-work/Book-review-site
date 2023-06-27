@@ -1,0 +1,34 @@
+<template>
+    <div class="slds-form-element displayFlex">
+      <div class="slds-form-element__control" style='max-width: 245px;'>
+        <div class="slds-combobox_container">
+          <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open" aria-expanded="true" aria-haspopup="listbox" role="combobox">
+            <div data-key="searchdiv" class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none">
+              <input type="text" onfocusout={onLeave} value={searchKey} onkeyup={handleKeyChange} onchange={handleKeyChange} class="slds-input slds-combobox__input slds-has-focus" id="combobox-id-2" aria-autocomplete="list" aria-controls="listbox-id-2" role="textbox" placeholder="Wyszukaj..." />
+              <span class="slds-icon_container slds-icon-utility-search slds-input__icon slds-input__icon_right">
+                <lightning-icon icon-name="utility:search" size="xx-Small" class="slds-icon slds-icon slds-icon_x-small slds-icon-text-default" aria-hidden="true"></lightning-icon>
+              </span>
+            </div>
+            <template if:true={recordsList}>
+            <div id="listbox-id-2-venu" data-key="dropdownresult" class="slds-show slds-dropdown slds-dropdown_length-with-icon-7" role="listbox">
+              <ul class="slds-listbox slds-listbox_vertical" role="presentation" >
+                <template if:true={message}>
+                 {message}
+                </template>
+                <template for:each={recordsList} for:item="record">
+                  <li id={record.Id} key={record.Id} onclick={onRecordSelection} role="presentation" class="slds-listbox__item">
+                  <div data-key={record.Id} data-name={record.Title__c} class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" style='min-width: 245px;' role="option">
+                    <span class="slds-media__body">
+                      <span data-key={record.Id} data-name={record.Title__c} class="">{record.Title__c} </span>
+                    </span>
+                  </div>
+                </li>
+                </template>
+              </ul>
+            </div>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </template>

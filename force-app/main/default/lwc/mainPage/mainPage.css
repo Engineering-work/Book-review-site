@@ -1,0 +1,11 @@
+.mainContainer{
+    margin: 5rem 7rem;
+}
+
+.registerContainer{
+    margin: 3rem;
+    color: #000000;
+    font-weight: 400;
+    font-size: 17px;
+    font-family: 'Salesforce Sans', sans-serif;
+}

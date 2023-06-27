@@ -1,0 +1,44 @@
+.cursorPointer{
+    cursor: pointer;
+}
+
+.navigationBar span{
+    font-weight: bold;
+}
+
+.information{
+    margin: 3rem 8vw 3rem 8vw;
+    font-size: 20px;
+}
+
+.navSection{
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 8vw 2rem 8vw;
+}
+
+.buttonStyle{
+    background-color: #fc9999;
+    border-radius: 10%;
+    border-width: medium;
+    padding: 0 1rem;
+    
+}
+
+.headerStyling{
+    font-weight: 400;
+}
+.slider{
+    --slds-c-slider-track-color-background: #dcdcdc;
+    --slds-c-slider-thumb-color-foreground: #FFC8C8;
+    --slds-c-slider-thumb-color-foreground-active: #FFC8C8;
+    --slds-c-slider-thumb-color-foreground-focus: #FFC8C8;
+    --slds-c-slider-thumb-color-foreground-hover: #FFC8C8;
+}
+.slds-modal__footer{
+    border: none;
+}
+.slds-button, .slds-button_brand{
+    background-color: #FFC8C8;
+    border: none;
+}

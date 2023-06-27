@@ -1,0 +1,106 @@
+/*Whole conatiner*/
+.naviagtionContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+}
+
+.pinkColor{
+    background-color: #FFC8C8 !important;
+}
+
+/* Logo section */
+.logoContainer{
+    margin-left: 5%;
+}
+
+
+/* Navigation section */
+.LinksAndSearchContainer{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+
+/* Links */
+
+.linksContainer{
+    display: flex;
+    width: 27rem;
+}
+
+.link, .dropdownLink{
+    padding: 19px 1.9rem;
+}
+.dropdownLinks{
+
+    padding: 19px 1.1rem;
+    width: 8rem;
+}
+
+.link:active,
+.link:active:hover,
+.dropdownLinks:active:hover,
+.dropdownLinks:active{
+    background-color: #FFB2B2 !important;
+    font-weight: bold;
+    text-decoration: none !important;
+}
+
+.link:hover,
+.dropdownLinks:hover{
+    background-color: #FFB2B2 !important;
+    text-decoration: none !important;
+    border: 1px solid black;
+}
+
+.positionRelative{
+    position: relative;
+}
+
+.dropdownLink{
+    cursor: context-menu;
+}
+
+.dropdownContent{
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    top: 98%;
+    z-index: 1;
+}
+
+/* Search bar */
+.searchContainer{
+    margin-right: 5%;
+    padding-top: 1rem;
+}
+
+input{
+    background-color: white;
+    border-radius: 10px;
+    padding: 6px 15px;
+    border: none;
+}
+
+input:focus-visible,
+input:focus{
+    border: 2px solid gray;
+    outline: none;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #999999;
+    opacity: 1; /*Firefox*/
+}
+  
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #999999;
+}
+  
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #999999;
+}

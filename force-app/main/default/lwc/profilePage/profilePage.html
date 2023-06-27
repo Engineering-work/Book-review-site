@@ -1,0 +1,29 @@
+<template>
+    <template if:true={changeUserDataPopup}>
+        <c-edit-user-data ispopupactive={changeUserDataPopup} onispopupactivechange={handleispopupactiveChange} onuserchange={handleUserChange}>
+        </c-edit-user-data>
+    </template>
+    <section class='mainContainer'>
+        <template if:true={profile}>
+            <section class='profileDetailsContainer'>
+                <section>
+                    <img src={profile.Photo__c} style='max-height: 70px;'>
+                </section>
+                <section class='profileDetails'>
+                    <section class='login'>
+                        {profile.Nickname__c}
+                    </section>
+                    <section class='otherDetails'>
+                        {profile.Email__c}
+                    </section>
+                    <section class='otherDetails'>
+                        {profile.Role__c}
+                    </section>
+                </section>
+            </section>
+            <section class='settingsLink'>
+                <span onclick={changeUserDataPopuphandle} style='cursor: pointer;'>Zmień dane</span>
+            </section>
+        </template>
+    </section>
+</template>

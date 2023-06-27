@@ -1,0 +1,24 @@
+<template>
+    <template if:true={isAddBookPopupactive}>
+            <c-add-book-to-my-list ispopupactive={isAddBookPopupactive} onispopupactivechange={handleispopupactiveChange} onmylistchange={handleMyListChange}>
+            </c-add-book-to-my-list>
+        </template>
+    <section class='mainContainer'>
+        <section class='myListContainer'>
+            <section class='titleContainer'>
+                <span class='title'>Moja lista</span>
+                <span class='addBook' onclick={handleAddBook}>Dodaj książkę</span>
+            </section>
+            <section class='myList'>
+                <template if:true={books}>
+                    <template if:true={noBooks}>
+                        <span class='noBooksFindText'>Nie masz książek na mojej liście.</span>
+                    </template>
+                    <template for:each={books} for:item='book'>
+                        <c-book-detailed-container key={book.id} book={book} bookcontainertype="bookListItem" onmylistchange={handleMyListChange}></c-book-detailed-container>
+                    </template>
+                </template>
+            </section>
+        </section>
+    </section>
+</template>

@@ -1,0 +1,58 @@
+<template>
+        <template if:true={reviews}>
+            <template if:true={loggedInUser}>
+                <section class="navSection">
+                <p class="navigationBar"><span class ="cursorPointer" onclick={goToBookDetailsAction}>{bookName}</span>>>recenzje</p>
+                <button class="buttonStyle" onclick={addReviewAction}>Dodaj recenzję</button>
+                </section>
+            </template>
+            <template if:false={loggedInUser}>
+                <section class="navSection">
+                <p class="navigationBar"><span class ="cursorPointer" onclick={goToBookDetailsAction}>{bookName}</span>>>recenzje</p>
+                </section>
+            </template>
+            <template if:true={reviewsEmpty}>
+                <p class="information">Aktualnie nie ma żadnych recenzji</p>
+           </template>
+                <template for:each={reviews} for:item='review'> 
+                    <c-review-container key={review.id} review={review} onchangereviewstate={changeReviewState}></c-review-container> 
+                </template>
+        </template>
+        <template if:true={addReview}>
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={closeModal}>
+                            <lightning-icon icon-name="utility:close"
+                                alternative-text="close"
+                                variant="inverse"
+                                size="small" ></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <template if:false={thisReview}>
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Dodaj recenzję</h2>
+                        </template>
+                        <template if:true={thisReview}>
+                            <h2 id="modal-heading-02" class="slds-text-heading_medium slds-hyphenate">Edytuj recenzję</h2>
+                        </template>
+
+                    </header>
+   
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">            
+                        <lightning-textarea  name="reviewDescription" label="Twoja recenzja" placeholder="Napisz tutaj..." onchange={changeReview}></lightning-textarea>
+                    </div>
+
+                    <footer class="slds-modal__footer">
+                        <template if:false={thisReview}> 
+                            <button class="slds-button slds-button_brand" onclick={addReviewRecord}>Dodaj</button>
+                        </template>
+                        <template if:true={thisReview}> 
+                            <button class="slds-button slds-button_brand" onclick={editReviewRecord}>Edytuj</button>
+                            <button class="slds-button slds-button_brand" onclick={deleteReviewRecord}>Usuń</button>
+                        </template>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+    </template>

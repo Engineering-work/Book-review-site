@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Genre__c</fullName>
+    <externalId>false</externalId>
+    <label>Genre</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Przygoda</fullName>
+                <default>true</default>
+                <label>Przygoda</label>
+            </value>
+            <value>
+                <fullName>Komedia</fullName>
+                <default>false</default>
+                <label>Komedia</label>
+            </value>
+            <value>
+                <fullName>Dystopia</fullName>
+                <default>false</default>
+                <label>Dystopia</label>
+            </value>
+            <value>
+                <fullName>Fantastyka</fullName>
+                <default>false</default>
+                <label>Fantastyka</label>
+            </value>
+            <value>
+                <fullName>Powieść historyczna</fullName>
+                <default>false</default>
+                <label>Powieść historyczna</label>
+            </value>
+            <value>
+                <fullName>Horror</fullName>
+                <default>false</default>
+                <label>Horror</label>
+            </value>
+            <value>
+                <fullName>Romans</fullName>
+                <default>false</default>
+                <label>Romans</label>
+            </value>
+            <value>
+                <fullName>Fantastyka naukowa</fullName>
+                <default>false</default>
+                <label>Fantastyka naukowa</label>
+            </value>
+            <value>
+                <fullName>Thriller</fullName>
+                <default>false</default>
+                <label>Thriller</label>
+            </value>
+            <value>
+                <fullName>Powieść młodzieżowa</fullName>
+                <default>false</default>
+                <label>Powieść młodzieżowa</label>
+            </value>
+            <value>
+                <fullName>Kryminał</fullName>
+                <default>false</default>
+                <label>Kryminał</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

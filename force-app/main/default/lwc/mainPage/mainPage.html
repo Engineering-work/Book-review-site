@@ -1,0 +1,20 @@
+<template>
+    <section class='mainContainer'>
+        <template if:true={loggedInUser}>
+            <template if:true={suggestedBooks}>
+                <c-books-Container bookscomponent="recommended" loggedinuser={loggedInUser} bookslist={suggestedBooks} bookcontainertype="booksContainer">
+                </c-books-Container>
+            </template>
+        </template>
+        <template if:false={loggedInUser}>
+            <section class='registerContainer'>
+                <a href='/register'>Zarejestruj się</a>, aby zobaczyć książki polecane dla Ciebie!
+            </section>
+        </template>
+
+        <template if:true={newBooks}>
+            <c-books-Container bookscomponent="new" bookslist={newBooks} bookcontainertype="booksContainer">
+            </c-books-Container>
+        </template>
+    </section>
+</template>

@@ -1,0 +1,46 @@
+<template>
+    <section class='mainContainer'>
+        <section class='previous' onclick={renderPreviousBook}>
+            <img src={previous}>
+        </section>
+        <section class='booksContainer'>
+            <template if:true={newBooks}>
+                <section class='title'>Nowości</section>
+            </template>
+            <template if:true={recommendedBooks}>
+                <section class='title'>Wybrane dla Ciebie</section>
+            </template>
+            <template if:true={authorBooks}>
+                <section class='title'>Książki tego autora</section>
+            </template>
+
+            <template if:true={seriesBooks}>
+                <section class='title'>Książki z serii {seriesName}</section>
+            </template>
+
+            <template if:true={seriesBooks}>
+                <section class='title'>Książki z serii {seriesName}</section>
+            </template>
+            <template if:true={newBooks}>
+                <section class='newBooksGenres'>
+                    <a class='link active' id='wszystkie' onclick={changeGenre}>Wszystkie</a>
+                    <a class='link' id='Horror' onclick={changeGenre}>Horror</a>
+                    <a class='link' id='Tajemnica' onclick={changeGenre}>Tajemnica</a>
+                    <a class='link' id='Romans' onclick={changeGenre}>Romans</a>
+                    <a class='link' id='Fantastyka' onclick={changeGenre}>Fantastyka</a>
+                </section>
+            </template>
+            <section class='booksList'>
+                <template if:true={books}>
+                    <template for:each={books} for:item='book'>
+                        <c-book-detailed-container key={book.id} book={book} authorbooks={authorBooks} bookscomponent={bookscomponent} seriesbooks={seriesBooks} bookcontainertype={bookcontainertype} style="margin: 1rem; width:20%;">
+                        </c-book-detailed-container>
+                    </template>
+                </template>
+            </section>
+        </section>
+        <section class='next' onclick={renderNextBook}>
+            <img src={next}>
+        </section>
+    </section>
+</template>
